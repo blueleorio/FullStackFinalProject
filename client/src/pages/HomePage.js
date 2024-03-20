@@ -1,14 +1,6 @@
 import React from "react";
 
-import {
-  Box,
-  Card,
-  Container,
-  Grid,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
 function HomePage() {
   return (
