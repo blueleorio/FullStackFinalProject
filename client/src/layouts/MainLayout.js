@@ -9,6 +9,17 @@ function MainLayout() {
     <Stack sx={{ minHeight: "100vh" }}>
       {/* <MainHeader /> */}
       {/* <AlertMsg />  */}
+      <Box
+        height={32}
+        sx={{
+          border: "2px solid grey",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        This is the header
+      </Box>
 
       <Outlet />
 
