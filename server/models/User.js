@@ -16,6 +16,12 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    habits: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Habit",
+      },
+    ],
   },
   {
     timestamps: true,
