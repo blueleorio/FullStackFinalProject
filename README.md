@@ -18,3 +18,7 @@ CoderSchool Full Stack Web - Final Project
 |            | 8. As a user, I want to be able to customize the appearance of the app to my liking.                                                         |
 
 ---
+
+Google Sheet:
+
+https://docs.google.com/spreadsheets/d/1_o0cZbtYivy789PXFuDNWGSB1y-4t-k5JNm8ZzfVLg4/edit#gid=1787504862
