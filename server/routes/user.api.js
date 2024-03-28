@@ -13,7 +13,7 @@ const {
 
 //Read
 /**
- * @route GET api/User
+ * @route GET api/User => from index.js routes
  * @description get list of Users
  * @access public
  */
@@ -33,7 +33,7 @@ router.post("/", loginRequired, createUser);
  * @description update a User
  * @access public
  */
-router.put("/:id", loginRequired, editUser);
+router.put("/:id", loginRequired, editUser).env;
 
 //Delete
 /**
