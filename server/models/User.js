@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     email: {
       type: String,
@@ -22,6 +23,11 @@ const userSchema = mongoose.Schema(
         ref: "Habit",
       },
     ],
+    isDeleted: {
+      type: Boolean,
+      default: false,
+      select: false,
+    },
   },
   {
     timestamps: true,

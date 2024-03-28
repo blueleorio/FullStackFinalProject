@@ -8,7 +8,7 @@ const habitSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      default: "",
     },
     frequency: {
       type: Number,
@@ -25,10 +25,15 @@ const habitSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    goalId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Goal",
+    },
     deletedAt: Date,
     isDeleted: {
       type: Boolean,
       default: false,
+      select: false,
     },
   },
   {

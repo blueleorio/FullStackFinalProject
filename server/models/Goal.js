@@ -27,6 +27,7 @@ const goalSchema = mongoose.Schema(
     isDeleted: {
       type: Boolean,
       default: false,
+      select: false,
     },
   },
   {

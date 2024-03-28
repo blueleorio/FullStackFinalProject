@@ -4,7 +4,7 @@ const user = require("../models/User.js");
 
 const userController = {};
 //Create a user
-carController.createUser = async (req, res, next) => {
+userController.createUser = async (req, res, next) => {
   //in real project you will getting info from req
 
   try {
@@ -28,7 +28,7 @@ carController.createUser = async (req, res, next) => {
 };
 
 //Get all user
-carController.getUsers = async (req, res, next) => {
+userController.getUsers = catchAsync(async (req, res, next) => {
   //in real project you will getting condition from from req then construct the filter object for query
   // empty filter mean get all
   const filter = {};
@@ -46,10 +46,29 @@ carController.getUsers = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
+
+// Get current user - Why no use /getUsers/:id???
+
+userController.getCurrentUser = catchAsync(async (req, res, next) => {
+  const currentUserId = req.userId;
+
+  const user = await user.findById(currentUserId);
+  if (!user)
+    throw new AppError(400, "User not found", "Get Current User Error");
+
+  return sendResponse(
+    res,
+    200,
+    true,
+    user,
+    null,
+    "Get Current User successful"
+  );
+});
 
 //Update a user
-carController.editUser = async (req, res, next) => {
+userController.editUser = async (req, res, next) => {
   //in real project you will getting id from req. For updating and deleting, it is recommended for you to use unique identifier such as _id to avoid duplication
   //you will also get updateInfo from req
   // empty target and info mean update nothing
@@ -76,7 +95,7 @@ carController.editUser = async (req, res, next) => {
 };
 
 //Delete user
-carController.deleteUser = async (req, res, next) => {
+userController.deleteUser = async (req, res, next) => {
   //in real project you will getting id from req. For updating and deleting, it is recommended for you to use unique identifier such as _id to avoid duplication
 
   // empty target mean delete nothing

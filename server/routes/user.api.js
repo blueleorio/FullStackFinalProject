@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 // const { validationResult } = require("express-validator");
+const { loginRequired } = require("../middlewares/authenticator.js");
 
 const {
   createUser,
   getUsers,
+  getCurrentUser,
   editUser,
   deleteUser,
 } = require("../controllers/user.controllers.js");
@@ -15,7 +17,7 @@ const {
  * @description get list of Users
  * @access public
  */
-router.get("/", getUsers);
+router.get("/", loginRequired, getUsers);
 
 //Create
 /**
@@ -23,7 +25,7 @@ router.get("/", getUsers);
  * @description create a User
  * @access public
  */
-router.post("/", createUser);
+router.post("/", loginRequired, createUser);
 
 //Update
 /**
@@ -31,7 +33,7 @@ router.post("/", createUser);
  * @description update a User
  * @access public
  */
-router.put("/:id", editUser);
+router.put("/:id", loginRequired, editUser);
 
 //Delete
 /**
@@ -39,7 +41,7 @@ router.put("/:id", editUser);
  * @description delet a User
  * @access public
  */
-router.delete("/:id", deleteUser);
+router.delete("/:id", loginRequired, deleteUser);
 
 //export
 module.exports = router;
