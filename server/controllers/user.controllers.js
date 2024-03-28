@@ -5,15 +5,21 @@ const user = require("../models/User.js");
 const userController = {};
 //Create a user
 userController.createUser = async (req, res, next) => {
-  //in real project you will getting info from req
-
   try {
     const info = req.body;
 
-    //always remember to control your inputs
     if (!info) throw new AppError(402, "Bad Request", "Create user Error");
-    //mongoose query
+
+    // Validate info - for example: check if email, username is unique
+    const emailExist = await user.findOne({ email: info.email });
+    if (emailExist) {
+      throw new AppError(400, "Email already exists", "Create user Error");
+    }
+
+    //mongoose query to create a user
     const created = await user.create(info);
+
+    // Send response
     sendResponse(
       res,
       200,
@@ -28,7 +34,7 @@ userController.createUser = async (req, res, next) => {
 };
 
 //Get all user
-userController.getUsers = catchAsync(async (req, res, next) => {
+userController.getUsers = async (req, res, next) => {
   //in real project you will getting condition from from req then construct the filter object for query
   // empty filter mean get all
   const filter = {};
@@ -46,11 +52,11 @@ userController.getUsers = catchAsync(async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
 
 // Get current user - Why no use /getUsers/:id???
 
-userController.getCurrentUser = catchAsync(async (req, res, next) => {
+userController.getCurrentUser = async (req, res, next) => {
   const currentUserId = req.userId;
 
   const user = await user.findById(currentUserId);
@@ -65,7 +71,7 @@ userController.getCurrentUser = catchAsync(async (req, res, next) => {
     null,
     "Get Current User successful"
   );
-});
+};
 
 //Update a user
 userController.editUser = async (req, res, next) => {

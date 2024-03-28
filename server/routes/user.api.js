@@ -25,7 +25,7 @@ router.get("/", loginRequired, getUsers);
  * @description create a User
  * @access public
  */
-router.post("/", loginRequired, createUser);
+router.post("/", createUser);
 
 //Update
 /**

@@ -28,6 +28,7 @@ mongoose
   .then(() => console.log(`DB connected ${mongoURI}`))
   .catch((err) => console.log(err));
 
+// This one is the index route. "/" vs "/api" => Remember this is the root route
 app.use("/", indexRouter);
 
 // catch 404 and forard to error handler
