@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { body } = require("express-validator");
+const { body, param } = require("express-validator");
 const { loginRequired } = require("../middlewares/authenticator.js");
 const validator = require("../middlewares/validator.js");
 
@@ -16,9 +16,16 @@ const {
 /**
  * @route GET api/User => from index.js routes
  * @description get list of Users
- * @access public
+ * @access log in required
  */
 router.get("/", loginRequired, getUsers);
+
+/**
+ * @route GET api/User/me => from index.js routes
+ * @description get current User
+ * @access log in required
+ */
+router.get("/me", loginRequired, getCurrentUser);
 
 //Create
 /**
@@ -44,14 +51,21 @@ router.post(
 /**
  * @route PUT api/User
  * @description update a User
- * @access public
+ * @access log in required
  */
-router.put("/:id", loginRequired, editUser).env;
+router.put(
+  "/:id",
+  loginRequired,
+  validator.validate([
+    param("id").exists().isString().custom(validator.checkObjectID),
+  ]),
+  editUser
+);
 
 //Delete
 /**
  * @route DELETE api/User
- * @description delet a User
+ * @description delete a User
  * @access public
  */
 router.delete("/:id", loginRequired, deleteUser);

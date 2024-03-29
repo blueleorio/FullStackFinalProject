@@ -66,35 +66,40 @@ userController.getUsers = async (req, res, next) => {
 userController.getCurrentUser = async (req, res, next) => {
   const currentUserId = req.userId;
 
-  const user = await user.findById(currentUserId);
-  if (!user)
+  const currentUser = await user.findById(currentUserId);
+  if (!currentUser)
     throw new AppError(400, "User not found", "Get Current User Error");
 
   return sendResponse(
     res,
     200,
     true,
-    user,
+    currentUser,
     null,
     "Get Current User successful"
   );
 };
 
-//Update a user
+// Update User Info
 userController.editUser = async (req, res, next) => {
-  //in real project you will getting id from req. For updating and deleting, it is recommended for you to use unique identifier such as _id to avoid duplication
-  //you will also get updateInfo from req
-  // empty target and info mean update nothing
-  const targetId = null;
-  const updateInfo = "";
+  const targetId = req.userId;
+  const updateInfo = req.body;
 
-  //options allow you to modify query. e.g new true return lastest update of data
+  const allows = ["email", "password", "username"];
+  const updates = Object.keys(updateInfo)
+    .filter((key) => allows.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = updateInfo[key];
+      return obj;
+    }, {});
+
   const options = { new: true };
   try {
-    //mongoose query
-    const updated = await user.findByIdAndUpdate(targetId, updateInfo, options);
+    let updated = await user.findByIdAndUpdate(targetId, updates, options);
+    if (!updated)
+      throw new AppError(400, "User not found", "Update User Error");
 
-    sendResponse(
+    return sendResponse(
       res,
       200,
       true,
