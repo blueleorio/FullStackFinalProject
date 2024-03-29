@@ -29,8 +29,8 @@ router.get("/template/:test", async (req, res, next) => {
 });
 
 // Auth API
-// const authRouter = require("./auth.api.js");
-// router.use("/auth", authRouter);
+const authRouter = require("./auth.api.js");
+router.use("/auth", authRouter);
 
 // User API
 const userRouter = require("./user.api.js");

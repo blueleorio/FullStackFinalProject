@@ -31,7 +31,7 @@ mongoose
 // This one is the index route. "/" vs "/api" => Remember this is the root route
 app.use("/", indexRouter);
 
-// catch 404 and forard to error handler
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new AppError(404, "Not Found", "Bad Request");
   next(err);
