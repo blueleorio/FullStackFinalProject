@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const { validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const { loginRequired } = require("../middlewares/authenticator.js");
+const validator = require("../middlewares/validator.js");
 
 const {
   createUser,
@@ -25,7 +26,19 @@ router.get("/", loginRequired, getUsers);
  * @description create a User
  * @access public
  */
-router.post("/", createUser);
+router.post(
+  "/",
+  validator.validate([
+    body("username", "Invalid name").exists().notEmpty(),
+    body("email", "Invalid email")
+      .exists()
+      .isEmail()
+      .normalizeEmail({ gmail_remove_dots: false }),
+    body("password", "Invalid password").exists().notEmpty(),
+  ]),
+
+  createUser
+);
 
 //Update
 /**

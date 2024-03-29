@@ -1,46 +1,18 @@
-const { body, param } = require("express-validator");
+const { sendResponse, AppError } = require("../helpers/utils.js");
+const { validationResult } = require("express-validator");
 
-const createUserValidationRules = [
-  body("name")
-    .exists()
-    .withMessage("Name is required")
-    .isString()
-    .withMessage("Name must be a string"),
-  // Add more rules as needed
-];
-const createTaskValidationRules = [
-  body("name")
-    .exists()
-    .withMessage("Name is required")
-    .isString()
-    .withMessage("Name must be a string"),
-  body("description")
-    .exists()
-    .withMessage("Description is required")
-    .isString()
-    .withMessage("Description must be a string"),
-  body("status")
-    .exists()
-    .withMessage("Status is required")
-    .isIn(["pending", "working", "review", "done", "archive"])
-    .withMessage("Invalid status"),
-  body("assignedTo")
-    .exists()
-    .withMessage("AssignedTo is required")
-    .isArray()
-    .withMessage("AssignedTo must be an array"),
-];
+const validator = {};
 
-const idValidationRules = [
-  param("id")
-    .exists()
-    .withMessage("ID is required")
-    .isMongoId()
-    .withMessage("ID must be a valid Mongo ObjectId"),
-];
-
-module.exports = {
-  createUserValidationRules,
-  createTaskValidationRules,
-  idValidationRules,
+validator.validate = (validationArray) => async (req, res, next) => {
+  try {
+    await Promise.all(validationArray.map((validation) => validation.run(req)));
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      return next();
+    }
+    throw new AppError(422, "Validation Error", errors.array());
+  } catch (err) {
+    next(err);
+  }
 };
+module.exports = validator;

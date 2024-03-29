@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 //Create schema
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET_KEY;
 const userSchema = mongoose.Schema(
   {
     username: {
@@ -33,6 +35,18 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+userSchema.methods.toJSON = function () {
+  const user = this.toObject();
+  delete user.password;
+  delete user.isDeleted;
+  return user;
+};
+
+userSchema.methods.generateToken = async function () {
+  const token = jwt.sign({ _id: this._id }, JWT_SECRET, { expiresIn: "1d" });
+  return token;
+};
 
 //Create and export model
 const User = mongoose.model("User", userSchema);

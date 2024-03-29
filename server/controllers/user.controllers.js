@@ -1,12 +1,12 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
-
+const bcrypt = require("bcryptjs");
 const user = require("../models/User.js");
 
 const userController = {};
 //Create a user
 userController.createUser = async (req, res, next) => {
   try {
-    const info = req.body;
+    let info = req.body;
 
     if (!info) throw new AppError(402, "Bad Request", "Create user Error");
 
@@ -17,14 +17,21 @@ userController.createUser = async (req, res, next) => {
     }
 
     //mongoose query to create a user
+
+    // The magic starts here
+    const salt = await bcrypt.genSalt(10);
+    info.password = await bcrypt.hash(info.password, salt);
+
+    // Actually create the user in $created
     const created = await user.create(info);
+    const accessToken = await created.generateToken();
 
     // Send response
     sendResponse(
       res,
       200,
       true,
-      { user: created },
+      { user: created, accessToken },
       null,
       "Create user Successfully"
     );
