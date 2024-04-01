@@ -12,8 +12,15 @@ const goalSchema = mongoose.Schema(
     targetDate: { type: Date, required: true },
     status: {
       type: String,
-      enum: ["on-track,missed,not-started,late,abandoned,completed"],
-      default: "on-track",
+      enum: [
+        "onTrack",
+        "missed",
+        "notStarted",
+        "late",
+        "abandoned",
+        "completed",
+      ],
+      default: "onTrack",
     },
     habitId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,4 +43,4 @@ const goalSchema = mongoose.Schema(
 );
 //Create and export model
 const Goal = mongoose.model("Goal", goalSchema);
-module.export = Goal;
+module.exports = Goal;

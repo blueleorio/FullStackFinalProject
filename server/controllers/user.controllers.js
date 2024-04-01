@@ -44,7 +44,11 @@ userController.createUser = async (req, res, next) => {
 userController.getUsers = async (req, res, next) => {
   //in real project you will getting condition from from req then construct the filter object for query
   // empty filter mean get all
-  const filter = {};
+  const userId = req.params.id;
+  const filter = { isDeleted: false };
+  if (userId) {
+    filter._id = userId;
+  }
   try {
     //mongoose query
     const listOfFound = await user.find(filter).limit(2);
@@ -117,18 +121,23 @@ userController.deleteUser = async (req, res, next) => {
   //in real project you will getting id from req. For updating and deleting, it is recommended for you to use unique identifier such as _id to avoid duplication
 
   // empty target mean delete nothing
-  const targetId = null;
+  const targetId = req.userId;
   //options allow you to modify query. e.g new true return lastest update of data
   const options = { new: true };
   try {
     //mongoose query
-    const updated = await user.findByIdAndDelete(targetId, options);
+    const deleted = await Task.findByIdAndUpdate(
+      targetId,
+      { isDeleted: true },
+      options
+    );
+    if (!deleted) throw new AppError("Task not found", 404);
 
     sendResponse(
       res,
       200,
       true,
-      { user: updated },
+      { user: deleted },
       null,
       "Delete User Successfully!"
     );
