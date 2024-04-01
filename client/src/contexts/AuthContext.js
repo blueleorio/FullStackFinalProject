@@ -86,6 +86,7 @@ const reducer = (state, action) => {
 };
 
 const setSession = (accessToken) => {
+  console.log("setSession called with:", accessToken);
   if (accessToken) {
     window.localStorage.setItem("accessToken", accessToken);
     apiService.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -147,16 +148,23 @@ function AuthProvider({ children }) {
   }, [updatedProfile]);
 
   const login = async ({ email, password }, callback) => {
-    const response = await apiService.post("/auth/login", { email, password });
-    const { user, accessToken } = response.data;
+    try {
+      const response = await apiService.post("/auth/login", {
+        email,
+        password,
+      });
+      const { user, accessToken } = response.data;
 
-    setSession(accessToken);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: { user },
-    });
+      setSession(accessToken);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { user },
+      });
 
-    callback();
+      callback();
+    } catch (err) {
+      console.error("Error in login function:", err);
+    }
   };
 
   const register = async ({ name, email, password }, callback) => {

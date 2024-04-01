@@ -30,7 +30,7 @@ authController.loginWithEmail = async (req, res, next) => {
       res,
       200,
       true,
-      { user: logIn, accessToken },
+      { data: { user: logIn, accessToken } },
       null,
       "Log In Successfully"
     );

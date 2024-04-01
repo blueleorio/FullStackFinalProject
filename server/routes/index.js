@@ -34,14 +34,14 @@ router.use("/auth", authRouter);
 
 // User API
 const userRouter = require("./user.api.js");
-router.use("/user", userRouter);
+router.use("/users", userRouter);
 
 // Habit API
 const habitRouter = require("./habit.api.js");
-router.use("/habit", habitRouter);
+router.use("/habits", habitRouter);
 
 // Goal API
 const goalRouter = require("./goal.api.js");
-router.use("/goal", goalRouter);
+router.use("/goals", goalRouter);
 
 module.exports = router;

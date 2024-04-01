@@ -36,7 +36,7 @@ router.get("/me", loginRequired, getCurrentUser);
 router.post(
   "/",
   validator.validate([
-    body("username", "Invalid name").exists().notEmpty(),
+    body("name", "Invalid name").exists().notEmpty(),
     body("email", "Invalid email")
       .exists()
       .isEmail()
