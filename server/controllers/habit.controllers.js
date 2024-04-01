@@ -1,11 +1,15 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
 const habit = require("../models/Habit.js");
+const user = require("../models/User.js");
 const habitController = {};
 //Create a habit
+
+//!TODO: add assign userId to the HabitID as well as the Goal ID
 
 habitController.createHabit = async (req, res, next) => {
   try {
     const info = req.body;
+    console.log("🚀 ~ habitController.createHabit= ~ req.body:", req.body);
     if (!info) throw new AppError(402, "Bad Request", "Create habit Error");
     const created = await habit.create(info);
     sendResponse(

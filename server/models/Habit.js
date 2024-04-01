@@ -45,4 +45,4 @@ const habitSchema = mongoose.Schema(
 );
 //Create and export model
 const Habit = mongoose.model("Habit", habitSchema);
-module.export = Habit;
+module.exports = Habit;
