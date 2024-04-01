@@ -75,6 +75,17 @@ goalController.editGoal = async (req, res, next) => {
   const updateInfo = req.body;
   const options = { new: true };
   try {
+    const goal = await goal.findById(targetId);
+    if (goal.isDeleted) {
+      return sendResponse(
+        res,
+        400,
+        false,
+        null,
+        "Cannot update a deleted goal",
+        "Update failed"
+      );
+    }
     const updated = await goal.findByIdAndUpdate(targetId, updateInfo, options);
     sendResponse(
       res,

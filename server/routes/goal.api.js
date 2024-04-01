@@ -55,7 +55,14 @@ router.post(
  * @access public
  */
 
-router.put("/:goalId", loginRequired, editGoal);
+router.put(
+  "/:goalId",
+  loginRequired,
+  validator.validate([
+    param("goalId").exists().isString().custom(validator.checkObjectID),
+  ]),
+  editGoal
+);
 
 //Delete
 /**
