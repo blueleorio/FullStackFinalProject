@@ -14,7 +14,7 @@ const {
 
 //Read
 /**
- * @route GET api/Goal/user/:userId
+ * @route GET api/goals/user/:userId
  * @description get list of Goals of user
  * @access log in required
  */
@@ -23,7 +23,7 @@ router.get("/", loginRequired, getGoals);
 
 //Read
 /**
- * @route GET api/Goal/:goalId
+ * @route GET api/goals/:goalId
  * @description get current Goal info
  * @access log in required
  */
@@ -32,7 +32,7 @@ router.get("/:goalId", loginRequired, getCurrentGoalInfo);
 
 //Create
 /**
- * @route POST api/Goal
+ * @route POST api/Goals
  * @description create a new Goal
  * @body {content, image}
  * @access public
@@ -50,7 +50,7 @@ router.post(
 
 //Update
 /**
- * @route PUT api/Goal
+ * @route PUT api/Goals/:goalId
  * @description update a Goal
  * @access public
  */
@@ -66,8 +66,8 @@ router.put(
 
 //Delete
 /**
- * @route DELETE api/Goal
- * @description delet a Goal
+ * @route DELETE api/Goals/:goalId
+ * @description delete a Goal
  * @access public
  */
 

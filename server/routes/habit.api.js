@@ -1,46 +1,66 @@
 const express = require("express");
 const router = express.Router();
-// const { validationResult } = require("express-validator");
+const { body, param } = require("express-validator");
+const validator = require("../middlewares/validator.js");
+const { loginRequired } = require("../middlewares/authenticator.js");
 
 const {
   createHabit,
   getHabits,
   editHabit,
   deleteHabit,
+  getCurrentHabitInfo,
 } = require("../controllers/habit.controllers.js");
 
 //Read
 /**
- * @route GET api/Habit
+ * @route GET api/Habits/user/:userId
  * @description get list of Habits
- * @access public
+ * @access log in required
  */
 
-router.get("/", getHabits);
+router.get("/", loginRequired, getHabits);
+
+//Read
+/**
+ * @route GET api/Habits/:habitId
+ * @description get current habit info
+ * @access log in required
+ */
+
+router.get("/:habitId", loginRequired, getCurrentHabitInfo);
 
 //Create
 /**
- * @route POST api/Habit
+ * @route POST api/Habits
  * @description create a Habit
- * @access public
+ * @access log in required
  */
-router.post("/", createHabit);
+router.post(
+  "/",
+  loginRequired,
+  validator.validate([
+    body("name", "Missing name").exists().notEmpty(),
+    body("frequency", "Missing frequency").exists().notEmpty(),
+  ]),
+  createHabit
+);
 
 //Update
 /**
- * @route PUT api/Habit
+ * @route PUT api/Habits/:habitId
  * @description update a Habit
- * @access public
+ * @access log in required
  */
-router.put("/:id", editHabit);
+router.put("/:habitId", loginRequired, editHabit);
 
 //Delete
 /**
- * @route DELETE api/Habit
+ * @route DELETE api/Habits/:habitId
  * @description delet a Habit
- * @access public
+ * @access log in required
  */
-router.delete("/:id", deleteHabit);
+router.delete("/:habitId", loginRequired, deleteHabit);
 
 //export
 module.exports = router;

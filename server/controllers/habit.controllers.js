@@ -12,7 +12,7 @@ habitController.createHabit = async (req, res, next) => {
       res,
       200,
       true,
-      { habit: created },
+      { data: created },
       null,
       "Create habit Successfully"
     );
@@ -23,14 +23,23 @@ habitController.createHabit = async (req, res, next) => {
 
 // Get all habit
 habitController.getHabits = async (req, res, next) => {
-  const filter = {};
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  const filter = { isDeleted: false };
+  const total = 20;
   try {
-    const listOfFound = await habit.find(filter).limit(2);
+    const listOfFound = await habit
+      .find(filter)
+      .skip(skip)
+      .limit(limit)
+      .populate("userId");
+    if (!listOfFound) throw new AppError("No habit found", 404);
     sendResponse(
       res,
       200,
       true,
-      { habit: listOfFound, page: 1, total: 1192 },
+      { habit: listOfFound, page: page, total: total },
       null,
       "Get Habit List Successfully!"
     );
@@ -38,13 +47,42 @@ habitController.getHabits = async (req, res, next) => {
     next(err);
   }
 };
+// Get current habit info
+habitController.getCurrentHabitInfo = async (req, res, next) => {
+  const targetId = req.params.habitId;
 
+  try {
+    const habitInfo = await habit.findOne({ _id: targetId, isDeleted: false });
+    if (!habitInfo) throw new AppError("habit not found", 404);
+    sendResponse(
+      res,
+      200,
+      true,
+      { habitInfo },
+      null,
+      "Get habit info Successfully"
+    );
+  } catch (error) {
+    next(error);
+  }
+};
 // Update a habit
 habitController.editHabit = async (req, res, next) => {
-  const targetId = null;
-  const updateInfo = "";
+  const targetId = req.params.habitId;
+  const updateInfo = req.body;
   const options = { new: true };
   try {
+    const habits = await habit.findById(targetId);
+    if (habits.isDeleted) {
+      return sendResponse(
+        res,
+        400,
+        false,
+        null,
+        "Cannot update a deleted habit",
+        "Update failed"
+      );
+    }
     const updated = await habit.findByIdAndUpdate(
       targetId,
       updateInfo,
@@ -65,14 +103,16 @@ habitController.editHabit = async (req, res, next) => {
 
 // Delete a habit
 habitController.deleteHabit = async (req, res, next) => {
-  const targetId = null;
+  const targetId = req.params.habitId;
+  const options = { new: true, isDeleted: true, deletedAt: new Date() };
   try {
-    const deleted = await habit.findByIdAndDelete(targetId);
+    const deleted = await habit.findByIdAndUpdate(targetId, options);
+    if (!deleted) throw new AppError("Habit not found", 404);
     sendResponse(
       res,
       200,
       true,
-      { habit: deleted },
+      { deleted },
       null,
       "Delete habit Successfully"
     );
