@@ -9,6 +9,12 @@ goalController.createGoal = async (req, res, next) => {
     const info = req.body;
     if (!info) throw new AppError(402, "Bad Request", "Create goal Error");
     const created = await goal.create(info);
+
+    // Assign goal to user
+    const userId = req.userId;
+    // const userFound = await user.findById(userId);
+    // userFound.goals.push(created._id);
+
     sendResponse(
       res,
       200,

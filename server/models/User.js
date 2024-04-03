@@ -25,6 +25,12 @@ const userSchema = mongoose.Schema(
         ref: "Habit",
       },
     ],
+    goals: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Goal",
+      },
+    ],
     isDeleted: {
       type: Boolean,
       default: false,
