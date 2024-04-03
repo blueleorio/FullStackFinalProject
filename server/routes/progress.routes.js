@@ -4,13 +4,7 @@ const { body, param } = require("express-validator");
 const validator = require("../middlewares/validator.js");
 const { loginRequired } = require("../middlewares/authenticator.js");
 
-const {
-  createGoal,
-  getGoals,
-  editGoal,
-  deleteGoal,
-  getCurrentGoalInfo,
-} = require("../controllers/goal.controllers.js");
+const {} = require("../controllers/progress.controllers.js");
 
 //Read
 /**
@@ -19,21 +13,21 @@ const {
  * @access log in required
  */
 
-router.get("/", loginRequired, getGoals);
+router.get("/", loginRequired, getProgs);
 
 //Read
 /**
- * @route GET api/goals/:goalId
- * @description get current Goal info
+ * @route GET api/Progs/:ProgId
+ * @description get current Prog info
  * @access log in required
  */
 
-router.get("/:goalId", loginRequired, getCurrentGoalInfo);
+router.get("/:progId", loginRequired, getCurrentProgInfo);
 
 //Create
 /**
- * @route POST api/Goals
- * @description create a new Goal
+ * @route POST api/Progs
+ * @description create a new Prog
  * @body {content, image}
  * @access public
  */
@@ -45,33 +39,33 @@ router.post(
     body("name", "Missing name").exists().notEmpty(),
     body("targetDate", "Missing date").exists().notEmpty(),
   ]),
-  createGoal
+  createProg
 );
 
 //Update
 /**
- * @route PUT api/Goals/:goalId
- * @description update a Goal
+ * @route PUT api/Progs/:ProgId
+ * @description update a Prog
  * @access public
  */
 
 router.put(
-  "/:goalId",
+  "/:progId",
   loginRequired,
   validator.validate([
-    param("goalId").exists().isString().custom(validator.checkObjectID),
+    param("progId").exists().isString().custom(validator.checkObjectID),
   ]),
-  editGoal
+  editProg
 );
 
 //Delete
 /**
- * @route DELETE api/Goals/:goalId
- * @description delete a Goal
+ * @route DELETE api/Progs/:ProgId
+ * @description delete a Prog
  * @access public
  */
 
-router.delete("/:goalId", loginRequired, deleteGoal);
+router.delete("/:progId", loginRequired, deleteProg);
 
 //export
 module.exports = router;
