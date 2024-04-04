@@ -72,12 +72,6 @@ function RegisterPage() {
           {!!errors.responseError && (
             <Alert severity="error">{errors.responseError.message}</Alert>
           )}
-          <Alert severity="info">
-            Already have an account?{" "}
-            <Link variant="subtitle2" component={RouterLink} to="/login">
-              Sign in
-            </Link>
-          </Alert>
 
           <FTextField name="name" label="Full name" />
           <FTextField name="email" label="Email address" />
@@ -121,16 +115,24 @@ function RegisterPage() {
               ),
             }}
           />
+          <Stack spacing={3}>
+            <LoadingButton
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+            >
+              Register
+            </LoadingButton>
 
-          <LoadingButton
-            fullWidth
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
-            Register
-          </LoadingButton>
+            <Alert severity="info">
+              Already have an account?{" "}
+              <Link variant="subtitle2" component={RouterLink} to="/login">
+                Sign in
+              </Link>
+            </Alert>
+          </Stack>
         </Stack>
       </FormProvider>
     </Container>

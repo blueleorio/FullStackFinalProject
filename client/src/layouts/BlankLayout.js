@@ -6,10 +6,21 @@ function BlankLayout() {
   return (
     <Grid
       container
-      sx={{ width: "100vw", height: "100vh", overflow: "hidden" }}
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+        // backgroundColor: "#F5F7F8",
+        backgroundColor: "#FFFBF5",
+      }}
     >
       <Grid item xs={12} sm={6}>
-        <Stack minHeight="100vh" justifyContent="center" alignItems="center">
+        <Stack
+          minHeight="95%"
+          minWidth="95%"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Logo sx={{ width: 90, height: 90, mb: 5 }} />
 
           <Outlet />
