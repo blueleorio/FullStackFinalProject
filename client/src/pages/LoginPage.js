@@ -6,6 +6,8 @@ import {
   IconButton,
   InputAdornment,
   Container,
+  Grid,
+  Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -68,19 +70,14 @@ function LoginPage() {
           {!!errors.responseError && (
             <Alert severity="error">{errors.responseError.message}</Alert>
           )}
-          <Alert severity="info">
-            Don’t have an account?{" "}
-            <Link variant="subtitle2" component={RouterLink} to="/register">
-              Get started
-            </Link>
-          </Alert>
 
-          <FTextField name="email" label="Email address" />
+          <FTextField name="email" label="Email address" variant="standard" />
 
           <FTextField
             name="password"
             label="Password"
             type={showPassword ? "text" : "password"}
+            variant="standard"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -108,15 +105,24 @@ function LoginPage() {
           </Link>
         </Stack>
 
-        <LoadingButton
-          fullWidth
-          size="large"
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-        >
-          Login
-        </LoadingButton>
+        <Stack spacing={3}>
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isSubmitting}
+          >
+            Login
+          </LoadingButton>
+
+          <Alert severity="info">
+            Don’t have an account?{" "}
+            <Link variant="subtitle2" component={RouterLink} to="/register">
+              Get started
+            </Link>
+          </Alert>
+        </Stack>
       </FormProvider>
     </Container>
   );

@@ -1,14 +1,52 @@
 import { Outlet } from "react-router-dom";
 import Logo from "../components/Logo";
-import { Stack } from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 
 function BlankLayout() {
   return (
-    <Stack minHeight="100vh" justifyContent="center" alignItems="center">
-      <Logo sx={{ width: 90, height: 90, mb: 5 }} />
+    <Grid
+      container
+      sx={{ width: "100vw", height: "100vh", overflow: "hidden" }}
+    >
+      <Grid item xs={12} sm={6}>
+        <Stack minHeight="100vh" justifyContent="center" alignItems="center">
+          <Logo sx={{ width: 90, height: 90, mb: 5 }} />
 
-      <Outlet />
-    </Stack>
+          <Outlet />
+        </Stack>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "95%",
+            height: "95%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="/wallpaper.jpg"
+            alt="wallpaper"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "10px",
+            }}
+          />
+        </div>
+      </Grid>
+    </Grid>
   );
 }
 
