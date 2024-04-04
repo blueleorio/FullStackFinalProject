@@ -3,10 +3,13 @@ import Logo from "../components/Logo";
 import { Stack, Grid } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext } from "../theme";
+import { useTheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 function BlankLayout() {
   const colorMode = useContext(ColorModeContext);
+  const theme = useTheme();
+  let Mode = theme.palette.mode;
 
   return (
     <Grid
@@ -55,7 +58,8 @@ function BlankLayout() {
           }}
         >
           <img
-            src="/wallpaper.jpg"
+            // src={currentMode === "light" ? "/wall-light.png" : "/wall-dark.jpg"}
+            src={Mode === "light" ? "/wall-light.png" : "/wall-dark.jpg"}
             alt="wallpaper"
             style={{
               width: "100%",
