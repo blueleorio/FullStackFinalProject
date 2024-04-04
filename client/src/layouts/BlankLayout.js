@@ -1,8 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Logo from "../components/Logo";
 import { Stack, Grid } from "@mui/material";
-
+import { useContext } from "react";
+import { ColorModeContext } from "../theme";
+import IconButton from "@mui/material/IconButton";
+import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 function BlankLayout() {
+  const colorMode = useContext(ColorModeContext);
+
   return (
     <Grid
       container
@@ -11,7 +16,8 @@ function BlankLayout() {
         height: "100vh",
         overflow: "hidden",
         // backgroundColor: "#F5F7F8",
-        backgroundColor: "#FFFBF5",
+        // backgroundColor: "#FFFBF5",
+        // backgroundColor: "#222831",
       }}
     >
       <Grid item xs={12} sm={6}>
@@ -21,6 +27,9 @@ function BlankLayout() {
           justifyContent="center"
           alignItems="center"
         >
+          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+            <EmojiObjectsTwoToneIcon fontSize="large" />
+          </IconButton>
           <Logo sx={{ width: 90, height: 90, mb: 5 }} />
 
           <Outlet />
