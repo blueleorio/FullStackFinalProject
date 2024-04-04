@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
+import { useTheme } from "@mui/material/styles";
+
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -41,6 +43,8 @@ function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState(false);
+  const theme = useTheme();
+  const Mode = theme.palette.mode;
 
   const methods = useForm({
     resolver: yupResolver(RegisterSchema),
@@ -73,12 +77,13 @@ function RegisterPage() {
             <Alert severity="error">{errors.responseError.message}</Alert>
           )}
 
-          <FTextField name="name" label="Full name" />
-          <FTextField name="email" label="Email address" />
+          <FTextField name="name" label="Full name" variant="standard" />
+          <FTextField name="email" label="Email address" variant="standard" />
           <FTextField
             name="password"
             label="Password"
             type={showPassword ? "text" : "password"}
+            variant="standard"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -96,6 +101,7 @@ function RegisterPage() {
             name="passwordConfirmation"
             label="Password Confirmation"
             type={showPasswordConfirmation ? "text" : "password"}
+            variant="standard"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -126,7 +132,13 @@ function RegisterPage() {
               Register
             </LoadingButton>
 
-            <Alert severity="info">
+            <Alert
+              severity="info"
+              style={{
+                backgroundColor: Mode === "dark" ? "#FFDACB" : "#E9FCD4",
+                color: Mode === "dark" ? "#000" : "#333",
+              }}
+            >
               Already have an account?{" "}
               <Link variant="subtitle2" component={RouterLink} to="/login">
                 Sign in

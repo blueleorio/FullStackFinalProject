@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
+import { useTheme } from "@mui/material/styles";
+
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("Password is required"),
@@ -35,6 +37,8 @@ function LoginPage() {
   const location = useLocation();
   const auth = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const theme = useTheme();
+  const Mode = theme.palette.mode;
 
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
@@ -115,7 +119,13 @@ function LoginPage() {
             Login
           </LoadingButton>
 
-          <Alert severity="info">
+          <Alert
+            severity="info"
+            style={{
+              backgroundColor: Mode === "dark" ? "#FFDACB" : "#E9FCD4",
+              color: Mode === "dark" ? "#000" : "#333",
+            }}
+          >
             Don’t have an account?{" "}
             <Link variant="subtitle2" component={RouterLink} to="/register">
               Get started

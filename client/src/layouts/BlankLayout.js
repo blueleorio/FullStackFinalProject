@@ -6,6 +6,8 @@ import { ColorModeContext } from "../theme";
 import { useTheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
+import wallLight from "../wall-light.png";
+import wallDark from "../wall-dark.png";
 function BlankLayout() {
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme();
@@ -58,8 +60,7 @@ function BlankLayout() {
           }}
         >
           <img
-            // src={currentMode === "light" ? "/wall-light.png" : "/wall-dark.jpg"}
-            src={Mode === "light" ? "/wall-light.png" : "/wall-dark.jpg"}
+            src={Mode === "light" ? wallLight : wallDark}
             alt="wallpaper"
             style={{
               width: "100%",
