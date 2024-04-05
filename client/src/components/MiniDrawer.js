@@ -183,8 +183,6 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>ABC</Typography>
-        <Typography paragraph>CBA</Typography>
       </Box>
     </Box>
   );

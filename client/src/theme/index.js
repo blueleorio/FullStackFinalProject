@@ -134,8 +134,13 @@ function ThemeProvider({ children }) {
     shape: { borderRadius: 8 },
     transitions: {
       duration: {
-        enteringScreen: 5000,
-        leavingScreen: 5000,
+        shortest: 150,
+        shorter: 200,
+        short: 250,
+        standard: 300,
+        complex: 375,
+        enteringScreen: 225,
+        leavingScreen: 195,
       },
     },
   };

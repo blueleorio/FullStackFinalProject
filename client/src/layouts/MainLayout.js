@@ -10,7 +10,7 @@ function MainLayout() {
     <Stack sx={{ minHeight: "100vh" }}>
       <MainHeader />
       {/* <AlertMsg />  */}
-      <MiniDrawer />
+      {/* <MiniDrawer /> */}
 
       <Outlet />
 

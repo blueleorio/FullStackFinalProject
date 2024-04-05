@@ -13,7 +13,9 @@ import UserProfilePage from "../pages/UserProfilePage";
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+      </Route>
       {/*
       <Route
         path="/"
