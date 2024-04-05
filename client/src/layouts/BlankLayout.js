@@ -20,11 +20,9 @@ function BlankLayout() {
         width: "100vw",
         height: "100vh",
         overflow: "hidden",
-        // backgroundColor: "#F5F7F8",
-        // backgroundColor: "#FFFBF5",
-        // backgroundColor: "#222831",
       }}
     >
+      {/* Left - Grid */}
       <Grid item xs={12} sm={6}>
         <Stack
           minHeight="95%"
@@ -32,7 +30,19 @@ function BlankLayout() {
           justifyContent="center"
           alignItems="center"
         >
-          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          <IconButton
+            onClick={colorMode.toggleColorMode}
+            color="inherit"
+            sx={{
+              "&:hover": {
+                boxShadow: `0px 0px 107px 18px ${
+                  Mode === "light" ? "rgba(255,46,248,1)" : "rgba(45,255,196,1)"
+                }`,
+                transform: "scale(1.05)",
+              },
+              transition: "transform 0.3s ease-in-out", // Add transition for smooth animation
+            }}
+          >
             <EmojiObjectsTwoToneIcon fontSize="large" />
           </IconButton>
           <Logo sx={{ width: 90, height: 90, mb: 5 }} />
@@ -40,6 +50,8 @@ function BlankLayout() {
           <Outlet />
         </Stack>
       </Grid>
+
+      {/* Right - Grid */}
       <Grid
         item
         xs={12}
