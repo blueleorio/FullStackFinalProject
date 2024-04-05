@@ -25,8 +25,8 @@ function BlankLayout() {
       {/* Left - Grid */}
       <Grid item xs={12} sm={6}>
         <Stack
-          minHeight="95%"
-          minWidth="95%"
+          minHeight="100%"
+          minWidth="100%"
           justifyContent="center"
           alignItems="center"
         >
@@ -46,6 +46,8 @@ function BlankLayout() {
             <EmojiObjectsTwoToneIcon fontSize="large" />
           </IconButton>
           <Logo sx={{ width: 90, height: 90, mb: 5 }} />
+
+          {/* Outlet */}
 
           <Outlet />
         </Stack>

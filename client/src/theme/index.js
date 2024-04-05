@@ -132,7 +132,7 @@ function ThemeProvider({ children }) {
       },
     },
     shape: { borderRadius: 8 },
-    transition: {
+    transitions: {
       duration: {
         enteringScreen: 5000,
         leavingScreen: 5000,
