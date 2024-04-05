@@ -6,6 +6,7 @@ import {
   IconButton,
   InputAdornment,
   Container,
+  Button,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -20,6 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { useTheme } from "@mui/material/styles";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -64,6 +66,15 @@ function LoginPage() {
       setError("responseError", error);
     }
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (response) => {
+      console.log("Login Succeed", response);
+    },
+    onError: (error) => {
+      console.log("Login Failed", error);
+    },
+  });
 
   return (
     <Container maxWidth="xs">
@@ -118,6 +129,26 @@ function LoginPage() {
           >
             Login
           </LoadingButton>
+
+          {/* Google login */}
+
+          <Button
+            fullWidth
+            size="large"
+            onClick={googleLogin}
+            sx={{
+              backgroundColor: "#4285F4",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#2F83CD",
+                transform: "scale(1.05)", // Add scale transformation on hover
+              },
+              boxShadow: "0 2px 4px 0 rgba(0,0,0,.25)",
+              transition: "transform 0.3s ease-in-out", // Add transition for smooth animation
+            }}
+          >
+            Log In with Google
+          </Button>
 
           <Alert
             severity="info"
