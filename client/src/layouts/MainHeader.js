@@ -112,15 +112,15 @@ function MainHeader() {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            CoderComm
+            Habit Tracker
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box>
             <Avatar
               onClick={handleProfileMenuOpen}
-              src={user.avatarUrl}
-              alt={user.name}
+              src={user?.avatarUrl}
+              alt={user?.name}
               sx={{ width: 32, height: 32 }}
             />
           </Box>
