@@ -72,11 +72,10 @@ function LoginPage() {
         const from = location.state?.from?.pathname || "/";
 
         console.log("Trigger Google Login");
-        const response = await auth.loginWithGoogle(tokenResponse, () => {
+        await auth.loginWithGoogle(tokenResponse, () => {
           // Changed from tokenResponse.code to tokenResponse.access_token
           navigate(from, { replace: true });
         });
-        console.log("Response Google:", response);
       } catch (error) {
         reset();
         setError("responseError", error);

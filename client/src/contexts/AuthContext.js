@@ -174,14 +174,18 @@ function AuthProvider({ children }) {
       const serverResponse = await apiService.post("/auth/google", {
         access_token: response.access_token, // Changed from response.code to response.access_token
       });
-      console.log("🚀 ~ loginWithGoogle ~ serverResponse:", serverResponse);
 
-      const { user, accessToken } = serverResponse.data;
+      const { userInfo, accessToken } = serverResponse.data;
+      console.log(
+        "🚀 ~ loginWithGoogle ~ serverResponse.data:",
+        serverResponse.data
+      );
+      console.log("🚀 ~ loginWithGoogle ~ userInfo:", userInfo);
 
       setSession(accessToken);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { user },
+        payload: { userInfo },
       });
     } catch (error) {
       console.error("Error in loginWithGoogle function:", error);

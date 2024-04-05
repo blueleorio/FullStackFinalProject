@@ -45,7 +45,7 @@ authController.loginWithEmail = async (req, res, next) => {
 
 authController.loginWithGoogle = async (req, res, next) => {
   try {
-    console.log("🚀 ~ authController.loginWithGoogle= ~ req.body:", req.body);
+    // console.log("🚀 ~ authController.loginWithGoogle= ~ req.body:", req.body);
 
     // get data from req
     const { access_token } = req.body;
@@ -57,7 +57,11 @@ authController.loginWithGoogle = async (req, res, next) => {
     // Find or create a user with the same email
     let userInfo = await user.findOne({ email });
     if (!userInfo) {
-      userInfo = new user({ email });
+      userInfo = new user({
+        email,
+        name: email.split("@")[0],
+        password: Math.random().toString(36).slice(-8),
+      });
       await userInfo.save();
     }
 
@@ -68,7 +72,7 @@ authController.loginWithGoogle = async (req, res, next) => {
       res,
       200,
       true,
-      { userInfo, accessToken },
+      { data: userInfo, accessToken },
       null,
       "Log In Successfully"
     );
