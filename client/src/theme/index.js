@@ -2,6 +2,7 @@ import { CssBaseline } from "@mui/material";
 import {
   alpha,
   createTheme,
+  duration,
   ThemeProvider as MUIThemeProvider,
 } from "@mui/material/styles";
 import customizeComponents from "./customizations";
@@ -131,6 +132,12 @@ function ThemeProvider({ children }) {
       },
     },
     shape: { borderRadius: 8 },
+    transition: {
+      duration: {
+        enteringScreen: 5000,
+        leavingScreen: 5000,
+      },
+    },
   };
 
   const colorMode = useMemo(
