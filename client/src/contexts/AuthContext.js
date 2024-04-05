@@ -167,6 +167,27 @@ function AuthProvider({ children }) {
     }
   };
 
+  const loginWithGoogle = async (response) => {
+    console.log("Login Succeed", response);
+    // TODO: Send the response to your backend server for verification
+    try {
+      const serverResponse = await apiService.post("/auth/google", {
+        access_token: response.access_token, // Changed from response.code to response.access_token
+      });
+      console.log("🚀 ~ loginWithGoogle ~ serverResponse:", serverResponse);
+
+      const { user, accessToken } = serverResponse.data;
+
+      setSession(accessToken);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { user },
+      });
+    } catch (error) {
+      console.error("Error in loginWithGoogle function:", error);
+    }
+  };
+
   const register = async ({ name, email, password }, callback) => {
     const response = await apiService.post("/users", {
       name,
@@ -197,6 +218,7 @@ function AuthProvider({ children }) {
         login,
         register,
         logout,
+        loginWithGoogle,
       }}
     >
       {children}

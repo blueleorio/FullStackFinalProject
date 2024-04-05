@@ -21,8 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { useTheme } from "@mui/material/styles";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-
+import { useGoogleLogin } from "@react-oauth/google";
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("Password is required"),
@@ -66,13 +65,22 @@ function LoginPage() {
       setError("responseError", error);
     }
   };
-
   const googleLogin = useGoogleLogin({
-    onSuccess: (response) => {
-      console.log("Login Succeed", response);
-    },
-    onError: (error) => {
-      console.log("Login Failed", error);
+    onSuccess: async (tokenResponse) => {
+      console.log("🚀 ~ response ~ tokenResponse:", tokenResponse);
+      try {
+        const from = location.state?.from?.pathname || "/";
+
+        console.log("Trigger Google Login");
+        const response = await auth.loginWithGoogle(tokenResponse, () => {
+          // Changed from tokenResponse.code to tokenResponse.access_token
+          navigate(from, { replace: true });
+        });
+        console.log("Response Google:", response);
+      } catch (error) {
+        reset();
+        setError("responseError", error);
+      }
     },
   });
 

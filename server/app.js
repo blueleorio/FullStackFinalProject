@@ -2,14 +2,13 @@ const { sendResponse, AppError } = require("./helpers/utils.js");
 
 require("dotenv").config();
 const cors = require("cors");
-
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
-
+// Google's OAuth2 client
 const app = express();
 
 app.use(logger("dev"));

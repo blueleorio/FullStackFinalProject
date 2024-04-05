@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { body, param } = require("express-validator");
-const validator = require("../middlewares/validator.js");
-const { loginRequired } = require("../middlewares/authenticator.js");
+const validator = require("../middlewares/validator.middlewares.js");
+const {
+  loginRequired,
+} = require("../middlewares/authenticator.middlewares.js");
 
 const {} = require("../controllers/progress.controllers.js");
 

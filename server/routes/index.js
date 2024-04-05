@@ -29,19 +29,19 @@ router.get("/template/:test", async (req, res, next) => {
 });
 
 // Auth API
-const authRouter = require("./auth.api.js");
+const authRouter = require("./auth.routes.js");
 router.use("/auth", authRouter);
 
 // User API
-const userRouter = require("./user.api.js");
+const userRouter = require("./user.routes.js");
 router.use("/users", userRouter);
 
 // Habit API
-const habitRouter = require("./habit.api.js");
+const habitRouter = require("./habit.routes.js");
 router.use("/habits", habitRouter);
 
 // Goal API
-const goalRouter = require("./goal.api.js");
+const goalRouter = require("./goal.routes.js");
 router.use("/goals", goalRouter);
 
 module.exports = router;
