@@ -50,30 +50,25 @@ authController.loginWithGoogle = async (req, res, next) => {
     // get data from req
     const { access_token } = req.body;
 
-    // Verify the Google access token
-    const ticket = await client.verifySignedJwtWithCertsAsync(
-      access_token,
-      client.certs,
-      CLIENT_ID,
-      ["https://accounts.google.com"]
-    );
-    const { email } = ticket.getPayload();
+    // Get the user's information from the access token
+    const ticket = await client.getTokenInfo(access_token);
+    const { email } = ticket;
 
     // Find or create a user with the same email
-    let user = await User.findOne({ email });
-    if (!user) {
-      user = new User({ email });
-      await user.save();
+    let userInfo = await user.findOne({ email });
+    if (!userInfo) {
+      userInfo = new user({ email });
+      await userInfo.save();
     }
 
-    const accessToken = await user.generateToken();
+    const accessToken = await userInfo.generateToken();
 
     // Send response
     sendResponse(
       res,
       200,
       true,
-      { user, accessToken },
+      { userInfo, accessToken },
       null,
       "Log In Successfully"
     );
