@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 import wallLight from "../wall-light.png";
 import wallDark from "../wall-dark.png";
+import DarkModeToggle from "../components/DarkModeToggle";
+
 function BlankLayout() {
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme();
@@ -30,21 +32,7 @@ function BlankLayout() {
           justifyContent="center"
           alignItems="center"
         >
-          <IconButton
-            onClick={colorMode.toggleColorMode}
-            color="inherit"
-            sx={{
-              "&:hover": {
-                boxShadow: `0px 0px 107px 18px ${
-                  Mode === "light" ? "rgba(255,46,248,1)" : "rgba(45,255,196,1)"
-                }`,
-                transform: "scale(1.05)",
-              },
-              transition: "transform 0.3s ease-in-out", // Add transition for smooth animation
-            }}
-          >
-            <EmojiObjectsTwoToneIcon fontSize="large" />
-          </IconButton>
+          <DarkModeToggle colorMode={colorMode} Mode={Mode} />
           <Logo sx={{ width: 90, height: 90, mb: 5 }} />
 
           {/* Outlet */}

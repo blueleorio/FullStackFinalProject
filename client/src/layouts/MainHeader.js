@@ -24,12 +24,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import MuiDrawer from "@mui/material/Drawer";
 
 import { styled, useTheme } from "@mui/material/styles";
+import { ColorModeContext } from "../theme";
 
 import Logo from "../components/Logo";
 import { Avatar, Divider } from "@mui/material";
 import useAuth from "../hooks/useAuth";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 
+import DarkModeToggle from "../components/DarkModeToggle.js";
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -98,6 +100,8 @@ const Drawer = styled(MuiDrawer, {
 
 function MainHeader({ onDrawerOpen, onDrawerClose }) {
   const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
+  let Mode = theme.palette.mode;
 
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -220,6 +224,7 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
           >
             <Logo />
           </IconButton>
+
           <Typography
             variant="h6"
             noWrap
@@ -230,12 +235,13 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
+          <DarkModeToggle colorMode={colorMode} Mode={Mode} />
           <Box>
             <Avatar
               onClick={handleProfileMenuOpen}
               src={user?.avatarUrl}
               alt={user?.name}
-              sx={{ width: 32, height: 32 }}
+              sx={{ width: 32, height: 32, ml: 1 }}
             />
           </Box>
         </Toolbar>
@@ -301,6 +307,7 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
           ))}
         </List>
       </Drawer>
+
       {renderMenu}
     </Box>
   );
