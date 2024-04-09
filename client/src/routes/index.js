@@ -14,7 +14,7 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<AccountPage />} />
       </Route>
       {/*
       <Route

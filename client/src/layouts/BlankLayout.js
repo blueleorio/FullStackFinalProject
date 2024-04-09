@@ -4,8 +4,6 @@ import { Stack, Grid } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext } from "../theme";
 import { useTheme } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 import wallLight from "../wall-light.png";
 import wallDark from "../wall-dark.png";
 import DarkModeToggle from "../components/DarkModeToggle";

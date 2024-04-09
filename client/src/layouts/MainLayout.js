@@ -3,10 +3,15 @@ import { Box, Stack } from "@mui/material";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+
 // import AlertMsg from "../components/AlertMsg";
+import "../theme/stylesheet.css";
 
 function MainLayout() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const theme = useTheme();
+  const Mode = theme.palette.mode;
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -17,7 +22,10 @@ function MainLayout() {
   };
 
   return (
-    <Stack sx={{ minHeight: "100vh" }}>
+    <Stack
+      sx={{ minHeight: "100vh" }}
+      className={Mode === "dark" ? "pattern-bg-dark" : "pattern-bg-light"}
+    >
       {/* <AlertMsg />  */}
       <MainHeader
         onDrawerOpen={handleDrawerOpen}

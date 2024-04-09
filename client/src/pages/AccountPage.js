@@ -5,7 +5,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import AccountGeneral from "../features/user/AccountGeneral";
 import AccountSocialLinks from "../features/user/AccountSocialLinks";
 import { capitalCase } from "change-case";
-
+// import "../theme/stylesheet.css";
 function AccountPage() {
   const [currentTab, setCurrentTab] = useState("general");
 
@@ -25,7 +25,7 @@ function AccountPage() {
   return (
     <Container>
       <Typography variant="h5" gutterBottom>
-        Account Settings
+        Profile
       </Typography>
       <Tabs
         value={currentTab}

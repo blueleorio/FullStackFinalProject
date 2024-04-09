@@ -1,25 +1,31 @@
 import React from "react";
+import useAuth from "../hooks/useAuth";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Card, Container } from "@mui/material";
 
 function HomePage() {
+  const { user } = useAuth();
+
   return (
-    <Box>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
-      >
-        <Typography variant="h3" component="h1" gutterBottom>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident
-          similique sunt quod consequuntur quis omnis quisquam sed eum impedit
-          soluta sint laborum, deleniti praesentium! Nobis iusto eligendi a
-          quas? Assumenda?
-        </Typography>
+    <Container>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h6">About Me</Typography>
+              <Typography variant="body2" sx={{ mt: 2 }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                fringilla, augue nec dapibus tincidunt, magna felis ultricies
+                tortor, et scelerisque felis nunc sit amet erat. Sed nec
+                scelerisque purus. Donec quis urna ut sapien ultricies
+                sollicitudin. Nullam nec sapien at turpis ultricies ultrices.
+                Nullam nec sapien at turpis ultricies ultrices.
+              </Typography>
+            </Box>
+          </Card>
+        </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 }
 
