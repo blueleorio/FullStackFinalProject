@@ -16,6 +16,7 @@ const LOGOUT = "AUTH.LOGOUT";
 const UPDATE_PROFILE = "AUTH.UPDATE_PROFILE";
 
 const reducer = (state, action) => {
+  console.log("Action  received:", action);
   switch (action.type) {
     case INITIALIZE:
       const { isAuthenticated, user } = action.payload;
@@ -47,12 +48,10 @@ const reducer = (state, action) => {
       const {
         name,
         avatarUrl,
-        coverUrl,
         aboutMe,
         city,
         country,
-        company,
-        jobTitle,
+        phoneNumber,
         facebookLink,
         instagramLink,
         linkedinLink,
@@ -66,12 +65,10 @@ const reducer = (state, action) => {
           ...state.user,
           name,
           avatarUrl,
-          coverUrl,
           aboutMe,
           city,
           country,
-          company,
-          jobTitle,
+          phoneNumber,
           facebookLink,
           instagramLink,
           linkedinLink,
@@ -171,11 +168,13 @@ function AuthProvider({ children }) {
     try {
       const response = await apiService.post("/auth/google", {
         access_token: googleData.access_token,
+        providers: "google",
       });
-      const { data: user, accessToken } = response.data;
-      console.log("🚀 ~ loginWithGoogle ~ response.data:", response.data);
+      const user = response.data;
+      const { accessToken } = response;
+      // console.log("🚀 ~ loginWithGoogle ~ response.data:", response.data);
 
-      setSession(accessToken);
+      setSession(accessToken); // Comment this out if there's no accessToken
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user },

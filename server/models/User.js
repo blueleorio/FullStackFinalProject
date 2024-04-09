@@ -19,6 +19,26 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    avatarUrl: {
+      type: String,
+      default: "",
+    },
+    aboutMe: {
+      type: String,
+      default: "",
+    },
+    address: {
+      type: String,
+      default: "",
+    },
+    city: {
+      type: String,
+      default: "",
+    },
+    country: {
+      type: String,
+      default: "",
+    },
     habits: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,6 +51,12 @@ const userSchema = mongoose.Schema(
         ref: "Goal",
       },
     ],
+    //! UPdate the create schema to include the following fields
+    providers: {
+      type: String,
+      enum: ["local", "google"],
+      default: "local",
+    },
     isDeleted: {
       type: Boolean,
       default: false,

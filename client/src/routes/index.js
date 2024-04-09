@@ -13,10 +13,10 @@ import UserProfilePage from "../pages/UserProfilePage";
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<AccountPage />} />
-      </Route>
-      {/*
+      {/* <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+      </Route> */}
+
       <Route
         path="/"
         element={
@@ -35,7 +35,6 @@ function Router() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-      */}
     </Routes>
   );
 }

@@ -61,6 +61,7 @@ authController.loginWithGoogle = async (req, res, next) => {
         email,
         name: email.split("@")[0],
         password: Math.random().toString(36).slice(-8),
+        providers: "google",
       });
       await userInfo.save();
     }

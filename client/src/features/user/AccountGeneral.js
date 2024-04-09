@@ -22,10 +22,7 @@ function AccountGeneral() {
   const defaultValues = {
     name: user?.name || "",
     email: user?.email || "",
-    jobTitle: user?.jobTitle || "",
-    company: user?.company || "",
     avatarUrl: user?.avatarUrl || "",
-    coverUrl: user?.coverUrl || "",
     phoneNumber: user?.phoneNumber || "",
     address: user?.address || "",
     city: user?.city || "",
@@ -60,8 +57,10 @@ function AccountGeneral() {
     },
     [setValue]
   );
+  console.log("user:", user);
 
   const onSubmit = (data) => {
+    console.log("Profile Page - Submit Info - Response Data: ", data);
     dispatch(updateUserProfile({ userId: user._id, ...data }));
   };
 
@@ -110,9 +109,6 @@ function AccountGeneral() {
               <FTextField name="name" label="Name" />
               <FTextField name="email" label="Email" disabled />
 
-              <FTextField name="jobTitle" label="Job Title" />
-              <FTextField name="company" label="Company" />
-
               <FTextField name="phoneNumber" label="Phone Number" />
               <FTextField name="address" label="Address" />
 
@@ -121,7 +117,6 @@ function AccountGeneral() {
             </Box>
 
             <Stack spacing={3} alignItems="flex-end" sx={{ mt: 3 }}>
-              <FTextField name="coverUrl" label="Home Profile Cover Image" />
               <FTextField name="aboutMe" multiline rows={4} label="About Me" />
 
               <LoadingButton

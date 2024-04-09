@@ -7,6 +7,7 @@ const userController = {};
 userController.createUser = async (req, res, next) => {
   try {
     let info = req.body;
+    console.log("🚀 ~ userController.createUser= ~ info:", info);
 
     if (!info) throw new AppError(402, "Bad Request", "Create user Error");
 
@@ -89,7 +90,15 @@ userController.editUser = async (req, res, next) => {
   const targetId = req.userId;
   const updateInfo = req.body;
 
-  const allows = ["email", "password", "username"];
+  const allows = [
+    "email",
+    "name",
+    "aboutMe",
+    "address",
+    "city",
+    "country",
+    "phoneNumber",
+  ];
   const updates = Object.keys(updateInfo)
     .filter((key) => allows.includes(key))
     .reduce((obj, key) => {
