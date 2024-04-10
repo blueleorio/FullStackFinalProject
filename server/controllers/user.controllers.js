@@ -75,11 +75,15 @@ userController.getCurrentUser = async (req, res, next) => {
   if (!currentUser)
     throw new AppError(400, "User not found", "Get Current User Error");
 
+  console.log(
+    "🚀 ~ userController.getCurrentUser= ~  currentUser :",
+    currentUser
+  );
   return sendResponse(
     res,
     200,
     true,
-    currentUser,
+    { data: currentUser },
     null,
     "Get Current User successful"
   );

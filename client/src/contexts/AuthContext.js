@@ -20,6 +20,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case INITIALIZE:
       const { isAuthenticated, user } = action.payload;
+      console.log("🚀 ~ reducer ~ action.payload:", action.payload);
+
       return {
         ...state,
         isInitialized: true,
@@ -109,6 +111,8 @@ function AuthProvider({ children }) {
 
           const response = await apiService.get("/users/me");
           const user = response.data;
+          console.log("1: CHecking if this is called!!!");
+          console.log("2: 🚀 ~ initialize ~ user:", user);
 
           dispatch({
             type: INITIALIZE,
