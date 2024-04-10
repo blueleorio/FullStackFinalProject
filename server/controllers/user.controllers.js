@@ -102,6 +102,7 @@ userController.editUser = async (req, res, next) => {
     "city",
     "country",
     "phoneNumber",
+    "avatarUrl",
   ];
   const updates = Object.keys(updateInfo)
     .filter((key) => allows.includes(key))

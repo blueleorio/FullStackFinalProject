@@ -74,9 +74,11 @@ export const updateUserProfile =
       };
       if (avatarUrl instanceof File) {
         const imageUrl = await cloudinaryUpload(avatarUrl);
+        console.log("1: 🚀 ~ imageUrl:", imageUrl);
         data.avatarUrl = imageUrl;
       }
       const response = await apiService.put(`/users/${userId}`, data);
+      console.log("2: 🚀 ~ response:", response);
       dispatch(slice.actions.updateUserProfileSuccess(response.data));
       toast.success("Update Profile successfully");
     } catch (error) {
@@ -89,6 +91,7 @@ export const getUser = (id) => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get(`/users/${id}`);
+    console.log("🚀 ~ getUser ~ response:", response);
     dispatch(slice.actions.getUserSuccess(response.data));
   } catch (error) {
     dispatch(slice.actions.hasError(error));
@@ -100,6 +103,7 @@ export const getCurrentUserProfile = () => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get("/users/me");
+    console.log("🚀 ~ getCurrentUserProfile ~ response:", response);
     dispatch(slice.actions.updateUserProfileSuccess(response.data));
   } catch (error) {
     dispatch(slice.actions.hasError(error));

@@ -20,7 +20,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case INITIALIZE:
       const { isAuthenticated, user } = action.payload;
-      console.log("🚀 ~ reducer ~ action.payload:", action.payload);
+      // console.log("🚀 ~ reducer ~ action.payload:", action.payload);
 
       return {
         ...state,
@@ -85,7 +85,7 @@ const reducer = (state, action) => {
 };
 
 const setSession = (accessToken) => {
-  console.log("setSession called with:", accessToken);
+  // console.log("setSession called with:", accessToken);
   if (accessToken) {
     window.localStorage.setItem("accessToken", accessToken);
     apiService.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -111,8 +111,8 @@ function AuthProvider({ children }) {
 
           const response = await apiService.get("/users/me");
           const user = response.data;
-          console.log("1: CHecking if this is called!!!");
-          console.log("2: 🚀 ~ initialize ~ user:", user);
+          // console.log("1: CHecking if this is called!!!");
+          // console.log("2: 🚀 ~ initialize ~ user:", user);
 
           dispatch({
             type: INITIALIZE,

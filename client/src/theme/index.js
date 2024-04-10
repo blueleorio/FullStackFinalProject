@@ -2,7 +2,6 @@ import { CssBaseline } from "@mui/material";
 import {
   alpha,
   createTheme,
-  duration,
   ThemeProvider as MUIThemeProvider,
 } from "@mui/material/styles";
 import customizeComponents from "./customizations";
