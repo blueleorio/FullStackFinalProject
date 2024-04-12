@@ -9,6 +9,8 @@ import NotFoundPage from "../pages/NotFoundPage";
 import AuthRequire from "./AuthRequire";
 import AccountPage from "../pages/AccountPage";
 import UserProfilePage from "../pages/UserProfilePage";
+import HabitPage from "../pages/HabitPage";
+import HabitForm from "../features/habit/HabitForm";
 
 function Router() {
   return (
@@ -27,6 +29,8 @@ function Router() {
       >
         <Route index element={<HomePage />} />
         <Route path="account" element={<AccountPage />} />
+        <Route path="habit" element={<HabitPage />} />
+
         <Route path="user/:userId" element={<UserProfilePage />} />
       </Route>
 

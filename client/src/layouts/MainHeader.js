@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -231,7 +232,8 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            Habit Tracker
+            {/* Tittle  */}
+            Sheeb
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -246,6 +248,7 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
           </Box>
         </Toolbar>
       </AppBar>
+      {/* Drawer MUI component */}
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -258,9 +261,16 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {[
+            { text: "Dashboard", path: "/" },
+            { text: "Habit", path: "/habit" },
+            { text: "Calendar", path: "/calendar" },
+            { text: "Account", path: "/account" },
+          ].map((item, index) => (
+            <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
+                component={Link}
+                to={item.path}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -276,7 +286,10 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={item.text}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
