@@ -30,7 +30,7 @@ tagController.getTags = async (req, res, next) => {
       res,
       200,
       true,
-      { tag: listOfFound },
+      { data: listOfFound },
       null,
       "Get Tag List Successfully!"
     );

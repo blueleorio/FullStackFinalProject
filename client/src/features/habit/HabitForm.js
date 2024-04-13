@@ -7,7 +7,6 @@ import {
   Typography,
   Chip,
   IconButton,
-  Modal,
 } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -46,7 +45,7 @@ const handleDelete = () => {
 function PostForm() {
   const { isLoading } = useSelector((state) => state.post);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
-
+  const tags = useSelector((state) => state.tag.tags);
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
   };
@@ -152,12 +151,16 @@ function PostForm() {
             <Typography variant="h6" gutterBottom>
               Tag:
             </Typography>
-            <Chip
-              label="Clickable Deletable"
-              color="primary"
-              onClick={handleClick}
-              onDelete={handleDelete}
-            />
+            {tags.map((tag) => (
+              <Chip
+                key={tag._id}
+                label={tag.name}
+                color="primary"
+                onClick={handleClick}
+                onDelete={handleDelete}
+              />
+            ))}
+
             <IconButton
               color="primary"
               aria-label="add tag"
@@ -165,7 +168,6 @@ function PostForm() {
             >
               <AddIcon />
             </IconButton>
-
             <TagModal open={isTagModalOpen} handleClose={handleCloseTagModal} />
           </Stack>
           <Box

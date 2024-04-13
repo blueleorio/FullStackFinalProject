@@ -48,6 +48,7 @@ export const fetchTags = () => async (dispatch) => {
   try {
     const response = await apiService.get("/tags");
     dispatch(slice.actions.fetchTagsSuccess(response.data));
+    console.log("🚀 ~ fetchTags ~ response:", response);
     toast.success("Fetch tags successfully");
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
