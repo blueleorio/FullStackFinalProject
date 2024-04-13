@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import {
   Box,
   Card,
@@ -7,6 +7,7 @@ import {
   Typography,
   Chip,
   IconButton,
+  Modal,
 } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -23,6 +24,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 // import { createPost } from "./postSlice";
 import { LoadingButton } from "@mui/lab";
+import TagModal from "../tag/tagModal";
 
 const yupSchema = Yup.object().shape({
   content: Yup.string().required("Content is required"),
@@ -43,6 +45,14 @@ const handleDelete = () => {
 
 function PostForm() {
   const { isLoading } = useSelector((state) => state.post);
+  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+
+  const handleOpenTagModal = () => {
+    setIsTagModalOpen(true);
+  };
+  const handleCloseTagModal = () => {
+    setIsTagModalOpen(false);
+  };
 
   const methods = useForm({
     resolver: yupResolver(yupSchema),
@@ -71,9 +81,6 @@ function PostForm() {
     },
     [setValue]
   );
-  const handleAddTag = () => {
-    console.info("You clicked the add tag icon.");
-  };
 
   const onSubmit = (data) => {
     // dispatch(createPost(data)).then(() => reset());
@@ -154,13 +161,13 @@ function PostForm() {
             <IconButton
               color="primary"
               aria-label="add tag"
-              component="span"
-              onClick={handleAddTag}
+              onClick={handleOpenTagModal}
             >
               <AddIcon />
             </IconButton>
-          </Stack>
 
+            <TagModal open={isTagModalOpen} handleClose={handleCloseTagModal} />
+          </Stack>
           <Box
             sx={{
               display: "flex",

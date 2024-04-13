@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "tags",
+  name: "tag",
   initialState,
   reducers: {
     startLoading(state) {
@@ -26,6 +26,18 @@ const slice = createSlice({
       state.error = null;
       state.tags = action.payload;
     },
+
+    createTagSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.tags.push(action.payload);
+    },
+
+    deleteTagSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.tags = state.tags.filter((tag) => tag.id !== action.payload);
+    },
   },
 });
 
@@ -35,9 +47,32 @@ export const fetchTags = () => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get("/tags");
-    console.log("🚀 ~ fetchTags ~ response:", response);
     dispatch(slice.actions.fetchTagsSuccess(response.data));
     toast.success("Fetch tags successfully");
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+};
+
+export const createTag = (tag) => async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+  try {
+    const response = await apiService.post("/tags", tag);
+    dispatch(slice.actions.createTagSuccess(response.data));
+    toast.success("Tag created successfully");
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+};
+
+export const deleteTag = (tagId) => async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+  try {
+    await apiService.delete(`/tags/${tagId}`);
+    dispatch(slice.actions.deleteTagSuccess(tagId));
+    toast.success("Tag deleted successfully");
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);
