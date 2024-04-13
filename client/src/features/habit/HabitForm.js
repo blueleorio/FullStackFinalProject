@@ -1,5 +1,15 @@
 import React, { useCallback } from "react";
-import { Box, Card, alpha, Stack, Typography, Chip } from "@mui/material";
+import {
+  Box,
+  Card,
+  alpha,
+  Stack,
+  Typography,
+  Chip,
+  IconButton,
+} from "@mui/material";
+
+import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 import {
   FormProvider,
@@ -61,6 +71,9 @@ function PostForm() {
     },
     [setValue]
   );
+  const handleAddTag = () => {
+    console.info("You clicked the add tag icon.");
+  };
 
   const onSubmit = (data) => {
     // dispatch(createPost(data)).then(() => reset());
@@ -128,7 +141,7 @@ function PostForm() {
           <Typography variant="h6" gutterBottom>
             Counter
           </Typography>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
               Tag:
             </Typography>
@@ -138,6 +151,14 @@ function PostForm() {
               onClick={handleClick}
               onDelete={handleDelete}
             />
+            <IconButton
+              color="primary"
+              aria-label="add tag"
+              component="span"
+              onClick={handleAddTag}
+            >
+              <AddIcon />
+            </IconButton>
           </Stack>
 
           <Box

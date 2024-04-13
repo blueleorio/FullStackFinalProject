@@ -44,4 +44,8 @@ router.use("/habits", habitRouter);
 const goalRouter = require("./goal.routes.js");
 router.use("/goals", goalRouter);
 
+// Tag API
+const tagRouter = require("./tag.routes.js");
+router.use("/tags", tagRouter);
+
 module.exports = router;

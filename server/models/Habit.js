@@ -21,7 +21,7 @@ const habitSchema = mongoose.Schema(
     },
     tags: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Tag",
         default: [],
       },
