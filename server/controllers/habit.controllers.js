@@ -145,4 +145,31 @@ habitController.filterHabit = async (req, res, next) => {
   }
 };
 
+// Assign a tag to a habit
+habitController.assignTag = async (req, res, next) => {
+  const { habitId, tagId } = req.params;
+  try {
+    const habitToUpdate = await habit.findById(habitId);
+    if (!habitToUpdate) throw new AppError("Habit not found", 404);
+
+    const tagToAssign = await tag.findById(tagId);
+    if (!tagToAssign) throw new AppError("Tag not found", 404);
+
+    // Add the tag to the habit's list of tags
+    habitToUpdate.tags.push(tagToAssign._id);
+    const updatedHabit = await habitToUpdate.save();
+
+    sendResponse(
+      res,
+      200,
+      true,
+      { habit: updatedHabit },
+      null,
+      "Tag assigned to habit successfully"
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = habitController;

@@ -12,6 +12,8 @@ const {
   editHabit,
   deleteHabit,
   getCurrentHabitInfo,
+  assignTag,
+  filterHabit,
 } = require("../controllers/habit.controllers.js");
 
 //Read
@@ -59,10 +61,26 @@ router.put("/:habitId", loginRequired, editHabit);
 //Delete
 /**
  * @route DELETE api/Habits/:habitId
- * @description delet a Habit
+ * @description delete a Habit
  * @access log in required
  */
 router.delete("/:habitId", loginRequired, deleteHabit);
+
+//Assign Tag
+/**
+ * @route PUT api/Habits/:habitId/tags/:tagId
+ * @description assign a tag to a habit
+ * @access log in required
+ */
+router.put("/habits/:habitId/tags/:tagId", assignTag);
+
+//Filter
+/**
+ * @route GET api/Habits/filter
+ * @description filter habits based on tag
+ * @access log in required
+ */
+router.get("/filter", loginRequired, filterHabit);
 
 //export
 module.exports = router;

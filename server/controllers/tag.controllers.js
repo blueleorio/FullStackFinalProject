@@ -24,7 +24,7 @@ tagController.createTag = async (req, res, next) => {
 // Get all tags
 tagController.getTags = async (req, res, next) => {
   try {
-    const listOfFound = await tag.find();
+    const listOfFound = await tag.find({ isDeleted: false });
     if (!listOfFound) throw new AppError("No tag found", 404);
     sendResponse(
       res,
@@ -44,7 +44,7 @@ tagController.getCurrentTagInfo = async (req, res, next) => {
   const targetId = req.params.tagId;
 
   try {
-    const tagInfo = await tag.findOne({ _id: targetId });
+    const tagInfo = await tag.findOne({ _id: targetId, isDeleted: false });
     if (!tagInfo) throw new AppError("Tag not found", 404);
     sendResponse(
       res,
@@ -79,13 +79,25 @@ tagController.editTag = async (req, res, next) => {
   }
 };
 
-// Delete a tag
+// Soft delete a tag
 tagController.deleteTag = async (req, res, next) => {
   const targetId = req.params.tagId;
   try {
-    const deleted = await tag.findByIdAndRemove(targetId);
-    if (!deleted) throw new AppError("Tag not found", 404);
-    sendResponse(res, 200, true, { deleted }, null, "Delete tag Successfully");
+    const tagToUpdate = await tag.findById(targetId);
+    if (!tagToUpdate) throw new AppError("Tag not found", 404);
+
+    // Perform a soft delete by setting isDeleted to true
+    tagToUpdate.isDeleted = true;
+    const updatedTag = await tagToUpdate.save();
+
+    sendResponse(
+      res,
+      200,
+      true,
+      { tag: updatedTag },
+      null,
+      "Soft delete tag successfully"
+    );
   } catch (err) {
     next(err);
   }

@@ -19,10 +19,13 @@ const habitSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    tags: {
-      type: [String],
-      default: [],
-    },
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Tag",
+        default: [],
+      },
+    ],
     counter: {
       type: Number,
       default: 0,
