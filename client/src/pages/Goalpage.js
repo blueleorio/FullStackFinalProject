@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/user/userSlice";
 import LoadingScreen from "../components/LoadingScreen";
-import HabitForm from "../features/habit/HabitForm";
-function HabitPage() {
+import GoalForm from "../features/goal/GoalForm";
+
+function GoalPage() {
   const params = useParams();
   const userId = params.userId;
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function HabitPage() {
               position: "relative",
             }}
           >
-            <HabitForm />
+            <GoalForm />
           </Card>
         </>
       )}
@@ -41,4 +42,4 @@ function HabitPage() {
   );
 }
 
-export default HabitPage;
+export default GoalPage;

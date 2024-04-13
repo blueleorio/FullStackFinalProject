@@ -4,6 +4,7 @@ import userReducer from "../features/user/userSlice";
 import commentReducer from "../features/comment/commentSlice";
 import friendReducer from "../features/friend/friendSlice";
 import tagReducer from "../features/tag/tagSlice";
+import habitReducer from "../features/habit/habitSlice";
 
 const rootReducer = combineReducers({
   post: postReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   comment: commentReducer,
   friend: friendReducer,
   tag: tagReducer,
+  habit: habitReducer,
 });
 
 const store = configureStore({

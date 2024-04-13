@@ -11,6 +11,7 @@ import AccountPage from "../pages/AccountPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import HabitPage from "../pages/HabitPage";
 import HabitForm from "../features/habit/HabitForm";
+import GoalPage from "../pages/Goalpage";
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
         <Route index element={<HomePage />} />
         <Route path="account" element={<AccountPage />} />
         <Route path="habit" element={<HabitPage />} />
+        <Route path="goal" element={<GoalPage />} />
 
         <Route path="user/:userId" element={<UserProfilePage />} />
       </Route>

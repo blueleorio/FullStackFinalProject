@@ -22,6 +22,10 @@ const goalSchema = mongoose.Schema(
       ],
       default: "onTrack",
     },
+    counter: {
+      type: Number,
+      default: 0,
+    },
     habitId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Habit",
