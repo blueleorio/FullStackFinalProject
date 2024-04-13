@@ -10,9 +10,22 @@ const habitSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    difficulty: {
+      type: String,
+      enum: ["Easy", "Medium", "Hard", "Expert"],
+      default: "Easy",
+    },
     frequency: {
       type: Number,
       required: true,
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
+    counter: {
+      type: Number,
+      default: 0,
     },
     status: {
       type: String,

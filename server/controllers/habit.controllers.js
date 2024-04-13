@@ -125,4 +125,24 @@ habitController.deleteHabit = async (req, res, next) => {
   }
 };
 
+// Filter habit based on tag
+habitController.filterHabit = async (req, res, next) => {
+  const tag = req.query.tag;
+  const filter = { tags: tag, isDeleted: false };
+  try {
+    const filtered = await habit.find(filter);
+    if (!filtered) throw new AppError("No habit found", 404);
+    sendResponse(
+      res,
+      200,
+      true,
+      { habit: filtered },
+      null,
+      "Filter habit Successfully"
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = habitController;
