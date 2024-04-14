@@ -249,6 +249,16 @@ const tagSchema = mongoose.Schema(
 <summary>Whatever Model:</summary>
 </details>
 
+# :key: API
+
+```
+/**
+* @route POST /auth/login
+* @description Log in with email and password
+* @access Public
+*/
+```
+
 # Google Sheet:
 
 https://docs.google.com/spreadsheets/d/1_o0cZbtYivy789PXFuDNWGSB1y-4t-k5JNm8ZzfVLg4/edit#gid=1787504862
