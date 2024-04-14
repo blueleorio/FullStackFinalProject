@@ -26,3 +26,7 @@ https://docs.google.com/spreadsheets/d/1_o0cZbtYivy789PXFuDNWGSB1y-4t-k5JNm8ZzfV
 https://www.svgrepo.com/collection/scarlab-oval-line-icons/5
 
 https://coder-comm-cs.netlify.app/
+
+# {PlayGround}
+
+![version](https://img.shields.io/badge/version-1.0.0-blue)
