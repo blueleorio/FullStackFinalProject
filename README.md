@@ -1,3 +1,5 @@
+[![Logo][repo_logo_img]][repo_url]
+
 # FullStackFinalProject
 
 CoderSchool Full Stack Web - Final Project
@@ -30,3 +32,8 @@ https://coder-comm-cs.netlify.app/
 # {PlayGround}
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
+
+<!-- Repository -->
+
+[repo_url]: https://github.com/blueleorio/FullStackFinalProject
+[repo_logo_img]: https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/logo-light.png
