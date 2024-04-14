@@ -1,4 +1,10 @@
-[![Logo][repo_logo_img]][repo_url]
+<p align="center">
+  <a href="https://github.com/blueleorio/FullStackFinalProject">
+    <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/logo-light.png" alt="Logo" width="200"/>
+  </a>
+</p>
+
+<h1> S H E E B</h1>
 
 # FullStackFinalProject
 
