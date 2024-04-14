@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Container } from "@mui/material";
+import { Card, Container, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/user/userSlice";
@@ -26,18 +26,18 @@ function HabitPage() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <>
-          <Card
-            sx={{
-              mb: 3,
-              //   height: 280,
-              position: "relative",
-            }}
-          >
-            <HabitForm />
-          </Card>
+        <Box
+          sx={{
+            display: "flex", // This makes the box a flex container
+            flexDirection: "row", // This makes the children (HabitForm and HabitList) align horizontally
+            justifyContent: "space-around", // This adds space between the children
+            flexWrap: "wrap", // This allows the children to wrap onto the next line if there's not enough space
+          }}
+        >
+          <HabitForm />
+
           <HabitList />
-        </>
+        </Box>
       )}
     </Container>
   );

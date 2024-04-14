@@ -48,7 +48,7 @@ const HabitList = () => {
   };
 
   return (
-    <Stack spacing={1.5}>
+    <Stack spacing={1.5} sx={{ border: "1px solid black" }}>
       <Stack direction="row" justifyContent="space-between">
         <Typography variant="subtitle" sx={{ color: "text.secondary" }}>
           {totalHabits > 1

@@ -1,4 +1,11 @@
-import React, { useCallback, useState, useEffect } from "react";
+// Libraries
+import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+// Material UI
 import {
   Box,
   Card,
@@ -8,30 +15,29 @@ import {
   Chip,
   IconButton,
 } from "@mui/material";
-
+import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
+// Local components and utilities
 import {
   FormProvider,
   FTextField,
   FUploadImage,
   FRadioGroup,
 } from "../../components/form";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-// import { createPost } from "./postSlice";
-import { LoadingButton } from "@mui/lab";
 import TagModal from "../tag/tagModal";
 
+// Redux slices
+import { createHabit } from "./habitSlice";
+
 const yupSchema = Yup.object().shape({
-  content: Yup.string().required("Content is required"),
+  name: Yup.string().required("Title is required"),
+  description: Yup.string().default(""),
 });
 
 const defaultValues = {
-  content: "",
-  image: null,
+  name: "",
+  description: "",
 };
 
 const handleClick = () => {
@@ -43,9 +49,10 @@ const handleDelete = () => {
 };
 
 function PostForm() {
-  const { isLoading } = useSelector((state) => state.post);
-  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+  const { isLoading } = useSelector((state) => state.habit);
   const tags = useSelector((state) => state.tag.tags);
+  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+  // console.log("🚀 ~ PostForm ~ isLoading:", isLoading);
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
   };
@@ -81,8 +88,16 @@ function PostForm() {
     [setValue]
   );
 
-  const onSubmit = (data) => {
-    // dispatch(createPost(data)).then(() => reset());
+  const onSubmit = async (data) => {
+    console.log("🚀 ~ onSubmit ~ data:", data);
+    try {
+      console.log("Testing create Habit", data);
+      await dispatch(createHabit(data)).unwrap();
+      reset();
+    } catch (error) {
+      console.error("Failed to create habit:", error);
+      // Here you can handle the error, for example, by showing an error message to the user
+    }
   };
 
   return (
@@ -104,12 +119,12 @@ function PostForm() {
         </Typography>
         <Stack spacing={2}>
           <FTextField
-            name="tittle"
+            name="name"
             multiline
             fullWidth
             rows={1}
-            label="Tittle"
-            placeholder="Tittle: Drink 2 litres of water daily"
+            label="Title"
+            placeholder="Title: Drink 2 litres of water daily"
             sx={{
               "& fieldset": {
                 borderWidth: `1px !important`,
@@ -180,7 +195,7 @@ function PostForm() {
             <LoadingButton
               type="submit"
               variant="contained"
-              size="small"
+              size="large"
               loading={isSubmitting || isLoading}
             >
               Create

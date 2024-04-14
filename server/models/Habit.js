@@ -15,9 +15,9 @@ const habitSchema = mongoose.Schema(
       enum: ["Easy", "Medium", "Hard", "Expert"],
       default: "Easy",
     },
-    frequency: {
-      type: Number,
-      required: true,
+    imageUrl: {
+      type: String,
+      default: "",
     },
     tags: [
       {

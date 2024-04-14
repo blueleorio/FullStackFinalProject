@@ -4,6 +4,7 @@ import apiService from "../../app/apiService";
 const initialState = {
   habits: [],
   currentHabit: null,
+  isLoading: false,
   currentPage: 1,
   totalHabits: 0,
   status: "idle",
@@ -27,6 +28,8 @@ export const fetchHabits = createAsyncThunk(
 export const createHabit = createAsyncThunk(
   "habits/createHabit",
   async (habit) => {
+    console.log("🚀 ~ habit - SLICE:", habit);
+
     const response = await apiService.post("/habits", habit);
     return response.data;
   }
@@ -66,8 +69,20 @@ const habitSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
+      .addCase(createHabit.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(createHabit.fulfilled, (state, action) => {
         state.habits.push(action.payload);
+
+        console.log("🚀 ~ .addCase ~ action.payload:", action.payload);
+        state.loading = false;
+      })
+      .addCase(createHabit.rejected, (state, action) => {
+        state.loading = false;
+        console.log("🚀 ~ .rejected ~ action.payload:", action.payload);
+        state.error = action.error.message;
       })
       .addCase(updateHabit.fulfilled, (state, action) => {
         const { id, ...updatedHabit } = action.payload;

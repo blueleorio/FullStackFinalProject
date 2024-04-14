@@ -45,7 +45,7 @@ router.post(
   loginRequired,
   validator.validate([
     body("name", "Missing name").exists().notEmpty(),
-    body("frequency", "Missing frequency").exists().notEmpty(),
+    // body("frequency", "Missing frequency").exists().notEmpty(),
   ]),
   createHabit
 );

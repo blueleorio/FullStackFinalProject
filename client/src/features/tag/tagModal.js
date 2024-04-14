@@ -12,7 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 export default function TagModal({ open, handleClose, title, description }) {
   const [tagName, setTagName] = React.useState("");
   const tags = useSelector((state) => state.tag.tags);
-  console.log("🚀 ~ TagModal ~ tags:", tags);
+  // console.log("🚀 ~ TagModal ~ tags:", tags);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
