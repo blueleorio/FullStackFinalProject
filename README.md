@@ -17,7 +17,20 @@
 ![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge)
 
-## Table of Contents
+<p align="center">
+  <img src="https://img.shields.io/netlify/601cb544-d7b0-4554-9cba-3739e51356e1?style=for-the-badge&logo=netlify" alt="Netlify"/>
+  <img src="https://img.shields.io/npm/v/%40mui%2Fmaterial?style=for-the-badge&logo=mui&label=MUI" alt="NPM Version"/>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white&style=for-the-badge" alt="MongoDB"/>
+  <img src="https://img.shields.io/badge/-Express.js-000000?logo=express&logoColor=white&style=for-the-badge" alt="Express.js"/>
+  <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="React"/>
+  <img src="https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge" alt="Node.js"/>
+</p>
+
+---
+
+## ⚡️ Table of Contents
 
 <details>
 <summary>Click to expand</summary>
@@ -31,11 +44,13 @@
 
 <a id="project-introduction"></a>
 
-# ⭐️ Introduction:
+# ⭐️ Introduction
 
 #### Hello, this is Sheeb. I made it for my final project in the Full Stack Developer course at CoderSchool. I use habit trackers every day and wanted to make one that is fun and helpful.
 
 #### With Sheeb, you can keep track of your habits, stay excited, and enjoy reaching your goals. It's not just a habit tracker, it's a tool to help you get better every day.
+
+# :bell: User Stories
 
 | User Roles | Stories for each user role                                                                                                                   |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,6 +65,8 @@
 
 ---
 
+# :triangular_ruler: Schema
+
 Google Sheet:
 
 https://docs.google.com/spreadsheets/d/1_o0cZbtYivy789PXFuDNWGSB1y-4t-k5JNm8ZzfVLg4/edit#gid=1787504862
@@ -61,6 +78,8 @@ https://coder-comm-cs.netlify.app/
 # {PlayGround}
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
+
+<p align="right"><a href="#">Go to top ↾</a></p>
 
 <!-- Repository -->
 
