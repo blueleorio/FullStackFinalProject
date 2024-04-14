@@ -5,6 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/user/userSlice";
 import LoadingScreen from "../components/LoadingScreen";
 import HabitForm from "../features/habit/HabitForm";
+import HabitList from "../features/habit/HabitList";
 function HabitPage() {
   const params = useParams();
   const userId = params.userId;
@@ -35,6 +36,7 @@ function HabitPage() {
           >
             <HabitForm />
           </Card>
+          <HabitList />
         </>
       )}
     </Container>

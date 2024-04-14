@@ -31,7 +31,7 @@ habitController.getHabits = async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = (page - 1) * limit;
   const filter = { isDeleted: false };
-  const total = 20;
+  const total = 10;
   try {
     const listOfFound = await habit
       .find(filter)
@@ -43,7 +43,7 @@ habitController.getHabits = async (req, res, next) => {
       res,
       200,
       true,
-      { habit: listOfFound, page: page, total: total },
+      { habits: listOfFound, page: page, totalHabits: total },
       null,
       "Get Habit List Successfully!"
     );

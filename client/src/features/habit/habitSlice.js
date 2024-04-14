@@ -4,14 +4,25 @@ import apiService from "../../app/apiService";
 const initialState = {
   habits: [],
   currentHabit: null,
+  currentPage: 1,
+  totalHabits: 0,
   status: "idle",
   error: null,
 };
-
-export const fetchHabits = createAsyncThunk("habits/fetchHabits", async () => {
-  const response = await apiService.get("/habits");
-  return response.data;
-});
+export const fetchHabits = createAsyncThunk(
+  "habits/fetchHabits",
+  async (page = 1) => {
+    try {
+      const response = await apiService.get(`/habits?page=${page}`);
+      // Extract the data from the response
+      const { habits, totalHabits } = response.data;
+      // Return the data as an object with `habits` and `totalHabits` properties
+      return { habits, totalHabits };
+    } catch (error) {
+      return Promise.reject(error.message);
+    }
+  }
+);
 
 export const createHabit = createAsyncThunk(
   "habits/createHabit",
@@ -48,7 +59,8 @@ const habitSlice = createSlice({
       })
       .addCase(fetchHabits.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.habits = action.payload;
+        state.habits = action.payload.habits;
+        state.totalHabits = action.payload.totalHabits;
       })
       .addCase(fetchHabits.rejected, (state, action) => {
         state.status = "failed";
@@ -71,5 +83,6 @@ const habitSlice = createSlice({
       });
   },
 });
+export const { setCurrentPage } = habitSlice.actions;
 
 export default habitSlice.reducer;

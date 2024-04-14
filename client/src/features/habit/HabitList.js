@@ -2,38 +2,36 @@ import React, { useEffect } from "react";
 import { Pagination, Stack, Typography } from "@mui/material";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import LoadingScreen from "../../components/LoadingScreen";
-import HabitCard from "../HabitCard"; // Assuming you have this component
-import { getHabits } from "../../features/habit/habitSlice"; // Assuming you have this action
+import HabitCard from "../habit/HabitCard";
+import { fetchHabits, setCurrentPage } from "../../features/habit/habitSlice";
+import useAuth from "../../hooks/useAuth";
 
-const HABITS_PER_USER = 10; // Assuming you have this constant
+const HABITS_PER_PAGE = 10;
 
 const HabitList = () => {
-  const { selectedUser } = useSelector((state) => state.user, shallowEqual);
-  const userId = selectedUser._id; // Assuming the selectedUser object has an _id property
+  const { user } = useAuth();
+  const userId = user._id;
 
-  const { habitsByUser, habitsById, totalHabits, isLoading, currentPage } =
-    useSelector(
-      (state) => ({
-        habitsByUser: state.habit.habitsByUser[userId],
-        totalHabits: state.habit.totalHabitsByUser[userId],
-        currentPage: state.habit.currentPageByUser[userId] || 1,
-        habitsById: state.habit.habitsById,
-        isLoading: state.habit.isLoading,
-      }),
-      shallowEqual
-    );
+  const { habits, totalHabits, isLoading, currentPage } = useSelector(
+    (state) => ({
+      habits: state.habit.habits,
+      totalHabits: state.habit.totalHabits,
+      currentPage: state.habit.currentPage,
+      isLoading: state.habit.status === "loading",
+    }),
+    shallowEqual
+  );
 
-  const totalPages = Math.ceil(totalHabits / HABITS_PER_USER);
+  const totalPages = Math.ceil(totalHabits / HABITS_PER_PAGE);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userId) dispatch(getHabits({ userId }));
-  }, [userId, dispatch]);
+    if (userId) dispatch(fetchHabits(currentPage));
+  }, [userId, dispatch, currentPage]);
 
   let renderHabits;
 
-  if (habitsByUser) {
-    const habits = habitsByUser.map((habitId) => habitsById[habitId]);
+  if (habits.length > 0) {
     renderHabits = (
       <Stack spacing={1.5}>
         {habits.map((habit) => (
@@ -45,6 +43,10 @@ const HabitList = () => {
     renderHabits = <LoadingScreen />;
   }
 
+  const handlePageChange = (event, value) => {
+    dispatch(setCurrentPage(value));
+  };
+
   return (
     <Stack spacing={1.5}>
       <Stack direction="row" justifyContent="space-between">
@@ -55,11 +57,11 @@ const HabitList = () => {
             ? `${totalHabits} habit`
             : "No habit"}
         </Typography>
-        {totalHabits > HABITS_PER_USER && (
+        {totalHabits > HABITS_PER_PAGE && (
           <Pagination
             count={totalPages}
             page={currentPage}
-            onChange={(e, page) => dispatch(getHabits({ userId, page }))}
+            onChange={handlePageChange}
           />
         )}
       </Stack>
