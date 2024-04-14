@@ -1,6 +1,7 @@
 <p align="center">
   <a href="https://github.com/blueleorio/FullStackFinalProject">
     <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/logo-light.png" alt="Logo" width="200"/>
+    <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/cooltext455884642556665.png" alt="App Name"/>
   </a>
 </p>
 
