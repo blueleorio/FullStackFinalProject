@@ -1,4 +1,6 @@
-<p align="center" id="top">
+<a id="top"></a>
+
+<p align="center">
   <a href="https://github.com/blueleorio/FullStackFinalProject">
     <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/logo-light.png" alt="Logo" width="200"/>
   </a>
