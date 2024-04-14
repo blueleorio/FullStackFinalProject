@@ -17,6 +17,20 @@
 ![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge)
 
+## Table of Contents
+
+<details>
+<summary>Click to expand</summary>
+
+1. [Project Introduction](#project-introduction)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
+</details>
+
+<a id="project-introduction"></a>
+
 # ⭐️ Introduction:
 
 #### Hello, this is Sheeb. I made it for my final project in the Full Stack Developer course at CoderSchool. I use habit trackers every day and wanted to make one that is fun and helpful.
