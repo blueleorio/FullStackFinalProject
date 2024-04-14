@@ -1,19 +1,27 @@
 <p align="center">
   <a href="https://github.com/blueleorio/FullStackFinalProject">
     <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/logo-light.png" alt="Logo" width="200"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/blueleorio/FullStackFinalProject">
     <img src="https://github.com/blueleorio/FullStackFinalProject/blob/main/client/src/cooltext455884642556665.png" alt="App Name"/>
   </a>
 </p>
 
-<h1> S H E E B</h1>
+![Netlify](https://img.shields.io/netlify/601cb544-d7b0-4554-9cba-3739e51356e1?style=for-the-badge&logo=netlify)
+![NPM Version](https://img.shields.io/npm/v/%40mui%2Fmaterial?style=for-the-badge&logo=mui&label=MUI)
 
-# FullStackFinalProject
+![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white&style=for-the-badge)
+![Express.js](https://img.shields.io/badge/-Express.js-000000?logo=express&logoColor=white&style=for-the-badge)
+![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge)
 
-CoderSchool Full Stack Web - Final Project
+# ⭐️ Introduction:
 
-# Sheeb
+#### Hello, this is Sheeb. I made it for my final project in the Full Stack Developer course at CoderSchool. I use habit trackers every day and wanted to make one that is fun and helpful.
 
-### Gamify your daily activities
+#### With Sheeb, you can keep track of your habits, stay excited, and enjoy reaching your goals. It's not just a habit tracker, it's a tool to help you get better every day.
 
 | User Roles | Stories for each user role                                                                                                                   |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
