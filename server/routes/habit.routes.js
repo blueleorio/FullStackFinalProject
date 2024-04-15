@@ -14,6 +14,7 @@ const {
   getCurrentHabitInfo,
   assignTag,
   filterHabit,
+  getHabitsForDate,
 } = require("../controllers/habit.controllers.js");
 
 //Read
@@ -81,6 +82,14 @@ router.put("/habits/:habitId/tags/:tagId", assignTag);
  * @access log in required
  */
 router.get("/filter", loginRequired, filterHabit);
+
+// Get Habits for Date
+/**
+ * @route GET api/Habits/date/:date
+ * @description get list of Habits for a specific date
+ * @access log in required
+ */
+router.get("/date/:date", loginRequired, getHabitsForDate);
 
 //export
 module.exports = router;

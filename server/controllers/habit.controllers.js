@@ -172,4 +172,51 @@ habitController.assignTag = async (req, res, next) => {
   }
 };
 
+// Get habits for a specific date
+habitController.getHabitsForDate = async (req, res, next) => {
+  const { date } = req.params; // Date is passed as a URL parameter
+
+  try {
+    const habits = await habit.find();
+    const dateObj = new Date(date);
+    const habitsForDate = [];
+
+    for (let habitItem of habits) {
+      const { startDate, reminder } = habitItem;
+      let nextDate = new Date(startDate);
+
+      if (reminder === "Yearly") {
+        while (nextDate <= dateObj) {
+          nextDate.setFullYear(nextDate.getFullYear() + 1);
+        }
+      } else if (reminder === "Monthly") {
+        while (nextDate <= dateObj) {
+          nextDate.setMonth(nextDate.getMonth() + 1);
+        }
+      } else if (reminder === "Daily") {
+        while (nextDate <= dateObj) {
+          nextDate.setDate(nextDate.getDate() + 1);
+        }
+      } else if (reminder === "None") {
+        nextDate = new Date(startDate);
+      }
+
+      if (nextDate.getTime() === dateObj.getTime()) {
+        habitsForDate.push(habitItem);
+      }
+    }
+
+    sendResponse(
+      res,
+      200,
+      true,
+      { habits: habitsForDate },
+      null,
+      "Get habits for date Successfully"
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = habitController;
