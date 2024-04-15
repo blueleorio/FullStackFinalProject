@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//Create schema
+
 const habitSchema = mongoose.Schema(
   {
     name: {
@@ -10,11 +10,21 @@ const habitSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    difficulty: {
-      type: String,
-      enum: ["Easy", "Medium", "Hard", "Expert"],
-      default: "Easy",
+    startDate: {
+      type: Date,
+      required: true,
     },
+    reminder: {
+      type: String,
+      enum: ["Daily", "Monthly", "Yearly", "None"],
+      default: "None",
+    },
+    nextDates: [
+      {
+        type: Date,
+        default: [],
+      },
+    ],
     imageUrl: {
       type: String,
       default: "",
@@ -26,10 +36,6 @@ const habitSchema = mongoose.Schema(
         default: [],
       },
     ],
-    counter: {
-      type: Number,
-      default: 0,
-    },
     status: {
       type: String,
       enum: [
@@ -40,25 +46,10 @@ const habitSchema = mongoose.Schema(
       ],
       default: "Welcome to real world",
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    goalId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Goal",
-    },
-    deletedAt: Date,
-    isDeleted: {
-      type: Boolean,
-      default: false,
-      select: false,
-    },
   },
   {
     timestamps: true,
   }
 );
-//Create and export model
-const Habit = mongoose.model("Habit", habitSchema);
-module.exports = Habit;
+
+module.exports = mongoose.model("Habit", habitSchema);

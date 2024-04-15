@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
+import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // Material UI
 import {
   Box,
@@ -52,6 +53,7 @@ function PostForm() {
   const { isLoading } = useSelector((state) => state.habit);
   const tags = useSelector((state) => state.tag.tags);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+  const [reminderValue, setReminderValue] = useState("");
   // console.log("🚀 ~ PostForm ~ isLoading:", isLoading);
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
@@ -153,12 +155,23 @@ function PostForm() {
             onDrop={handleDrop}
           />
           <Typography variant="h6" gutterBottom>
-            Difficulty
+            Date:
           </Typography>
-          <FRadioGroup
-            name="difficulty"
-            options={["Easy", "Medium", "Hard", "Expert"]}
+          <DatePicker
+            defaultValue={dayjs()}
+            slotProps={{
+              textField: {
+                helperText: "MM/DD/YYYY",
+              },
+            }}
           />
+          <FRadioGroup
+            name="reminder"
+            value={reminderValue}
+            onChange={(event) => setReminderValue(event.target.value)}
+            options={["Daily", "Monthly", "Yearly"]}
+          />
+
           <Typography variant="h6" gutterBottom>
             Counter
           </Typography>
