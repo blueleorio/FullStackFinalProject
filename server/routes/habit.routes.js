@@ -44,10 +44,7 @@ router.get("/:habitId", loginRequired, getCurrentHabitInfo);
 router.post(
   "/",
   loginRequired,
-  validator.validate([
-    body("name", "Missing name").exists().notEmpty(),
-    // body("frequency", "Missing frequency").exists().notEmpty(),
-  ]),
+  validator.validate([body("name", "Missing name").exists().notEmpty()]),
   createHabit
 );
 

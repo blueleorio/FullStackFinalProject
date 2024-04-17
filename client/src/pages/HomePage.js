@@ -3,9 +3,11 @@ import useAuth from "../hooks/useAuth";
 import dayjs from "dayjs";
 import { Box, Grid, Typography, Card, Container } from "@mui/material";
 import BasicDateCalendar from "../features/calendar/CalendarForm";
+import HabitList from "../features/habit/HabitList";
 function HomePage() {
   const { user } = useAuth();
   const [date, setDate] = React.useState(dayjs());
+
   return (
     <Container>
       <Grid container spacing={3}>
@@ -22,6 +24,14 @@ function HomePage() {
         <Grid item xs={12} md={4}>
           <Card sx={{ width: "110%", overflow: "auto" }}>
             <BasicDateCalendar value={date} onChange={setDate} />
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h6">Habit</Typography>
+              <HabitList date={date} />
+            </Box>
           </Card>
         </Grid>
       </Grid>

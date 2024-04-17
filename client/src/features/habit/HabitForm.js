@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // Material UI
 import {
   Box,
@@ -15,6 +14,7 @@ import {
   Typography,
   Chip,
   IconButton,
+  Tooltip,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -25,6 +25,7 @@ import {
   FTextField,
   FUploadImage,
   FRadioGroup,
+  FDatePicker,
 } from "../../components/form";
 import TagModal from "../tag/tagModal";
 
@@ -34,11 +35,14 @@ import { createHabit } from "./habitSlice";
 const yupSchema = Yup.object().shape({
   name: Yup.string().required("Title is required"),
   description: Yup.string().default(""),
+  startDate: Yup.date().required("Start date is required"),
 });
 
 const defaultValues = {
   name: "",
   description: "",
+  startDate: dayjs(),
+  reminder: "None",
 };
 
 const handleClick = () => {
@@ -53,7 +57,7 @@ function PostForm() {
   const { isLoading } = useSelector((state) => state.habit);
   const tags = useSelector((state) => state.tag.tags);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
-  const [reminderValue, setReminderValue] = useState("");
+  // const [reminderValue, setReminderValue] = useState("");
   // console.log("🚀 ~ PostForm ~ isLoading:", isLoading);
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
@@ -91,9 +95,9 @@ function PostForm() {
   );
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data);
+    console.log("🚀 ~ onSubmit ~ data: HabitForm.js", data);
     try {
-      console.log("Testing create Habit", data);
+      // console.log("Testing create Habit - habit Form.js", data);
       await dispatch(createHabit(data)).unwrap();
       reset();
     } catch (error) {
@@ -157,24 +161,16 @@ function PostForm() {
           <Typography variant="h6" gutterBottom>
             Date:
           </Typography>
-          <DatePicker
-            defaultValue={dayjs()}
-            slotProps={{
-              textField: {
-                helperText: "MM/DD/YYYY",
-              },
-            }}
-          />
+          <FDatePicker name="startDate" helperText="MM/DD/YYYY" />
+          <Tooltip title="Leave none for one time task">
+            <Typography variant="h6" gutterBottom>
+              Reminder
+            </Typography>
+          </Tooltip>
           <FRadioGroup
             name="reminder"
-            value={reminderValue}
-            onChange={(event) => setReminderValue(event.target.value)}
-            options={["Daily", "Monthly", "Yearly"]}
+            options={["None", "Daily", "Monthly", "Yearly"]}
           />
-
-          <Typography variant="h6" gutterBottom>
-            Counter
-          </Typography>
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
               Tag:

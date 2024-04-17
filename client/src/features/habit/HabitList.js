@@ -27,6 +27,7 @@ const HabitList = () => {
 
   useEffect(() => {
     if (userId) dispatch(fetchHabits(currentPage));
+    console.log("🚀 ~ HabitList ~ currentPage", currentPage);
   }, [userId, dispatch, currentPage]);
 
   let renderHabits;

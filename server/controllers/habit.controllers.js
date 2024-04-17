@@ -1,6 +1,6 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
 const habit = require("../models/Habit.js");
-const user = require("../models/User.js");
+// const user = require("../models/User.js");
 const habitController = {};
 //Create a habit
 
@@ -73,7 +73,9 @@ habitController.getCurrentHabitInfo = async (req, res, next) => {
 // Update a habit
 habitController.editHabit = async (req, res, next) => {
   const targetId = req.params.habitId;
+  console.log("🚀 ~ habitController.editHabit= ~ targetId:", targetId);
   const updateInfo = req.body;
+  console.log("🚀 ~ habitController.editHabit= ~ updateInfo:", updateInfo);
   const options = { new: true };
   try {
     const habits = await habit.findById(targetId);
@@ -96,7 +98,7 @@ habitController.editHabit = async (req, res, next) => {
       res,
       200,
       true,
-      { habit: updated },
+      { data: updated },
       null,
       "Update habit Successfully"
     );
@@ -210,7 +212,7 @@ habitController.getHabitsForDate = async (req, res, next) => {
       res,
       200,
       true,
-      { habits: habitsForDate },
+      { habit: habitsForDate },
       null,
       "Get habits for date Successfully"
     );

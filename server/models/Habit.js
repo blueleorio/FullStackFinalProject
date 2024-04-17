@@ -37,14 +37,8 @@ const habitSchema = mongoose.Schema(
       },
     ],
     status: {
-      type: String,
-      enum: [
-        "Welcome to real world",
-        "Trust the process",
-        "Top of the summit",
-        "Pit hole",
-      ],
-      default: "Welcome to real world",
+      type: Boolean,
+      default: false,
     },
   },
   {
