@@ -29,6 +29,11 @@ const habitSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     tags: [
       {
         type: mongoose.Schema.Types.ObjectId,

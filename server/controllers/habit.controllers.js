@@ -1,6 +1,6 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
 const habit = require("../models/Habit.js");
-// const user = require("../models/User.js");
+const User = require("../models/User.js");
 const habitController = {};
 //Create a habit
 
@@ -9,9 +9,19 @@ const habitController = {};
 habitController.createHabit = async (req, res, next) => {
   try {
     const info = req.body;
+
     console.log("🚀 ~ habitController.createHabit= ~ req.body:", req.body);
     if (!info) throw new AppError(402, "Bad Request", "Create habit Error");
+
+    // Create the new habit
     const created = await habit.create(info);
+
+    // Find the user and update their habits field
+    const user = await User.findById(info.createdBy);
+    if (!user) throw new AppError(404, "Not Found", "User not found");
+    user.habits.push(created._id);
+    await user.save();
+
     sendResponse(
       res,
       200,
@@ -24,7 +34,6 @@ habitController.createHabit = async (req, res, next) => {
     next(err);
   }
 };
-
 // Get all habit
 habitController.getHabits = async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;

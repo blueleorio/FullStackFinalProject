@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import dayjs from "dayjs";
+import useAuth from "../../hooks/useAuth";
+
 // Material UI
 import {
   Box,
@@ -54,6 +56,8 @@ const handleDelete = () => {
 };
 
 function PostForm() {
+  const { user } = useAuth();
+
   const { isLoading } = useSelector((state) => state.habit);
   const tags = useSelector((state) => state.tag.tags);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
@@ -65,6 +69,9 @@ function PostForm() {
   const handleCloseTagModal = () => {
     setIsTagModalOpen(false);
   };
+
+  const userId = user?._id;
+  // console.log("🚀 ~ PostForm ~ userId:", userId);
 
   const methods = useForm({
     resolver: yupResolver(yupSchema),
@@ -97,6 +104,8 @@ function PostForm() {
   const onSubmit = async (data) => {
     console.log("🚀 ~ onSubmit ~ data: HabitForm.js", data);
     try {
+      // Add the userId to the data object
+      data.createdBy = userId;
       // console.log("Testing create Habit - habit Form.js", data);
       await dispatch(createHabit(data)).unwrap();
       reset();

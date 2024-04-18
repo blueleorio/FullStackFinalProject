@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import apiService from "../../app/apiService";
+// import { getUser } from "../features/user/userSlice";
 
 const initialState = {
   habits: [],
