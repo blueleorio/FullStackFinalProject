@@ -17,6 +17,7 @@ import {
   Chip,
   IconButton,
   Tooltip,
+  InputLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -44,6 +45,7 @@ const defaultValues = {
   name: "",
   description: "",
   startDate: dayjs(),
+  endDate: dayjs(),
   reminder: "None",
 };
 
@@ -170,7 +172,12 @@ function PostForm() {
           <Typography variant="h6" gutterBottom>
             Date:
           </Typography>
+          <InputLabel htmlFor="startDate">Start Date</InputLabel>
           <FDatePicker name="startDate" helperText="MM/DD/YYYY" />
+
+          <InputLabel htmlFor="endDate">End Date</InputLabel>
+          <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
+
           <Tooltip title="Leave none for one time task">
             <Typography variant="h6" gutterBottom>
               Reminder

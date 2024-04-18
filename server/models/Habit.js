@@ -14,6 +14,10 @@ const habitSchema = mongoose.Schema(
       type: Date,
       required: true,
     },
+    endDate: {
+      type: Date,
+      required: true,
+    },
     reminder: {
       type: String,
       enum: ["Daily", "Monthly", "Yearly", "None"],
