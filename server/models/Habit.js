@@ -19,9 +19,17 @@ const habitSchema = mongoose.Schema(
       required: true,
     },
     reminder: {
-      type: String,
-      enum: ["Daily", "Monthly", "Yearly", "None"],
-      default: "None",
+      type: [String],
+      enum: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      default: [],
     },
     nextDates: [
       {

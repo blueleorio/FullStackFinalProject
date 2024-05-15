@@ -27,8 +27,8 @@ import {
   FormProvider,
   FTextField,
   FUploadImage,
-  FRadioGroup,
   FDatePicker,
+  FMultiCheckbox,
 } from "../../components/form";
 import TagModal from "../tag/tagModal";
 
@@ -183,9 +183,17 @@ function PostForm() {
               Reminder
             </Typography>
           </Tooltip>
-          <FRadioGroup
+          <FMultiCheckbox
             name="reminder"
-            options={["None", "Daily", "Monthly", "Yearly"]}
+            options={[
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ]}
           />
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
