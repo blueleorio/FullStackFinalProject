@@ -69,6 +69,40 @@ Here's what you need to be able to run Sheeb:
 git clone  https://github.com/blueleorio/FullStackFinalProject.git
 ```
 
+## :deciduous_tree: Tree Directory
+
+```
+.root
+├── client
+│ ├── src
+│ │ ├── app
+│ │ ├── components
+│ │ ├── contexts
+│ │ ├── features
+│ │ ├── hooks
+│ │ ├── layouts
+│ │ ├── pages
+│ │ ├── routes
+│ │ ├── themes
+│ │ ├── utils
+│ │ └── App.js
+│ ├── .env
+│ └── README.md
+│
+├── server
+│ ├── controllers
+│ ├── helpers
+│ ├── middlewares
+│ ├── models
+│ ├── routes
+│ │
+│ ├── .env
+│ └── app.js
+│
+└── README.md
+
+```
+
 ### 2. Install dependencies for client/server
 
 ## Client
@@ -101,40 +135,6 @@ PORT = 8000
 MONGODB_URI =mongodb://localhost:27017/...
 JWT_SECRET_KEY = "your jwt secret key"
 GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
-```
-
-# :deciduous_tree: Tree Directory
-
-```
-.root
-├── client
-│ ├── src
-│ │ ├── app
-│ │ ├── components
-│ │ ├── contexts
-│ │ ├── features
-│ │ ├── hooks
-│ │ ├── layouts
-│ │ ├── pages
-│ │ ├── routes
-│ │ ├── themes
-│ │ ├── utils
-│ │ └── App.js
-│ ├── .env
-│ └── README.md
-│
-├── server
-│ ├── controllers
-│ ├── helpers
-│ ├── middlewares
-│ ├── models
-│ ├── routes
-│ │
-│ ├── .env
-│ └── app.js
-│
-└── README.md
-
 ```
 
 # :bell: User Stories
