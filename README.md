@@ -152,6 +152,20 @@ GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
 
 </details>
 
+### 3. Initialize the app
+
+## Client
+
+```sh
+npm start
+```
+
+## Server
+
+```sh
+npm run dev
+```
+
 # :bell: User Stories
 
 ### Authentication
@@ -260,7 +274,7 @@ const userSchema = new mongoose.Schema(
 </details>
 
 <details>
-<summary>Habit Model :</summary>
+<summary>Habit Model:</summary>
 
 ```js
 const habitSchema = mongoose.Schema({
@@ -274,7 +288,7 @@ const habitSchema = mongoose.Schema({
 </details>
 
 <details> 
-<summary>Goal Model :</summary>
+<summary>Goal Model:</summary>
 
 ```js
 const goalSchema = mongoose.Schema(
@@ -327,7 +341,7 @@ const goalSchema = mongoose.Schema(
 </details>
 
 <details>
-<summary>Tag Model: </summary>
+<summary>Tag Model:</summary>
 
 ```js
 const tagSchema = mongoose.Schema(
@@ -361,6 +375,16 @@ const tagSchema = mongoose.Schema(
 
 <details>
 <summary>Progress Model:</summary>
+
+```js
+const progressSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+});
+```
+
 </details>
 
 # :key: API
