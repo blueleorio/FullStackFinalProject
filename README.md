@@ -52,21 +52,36 @@
 
 # :tv: Demo
 
-# :trollface: Installation
+# :file_folder: Installation
 
 ```
-.
-├── src
-│ ├── components
-│ │ ├── Component1.js
-│ │ └── Component2.js
-│ ├── App.js
-│ └── index.js
-├── public
-│ ├── index.html
-│ └── favicon.ico
-├── .gitignore
-├── package.json
+.root
+├── client
+│ ├── src
+│ │ ├── app
+│ │ ├── components
+│ │ ├── contexts
+│ │ ├── features
+│ │ ├── hooks
+│ │ ├── layouts
+│ │ ├── pages
+│ │ ├── routes
+│ │ ├── themes
+│ │ ├── utils
+│ │ └── App.js
+│ ├── .env
+│ └── README.md
+│
+├── server
+│ ├── controllers
+│ ├── helpers
+│ ├── middlewares
+│ ├── models
+│ ├── routes
+│ │
+│ ├── .env
+│ └── app.js
+│
 └── README.md
 ```
 
