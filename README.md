@@ -259,6 +259,20 @@ const userSchema = new mongoose.Schema(
 
 </details>
 
+<details>
+<summary>Habit Model :</summary>
+
+```js
+const habitSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+});
+```
+
+</details>
+
 <details> 
 <summary>Goal Model :</summary>
 
