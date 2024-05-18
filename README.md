@@ -69,7 +69,10 @@ Here's what you need to be able to run Sheeb:
 git clone  https://github.com/blueleorio/FullStackFinalProject.git
 ```
 
-## :deciduous_tree: Tree Directory
+<details>
+<summary>Tree</summary>
+
+# :deciduous_tree::deciduous_tree::deciduous_tree:
 
 ```
 .root
@@ -103,16 +106,21 @@ git clone  https://github.com/blueleorio/FullStackFinalProject.git
 
 ```
 
-### 2. Install dependencies for client/server
+</details>
+
+### 2. Install dependencies
 
 ## Client
+
+<details>
+<summary> Expand for more</summary>
 
 ```sh
 cd client
 npm install
 ```
 
-### Set up client .env
+### .env
 
 ```sh
 REACT_APP_BACKEND_API = your back-end port
@@ -121,14 +129,19 @@ REACT_APP_CLOUDINARY_CLOUD_NAME = your cloud name
 REACT_APP_CLOUDINARY_UPLOAD_PRESET = your preset
 ```
 
+</details>
+
 ## Server
+
+<details>
+<summary> Expand for more</summary>
 
 ```sh
 cd server
 npm install
 ```
 
-### Set up server .env
+### .env
 
 ```sh
 PORT = 8000
@@ -136,6 +149,8 @@ MONGODB_URI =mongodb://localhost:27017/...
 JWT_SECRET_KEY = "your jwt secret key"
 GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
 ```
+
+</details>
 
 # :bell: User Stories
 
@@ -328,10 +343,10 @@ const tagSchema = mongoose.Schema(
 );
 ```
 
-## </details>
+</details>
 
 <details>
-<summary>Whatever Model:</summary>
+<summary>Progress Model:</summary>
 </details>
 
 # :key: API
