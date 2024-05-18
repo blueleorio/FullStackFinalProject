@@ -105,6 +105,7 @@ GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
 
 # :deciduous_tree: Tree Directory
 
+```
 .root
 ├── client
 │ ├── src
@@ -134,7 +135,7 @@ GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
 │
 └── README.md
 
-````
+```
 
 # :bell: User Stories
 
@@ -239,7 +240,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-````
+```
 
 </details>
 
