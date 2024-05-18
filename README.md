@@ -54,6 +54,7 @@
 
 # :trollface: Installation
 
+```
 .
 ├── src
 │ ├── components
@@ -67,6 +68,7 @@
 ├── .gitignore
 ├── package.json
 └── README.md
+```
 
 # :bell: User Stories
 
