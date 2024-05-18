@@ -52,6 +52,8 @@
 
 # :tv: Demo
 
+![Log In Page](./demo/LogInPage.png)
+
 # :file_folder: Installation
 
 ```
