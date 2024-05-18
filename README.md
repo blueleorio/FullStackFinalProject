@@ -56,7 +56,55 @@
 
 # :file_folder: Installation
 
+## Prerequisites
+
+Here's what you need to be able to run Sheeb:
+
+- Node.js (version >= 18)
+- MongoDB Database
+
+### 1. Clone the repository
+
+```sh
+git clone  https://github.com/blueleorio/FullStackFinalProject.git
 ```
+
+### 2. Install dependencies for client/server
+
+## Client
+
+```sh
+cd client
+npm install
+```
+
+### Set up client .env
+
+```sh
+REACT_APP_BACKEND_API = your back-end port
+REACT_APP_GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
+REACT_APP_CLOUDINARY_CLOUD_NAME = your cloud name
+REACT_APP_CLOUDINARY_UPLOAD_PRESET = your preset
+```
+
+## Server
+
+```sh
+cd server
+npm install
+```
+
+### Set up server .env
+
+```sh
+PORT = 8000
+MONGODB_URI =mongodb://localhost:27017/...
+JWT_SECRET_KEY = "your jwt secret key"
+GOOGLE_CLIENT_ID = "your_code_id.apps.googleusercontent.com"
+```
+
+# :deciduous_tree: Tree Directory
+
 .root
 ├── client
 │ ├── src
@@ -85,7 +133,8 @@
 │ └── app.js
 │
 └── README.md
-```
+
+````
 
 # :bell: User Stories
 
@@ -119,7 +168,7 @@
 
 ### Entity Relationship Diagram
 
-<details> 
+<details>
 <summary>User Model :</summary>
 
 ```js
@@ -190,7 +239,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-```
+````
 
 </details>
 
