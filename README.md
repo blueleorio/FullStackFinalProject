@@ -52,9 +52,11 @@
 
 # :tv: Demo
 
+:trollface: Installation
+
 # :bell: User Stories
 
-### Authengtication
+### Authentication
 
 1. As a user, I want to sign up/ log in using email
 2. As a user, I want to sign up/ log in using Google Authentication Service
