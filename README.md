@@ -52,7 +52,21 @@
 
 # :tv: Demo
 
-:trollface: Installation
+# :trollface: Installation
+
+.
+├── src
+│ ├── components
+│ │ ├── Component1.js
+│ │ └── Component2.js
+│ ├── App.js
+│ └── index.js
+├── public
+│ ├── index.html
+│ └── favicon.ico
+├── .gitignore
+├── package.json
+└── README.md
 
 # :bell: User Stories
 
