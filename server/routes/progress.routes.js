@@ -11,11 +11,11 @@ const {} = require("../controllers/progress.controllers.js");
 //Read
 /**
  * @route GET api/goals/user/:userId
- * @description get list of Goals of user
+ * @description get list of Progress of user
  * @access log in required
  */
 
-router.get("/", loginRequired, getProgs);
+// router.get("/", loginRequired, getProgs);
 
 //Read
 /**
@@ -24,7 +24,7 @@ router.get("/", loginRequired, getProgs);
  * @access log in required
  */
 
-router.get("/:progId", loginRequired, getCurrentProgInfo);
+// router.get("/:progId", loginRequired, getCurrentProgInfo);
 
 //Create
 /**
@@ -34,15 +34,7 @@ router.get("/:progId", loginRequired, getCurrentProgInfo);
  * @access public
  */
 
-router.post(
-  "/",
-  loginRequired,
-  validator.validate([
-    body("name", "Missing name").exists().notEmpty(),
-    body("targetDate", "Missing date").exists().notEmpty(),
-  ]),
-  createProg
-);
+// router.post("/", loginRequired, createProg);
 
 //Update
 /**
@@ -51,14 +43,14 @@ router.post(
  * @access public
  */
 
-router.put(
-  "/:progId",
-  loginRequired,
-  validator.validate([
-    param("progId").exists().isString().custom(validator.checkObjectID),
-  ]),
-  editProg
-);
+// router.put(
+//   "/:progId",
+//   loginRequired,
+//   validator.validate([
+//     param("progId").exists().isString().custom(validator.checkObjectID),
+//   ]),
+//   editProg
+// );
 
 //Delete
 /**
@@ -67,7 +59,7 @@ router.put(
  * @access public
  */
 
-router.delete("/:progId", loginRequired, deleteProg);
+// router.delete("/:progId", loginRequired, deleteProg);
 
 //export
 module.exports = router;

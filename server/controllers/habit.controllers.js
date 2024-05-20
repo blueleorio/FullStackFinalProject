@@ -1,6 +1,8 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
 const habit = require("../models/Habit.js");
 const User = require("../models/User.js");
+const Progress = require("../models/Progress.js");
+const dayjs = require("dayjs");
 const habitController = {};
 //Create a habit
 
@@ -15,6 +17,41 @@ habitController.createHabit = async (req, res, next) => {
 
     // Create the new habit
     const created = await habit.create(info);
+
+    // Calculate the dates
+    const startDate = dayjs(info.startDate, "DD/MM/YYYY");
+    const endDate = dayjs(info.endDate, "DD/MM/YYYY");
+    const repeatOn = info.reminder.map((day) =>
+      [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ].indexOf(day)
+    );
+
+    for (
+      let date = dayjs(startDate);
+      date.isBefore(endDate) || date.isSame(endDate);
+      date = date.add(1, "day")
+    ) {
+      if (repeatOn.includes(date.day())) {
+        // Create a new progress document for each date
+        const progress = new Progress({
+          date: date.toDate(),
+          status: "incomplete",
+          habitId: created._id,
+          userId: info.createdBy,
+          // Add other fields as necessary
+        });
+        await progress.save();
+        // Log the progress document
+        console.log("Progress document created:", progress);
+      }
+    }
 
     // Find the user and update their habits field
     const user = await User.findById(info.createdBy);
