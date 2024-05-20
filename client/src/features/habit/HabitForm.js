@@ -75,6 +75,7 @@ function PostForm() {
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
   // const [reminderValue, setReminderValue] = useState("");
   // console.log("🚀 ~ PostForm ~ isLoading:", isLoading);
+
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
   };
@@ -94,8 +95,11 @@ function PostForm() {
     reset,
     setValue,
     formState: { isSubmitting },
+    watch,
   } = methods;
+
   const dispatch = useDispatch();
+  const counterValue = watch("counter");
 
   const handleDrop = useCallback(
     (acceptedFiles) => {
@@ -179,38 +183,45 @@ function PostForm() {
             maxSize={3145728}
             onDrop={handleDrop}
           />
-          <Typography variant="h6" gutterBottom>
-            Date:
-          </Typography>
-          <InputLabel htmlFor="startDate">Start Date</InputLabel>
-          <FDatePicker name="startDate" helperText="MM/DD/YYYY" />
 
-          <InputLabel htmlFor="endDate">End Date</InputLabel>
-          <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
-
-          <Tooltip title="Leave none for daily">
-            <Typography variant="h6" gutterBottom>
-              Reminder
-            </Typography>
-          </Tooltip>
-          <FMultiCheckbox
-            name="reminder"
-            options={[
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday",
-            ]}
-          />
           <FRadioGroup
             name="counter"
             options={["weekly", "monthly", "yearly"]}
             defaultValue="weekly"
             label="Counter"
           />
+          {counterValue === "weekly" && (
+            <>
+              <Typography variant="h6" gutterBottom>
+                Date:
+              </Typography>
+              <InputLabel htmlFor="startDate">Start Date</InputLabel>
+              <FDatePicker name="startDate" helperText="MM/DD/YYYY" readOnly />
+
+              <InputLabel htmlFor="endDate">End Date</InputLabel>
+              <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
+
+              <Tooltip title="Leave none for daily">
+                <Typography variant="h6" gutterBottom>
+                  Reminder
+                </Typography>
+              </Tooltip>
+              <FMultiCheckbox
+                name="reminder"
+                options={[
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ]}
+              />
+            </>
+          )}
+
+          {counterValue === "monthly" && <></>}
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
               Tag:
