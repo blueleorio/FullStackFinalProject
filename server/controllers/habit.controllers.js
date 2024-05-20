@@ -40,8 +40,8 @@ habitController.getHabits = async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = (page - 1) * limit;
   const filter = { isDeleted: false };
-  const total = 10;
   try {
+    const total = await habit.countDocuments(filter);
     const listOfFound = await habit
       .find(filter)
       .skip(skip)
