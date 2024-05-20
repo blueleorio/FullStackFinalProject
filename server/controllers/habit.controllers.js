@@ -46,7 +46,7 @@ habitController.getHabits = async (req, res, next) => {
       .find(filter)
       .skip(skip)
       .limit(limit)
-      .populate("userId");
+      .populate("createdBy", "name email -_id");
     if (!listOfFound) throw new AppError("No habit found", 404);
     sendResponse(
       res,

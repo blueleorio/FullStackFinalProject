@@ -291,6 +291,8 @@ const habitSchema = mongoose.Schema({
 <summary>Goal Model:</summary>
 
 ```js
+const mongoose = require("mongoose");
+
 const goalSchema = mongoose.Schema(
   {
     name: {
@@ -303,14 +305,7 @@ const goalSchema = mongoose.Schema(
     targetDate: { type: Date, required: true },
     status: {
       type: String,
-      enum: [
-        "onTrack",
-        "missed",
-        "notStarted",
-        "late",
-        "abandoned",
-        "completed",
-      ],
+      enum: ["onTrack", "incomplete", "completed"],
       default: "onTrack",
     },
     counter: {
@@ -336,6 +331,9 @@ const goalSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+//Create and export model
+const Goal = mongoose.model("Goal", goalSchema);
+module.exports = Goal;
 ```
 
 </details>
@@ -377,12 +375,40 @@ const tagSchema = mongoose.Schema(
 <summary>Progress Model:</summary>
 
 ```js
-const progressSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const mongoose = require("mongoose");
+
+const progressSchema = mongoose.Schema(
+  {
+    date: {
+      type: Date,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["incomplete", "completed"],
+    },
+    habitId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Habit",
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    deletedAt: Date,
+    isDeleted: {
+      type: Boolean,
+      default: false,
+      select: false,
+    },
   },
-});
+  {
+    timestamps: true,
+  }
+);
+//Create and export model
+const Progress = mongoose.model("Progress", progressSchema);
+module.exports = Progress;
 ```
 
 </details>

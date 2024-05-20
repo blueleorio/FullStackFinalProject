@@ -9,19 +9,11 @@ const progressSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: [
-        "onTrack",
-        "missed",
-        "notStarted",
-        "late",
-        "abandoned",
-        "completed",
-      ],
-      default: "notStarted",
+      enum: ["incomplete", "completed"],
     },
-    goalId: {
+    habitId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Goal",
+      ref: "Habit",
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,

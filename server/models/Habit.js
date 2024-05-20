@@ -31,12 +31,12 @@ const habitSchema = mongoose.Schema(
       ],
       default: [],
     },
-    nextDates: [
-      {
-        type: Date,
-        default: [],
-      },
-    ],
+    counter: {
+      type: String,
+      enum: ["weekly", "monthly", "yearly"],
+      default: "weekly",
+    },
+
     imageUrl: {
       type: String,
       default: "",
@@ -57,7 +57,14 @@ const habitSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    deletedAt: Date,
+    isDeleted: {
+      type: Boolean,
+      default: false,
+      select: false,
+    },
   },
+
   {
     timestamps: true,
   }

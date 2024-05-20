@@ -17,7 +17,8 @@ export const fetchHabits = createAsyncThunk(
     try {
       const response = await apiService.get(`/habits?page=${page}`);
       // Extract the data from the response
-      const { habits, totalHabits } = response.data;
+      console.log("🚀 ~ response.data from HABIT SLICE FETCH HABIT:", response);
+      const { habits, totalHabits } = response;
       // Return the data as an object with `habits` and `totalHabits` properties
       return { habits, totalHabits };
     } catch (error) {

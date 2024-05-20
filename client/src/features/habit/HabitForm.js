@@ -29,6 +29,7 @@ import {
   FUploadImage,
   FDatePicker,
   FMultiCheckbox,
+  FRadioGroup,
 } from "../../components/form";
 import TagModal from "../tag/tagModal";
 
@@ -46,7 +47,16 @@ const defaultValues = {
   description: "",
   startDate: dayjs(),
   endDate: dayjs(),
-  reminder: "None",
+  reminder: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+  counter: "weekly",
 };
 
 const handleClick = () => {
@@ -178,7 +188,7 @@ function PostForm() {
           <InputLabel htmlFor="endDate">End Date</InputLabel>
           <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
 
-          <Tooltip title="Leave none for one time task">
+          <Tooltip title="Leave none for daily">
             <Typography variant="h6" gutterBottom>
               Reminder
             </Typography>
@@ -194,6 +204,12 @@ function PostForm() {
               "Saturday",
               "Sunday",
             ]}
+          />
+          <FRadioGroup
+            name="counter"
+            options={["weekly", "monthly", "yearly"]}
+            defaultValue="weekly"
+            label="Counter"
           />
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
