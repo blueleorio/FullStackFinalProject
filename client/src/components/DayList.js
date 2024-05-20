@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 
 export default function DaysList({ onDayChange }) {
   const [selectedDays, setSelectedDays] = useState([]);
@@ -19,19 +20,21 @@ export default function DaysList({ onDayChange }) {
   };
 
   return (
-    <div>
+    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       {[...Array(31)].map((_, i) => {
         const day = i + 1;
         const isSelected = selectedDays.includes(day);
         return (
-          <Chip
-            key={day}
-            label={day}
-            color={isSelected ? "primary" : "default"}
-            onClick={() => handleDayClick(day)}
-          />
+          <Box sx={{ width: "14.28%", p: 0.5 }} key={day}>
+            <Chip
+              label={day}
+              color={isSelected ? "primary" : "default"}
+              onClick={() => handleDayClick(day)}
+              fullwidth="true"
+            />
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 }
