@@ -31,6 +31,9 @@ import {
   FMultiCheckbox,
   FRadioGroup,
 } from "../../components/form";
+// import BasicDateCalendar from "../calendar/CalendarForm";
+import DaysList from "../../components/DayList";
+
 import TagModal from "../tag/tagModal";
 
 // Redux slices
@@ -73,6 +76,12 @@ function PostForm() {
   const { isLoading } = useSelector((state) => state.habit);
   const tags = useSelector((state) => state.tag.tags);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+
+  const [selectedDate, setSelectedDate] = React.useState([]);
+  const handleDayChange = (newSelectedDays) => {
+    setSelectedDate(newSelectedDays);
+  };
+
   // const [reminderValue, setReminderValue] = useState("");
   // console.log("🚀 ~ PostForm ~ isLoading:", isLoading);
 
@@ -221,7 +230,21 @@ function PostForm() {
             </>
           )}
 
-          {counterValue === "monthly" && <></>}
+          {counterValue === "monthly" && (
+            <>
+              <DaysList onDayChange={handleDayChange} />
+
+              {selectedDate.join(", ")}
+            </>
+          )}
+          {counterValue === "yearly" && (
+            <>
+              <Typography variant="h6" gutterBottom>
+                Testing Testing Yearly
+              </Typography>
+            </>
+          )}
+
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
               Tag:
