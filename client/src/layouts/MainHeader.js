@@ -265,7 +265,7 @@ function MainHeader({ onDrawerOpen, onDrawerClose }) {
             { text: "Dashboard", path: "/" },
             { text: "Habit", path: "/habit" },
             { text: "Goal", path: "/goal" },
-            { text: "Calendar", path: "/calendar" },
+            { text: "Progress", path: "/progress" },
           ].map((item, index) => (
             <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
               <ListItemButton

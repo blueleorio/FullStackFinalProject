@@ -46,7 +46,7 @@ router.use("/goals", goalRouter);
 
 // Progress API
 const progressRouter = require("./progress.routes.js");
-router.use("/progress", progressRouter);
+router.use("/progresses", progressRouter);
 // Tag API
 const tagRouter = require("./tag.routes.js");
 router.use("/tags", tagRouter);

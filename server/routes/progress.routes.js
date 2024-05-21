@@ -6,7 +6,10 @@ const {
   loginRequired,
 } = require("../middlewares/authenticator.middlewares.js");
 
-const {} = require("../controllers/progress.controllers.js");
+const {
+  fetchProgressesById,
+  fetchProgresses,
+} = require("../controllers/progress.controllers.js");
 
 //Read
 /**
@@ -15,7 +18,7 @@ const {} = require("../controllers/progress.controllers.js");
  * @access log in required
  */
 
-// router.get("/", loginRequired, getProgs);
+router.get("/", loginRequired, fetchProgresses);
 
 //Read
 /**
@@ -24,7 +27,7 @@ const {} = require("../controllers/progress.controllers.js");
  * @access log in required
  */
 
-// router.get("/:progId", loginRequired, getCurrentProgInfo);
+router.get("/:habitId", loginRequired, fetchProgressesById);
 
 //Create
 /**
