@@ -186,12 +186,12 @@ function PostForm() {
               },
             }}
           />
-          <FUploadImage
+          {/* <FUploadImage
             name="image"
             accept="image/*"
             maxSize={3145728}
             onDrop={handleDrop}
-          />
+          /> */}
 
           <FRadioGroup
             name="counter"

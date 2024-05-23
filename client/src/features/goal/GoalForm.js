@@ -7,6 +7,8 @@ import {
   Typography,
   Chip,
   IconButton,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -16,14 +18,20 @@ import {
   FTextField,
   FUploadImage,
   FRadioGroup,
+  FDatePicker,
+  FSelect,
 } from "../../components/form";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 // import { createPost } from "./postSlice";
 import { LoadingButton } from "@mui/lab";
 import TagModal from "../tag/tagModal";
+import dayjs from "dayjs";
+import useAuth from "../../hooks/useAuth";
+
+import { fetchHabits, setCurrentPage } from "../../features/habit/habitSlice";
 
 const yupSchema = Yup.object().shape({
   content: Yup.string().required("Content is required"),
@@ -42,10 +50,28 @@ const handleDelete = () => {
   console.info("You clicked the delete icon.");
 };
 
+const HABITS_PER_PAGE = 10;
+
 function GoalForm() {
+  const { user } = useAuth();
+  // console.log("🚀 ~ GoalForm ~ user:", user);
+
+  const userId = user._id;
   const { isLoading } = useSelector((state) => state.post);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+  // const [habitList, setHabitList] = useState([]);
+  const { habits, totalHabits, currentPage } = useSelector(
+    (state) => ({
+      habits: state.habit.habits,
+      totalHabits: state.habit.totalHabits,
+      currentPage: state.habit.currentPage,
+    }),
+    shallowEqual
+  );
+
   const tags = useSelector((state) => state.tag.tags);
+  // console.log("🚀 ~ GoalForm ~ habits:", habits);
+
   const handleOpenTagModal = () => {
     setIsTagModalOpen(true);
   };
@@ -63,7 +89,16 @@ function GoalForm() {
     setValue,
     formState: { isSubmitting },
   } = methods;
+
+  const totalPages = Math.ceil(totalHabits / HABITS_PER_PAGE);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userId) dispatch(fetchHabits(currentPage));
+    console.log("🚀 ~ HabitList ~ habits:", habits);
+    // console.log("🚀 ~ HabitList ~ currentPage", currentPage);
+  }, [userId, dispatch, currentPage]);
 
   const handleDrop = useCallback(
     (acceptedFiles) => {
@@ -131,6 +166,13 @@ function GoalForm() {
               },
             }}
           />
+          <FSelect name="habits" label="Habit">
+            {habits.map((habit) => (
+              <option key={habit._id} value={habit._id}>
+                {habit.name}
+              </option>
+            ))}
+          </FSelect>
           <FUploadImage
             name="image"
             accept="image/*"
@@ -138,12 +180,14 @@ function GoalForm() {
             onDrop={handleDrop}
           />
           <Typography variant="h6" gutterBottom>
-            Difficulty
+            Date:
           </Typography>
-          <FRadioGroup
-            name="difficulty"
-            options={["Easy", "Medium", "Hard", "Expert"]}
-          />
+          <InputLabel htmlFor="startDate">Start Date</InputLabel>
+          <FDatePicker name="startDate" helperText="MM/DD/YYYY" readOnly />
+
+          <InputLabel htmlFor="endDate">End Date</InputLabel>
+          <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
+
           <Typography variant="h6" gutterBottom>
             Counter
           </Typography>
