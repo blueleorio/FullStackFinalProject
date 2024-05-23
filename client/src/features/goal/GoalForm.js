@@ -38,8 +38,12 @@ const yupSchema = Yup.object().shape({
 });
 
 const defaultValues = {
-  content: "",
+  title: "",
+  description: "",
   image: null,
+  habits: "",
+  startDate: dayjs(),
+  endDate: dayjs(),
 };
 
 const handleClick = () => {
@@ -139,11 +143,11 @@ function GoalForm() {
         </Typography>
         <Stack spacing={2}>
           <FTextField
-            name="tittle"
+            name="title"
             multiline
             fullWidth
             rows={1}
-            label="Tittle"
+            label="Title"
             placeholder="Tittle: Drink 2 litres of water daily"
             sx={{
               "& fieldset": {
@@ -188,9 +192,6 @@ function GoalForm() {
           <InputLabel htmlFor="endDate">End Date</InputLabel>
           <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
 
-          <Typography variant="h6" gutterBottom>
-            Counter
-          </Typography>
           <Stack direction="row" spacing={1} justifyContent="space-between">
             <Typography variant="h6" gutterBottom>
               Tag:

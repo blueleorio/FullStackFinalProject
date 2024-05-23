@@ -15,7 +15,7 @@ const HabitCard = ({ habit }) => {
 
   const handleStatusChange = (event) => {
     setStatus(event.target.checked);
-    console.log("Habit Card:",habit); // Add this line
+    console.log("Habit Card:", habit); // Add this line
     dispatch(
       updateHabit({ id: habit._id, updates: { status: event.target.checked } })
     ); // Dispatch updateHabit
@@ -34,7 +34,7 @@ const HabitCard = ({ habit }) => {
             {habit.description.substring(0, 30)}
           </Typography>
         </Tooltip>
-        <Checkbox checked={status} onChange={handleStatusChange} />
+        {/* <Checkbox checked={status} onChange={handleStatusChange} /> */}
       </CardContent>
     </Card>
   );
