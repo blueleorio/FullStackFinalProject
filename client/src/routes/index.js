@@ -11,9 +11,8 @@ import AccountPage from "../pages/AccountPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import HabitPage from "../pages/HabitPage";
 // import HabitForm from "../features/habit/HabitForm";
-import GoalPage from "../pages/GoalPage";
 import ProgressPage from "../pages/ProgressPage";
-
+import GoalPage from "../pages/GoalPage";
 function Router() {
   return (
     <Routes>
