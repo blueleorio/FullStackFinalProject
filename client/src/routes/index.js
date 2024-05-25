@@ -10,7 +10,6 @@ import AuthRequire from "./AuthRequire";
 import AccountPage from "../pages/AccountPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import HabitPage from "../pages/HabitPage";
-// import HabitForm from "../features/habit/HabitForm";
 import ProgressPage from "../pages/ProgressPage";
 import GoalPage from "../pages/GoalPage";
 function Router() {
@@ -33,7 +32,6 @@ function Router() {
         <Route path="habit" element={<HabitPage />} />
         <Route path="goal" element={<GoalPage />} />
         <Route path="progress" element={<ProgressPage />} />
-
         <Route path="user/:userId" element={<UserProfilePage />} />
       </Route>
 
