@@ -9,7 +9,7 @@ import {
 } from "../../features/progress/progressSlice";
 import useAuth from "../../hooks/useAuth";
 
-const PROGRESSES_PER_PAGE = 10;
+const PROGRESSES_PER_PAGE = 5;
 
 const ProgressList = () => {
   const { user } = useAuth();
