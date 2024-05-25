@@ -10,18 +10,18 @@ import { useDispatch } from "react-redux";
 import { updateProgress } from "../../features/progress/progressSlice"; // Import updateHabit
 
 const ProgressCard = ({ progress }) => {
-  const [status, setStatus] = React.useState(progress.status);
+  const [status, setStatus] = React.useState(progress.isDone);
   const dispatch = useDispatch();
 
   const handleStatusChange = (event) => {
     setStatus(event.target.checked);
-    console.log("Habit Card:", progress); // Add this line
+    console.log("Progress Card:", progress); // Add this line
     dispatch(
       updateProgress({
         id: progress._id,
-        updates: { status: event.target.checked },
+        updates: { isDone: event.target.checked },
       })
-    ); // Dispatch updateHabi1t
+    ); // Dispatch update Progress
   };
 
   return (
@@ -29,12 +29,12 @@ const ProgressCard = ({ progress }) => {
       <CardContent>
         <Tooltip title={progress.name} placement="top">
           <Typography variant="h5" component="h2">
-            {progress.name.substring(0, 30)}
+            {progress.date}
           </Typography>
         </Tooltip>
         <Tooltip title={progress.description} placement="top">
           <Typography variant="body2" component="p">
-            {progress.description.substring(0, 30)}
+            {progress.userId}
           </Typography>
         </Tooltip>
         <Checkbox checked={status} onChange={handleStatusChange} />

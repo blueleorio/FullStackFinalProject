@@ -6,7 +6,7 @@ import HabitCard from "../habit/HabitCard";
 import { fetchHabits, setCurrentPage } from "../../features/habit/habitSlice";
 import useAuth from "../../hooks/useAuth";
 
-const HABITS_PER_PAGE = 10;
+const HABITS_PER_PAGE = 5;
 
 const HabitList = () => {
   const { user } = useAuth();

@@ -7,9 +7,9 @@ const progressSchema = mongoose.Schema(
       type: Date,
       required: true,
     },
-    status: {
-      type: String,
-      enum: ["incomplete", "completed"],
+    isDone: {
+      type: Boolean,
+      default: false, // imcomplete
     },
     habitId: {
       type: mongoose.Schema.Types.ObjectId,

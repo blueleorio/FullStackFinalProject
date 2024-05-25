@@ -62,4 +62,33 @@ progressController.fetchProgresses = async (req, res, next) => {
   }
 };
 
+// Update a progress
+progressController.updateProgress = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+
+    if (!id) throw new AppError(400, "Bad Request", "No id provided");
+    if (!updates) throw new AppError(400, "Bad Request", "No updates provided");
+
+    const updatedProgress = await progress.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
+
+    if (!updatedProgress)
+      throw new AppError(404, "Not found", "Progress not found");
+
+    sendResponse(
+      res,
+      200,
+      true,
+      { data: updatedProgress },
+      null,
+      "Update Progress Successfully"
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = progressController;

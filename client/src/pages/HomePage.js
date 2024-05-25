@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 import { Box, Grid, Typography, Card, Container } from "@mui/material";
 import BasicDateCalendar from "../features/calendar/CalendarForm";
 import HabitList from "../features/habit/HabitList";
+import ProgressList from "../features/progress/ProgressList";
+import GoalList from "../features/goal/GoalList";
 function HomePage() {
   const { user } = useAuth();
   const [date, setDate] = React.useState(dayjs());
@@ -31,6 +33,22 @@ function HomePage() {
             <Box sx={{ p: 3 }}>
               <Typography variant="h6">Habit</Typography>
               <HabitList date={date} />
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h6">Goal</Typography>
+              <GoalList date={date} />
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h6">Task</Typography>
+              <ProgressList date={date} />
             </Box>
           </Card>
         </Grid>

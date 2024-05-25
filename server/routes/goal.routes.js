@@ -8,7 +8,7 @@ const {
 
 const {
   createGoal,
-  getGoals,
+  fetchGoals,
   editGoal,
   deleteGoal,
   getCurrentGoalInfo,
@@ -21,7 +21,7 @@ const {
  * @access log in required
  */
 
-router.get("/", loginRequired, getGoals);
+router.get("/", loginRequired, fetchGoals);
 
 //Read
 /**

@@ -29,7 +29,7 @@ goalController.createGoal = async (req, res, next) => {
 };
 
 // Get all goal
-goalController.getGoals = async (req, res, next) => {
+goalController.fetchGoals = async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
   const skip = (page - 1) * limit;
