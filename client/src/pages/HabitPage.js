@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Container, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/user/userSlice";
@@ -10,10 +10,7 @@ function HabitPage() {
   const params = useParams();
   const userId = params.userId;
   const dispatch = useDispatch();
-  const { selectedUser, isLoading } = useSelector(
-    (state) => state.user,
-    shallowEqual
-  );
+  const { isLoading } = useSelector((state) => state.user, shallowEqual);
 
   useEffect(() => {
     if (userId) {

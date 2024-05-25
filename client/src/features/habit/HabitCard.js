@@ -4,25 +4,25 @@ import {
   CardContent,
   Typography,
   Tooltip,
-  Checkbox,
+  // Checkbox,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { updateHabit } from "../../features/habit/habitSlice"; // Import updateHabit
+// import { useDispatch } from "react-redux";
+// import { updateHabit } from "../../features/habit/habitSlice"; // Import updateHabit
 
 const HabitCard = ({ habit }) => {
-  const [status, setStatus] = React.useState(habit.status);
-  const dispatch = useDispatch();
+  // const [status, setStatus] = React.useState(habit.status);
+  // const dispatch = useDispatch();
 
-  const handleStatusChange = (event) => {
-    setStatus(event.target.checked);
-    console.log("Habit Card:", habit); // Add this line
-    dispatch(
-      updateHabit({ id: habit._id, updates: { status: event.target.checked } })
-    ); // Dispatch updateHabit
-  };
+  // const handleStatusChange = (event) => {
+  //   setStatus(event.target.checked);
+  //   console.log("Habit Card:", habit); // Add this line
+  //   dispatch(
+  //     updateHabit({ id: habit._id, updates: { status: event.target.checked } })
+  //   ); // Dispatch updateHabit
+  // };
 
   return (
-    <Card disabled={status}>
+    <Card>
       <CardContent>
         <Tooltip title={habit.name} placement="top">
           <Typography variant="h5" component="h2">

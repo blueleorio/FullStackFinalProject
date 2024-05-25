@@ -1,5 +1,5 @@
 // Libraries
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,7 +26,7 @@ import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import {
   FormProvider,
   FTextField,
-  FUploadImage,
+  // FUploadImage,
   FDatePicker,
   FMultiCheckbox,
   FRadioGroup,
@@ -102,7 +102,7 @@ function PostForm() {
   const {
     handleSubmit,
     reset,
-    setValue,
+    // setValue,
     formState: { isSubmitting },
     watch,
   } = methods;
@@ -110,21 +110,21 @@ function PostForm() {
   const dispatch = useDispatch();
   const counterValue = watch("counter");
 
-  const handleDrop = useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles[0];
+  // const handleDrop = useCallback(
+  //   (acceptedFiles) => {
+  //     const file = acceptedFiles[0];
 
-      if (file) {
-        setValue(
-          "image",
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        );
-      }
-    },
-    [setValue]
-  );
+  //     if (file) {
+  //       setValue(
+  //         "image",
+  //         Object.assign(file, {
+  //           preview: URL.createObjectURL(file),
+  //         })
+  //       );
+  //     }
+  //   },
+  //   [setValue]
+  // );
 
   const onSubmit = async (data) => {
     console.log("🚀 ~ onSubmit ~ data: HabitForm.js", data);

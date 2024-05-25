@@ -10,10 +10,7 @@ function GoalPage() {
   const params = useParams();
   const userId = params.userId;
   const dispatch = useDispatch();
-  const { selectedUser, isLoading } = useSelector(
-    (state) => state.user,
-    shallowEqual
-  );
+  const { isLoading } = useSelector((state) => state.user, shallowEqual);
 
   useEffect(() => {
     if (userId) {

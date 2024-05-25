@@ -1,30 +1,30 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { updateGoal } from "../../features/goal/goalSlice"; // Import updateGoal
+// import { useDispatch } from "react-redux";
+// import { updateGoal } from "../../features/goal/goalSlice"; // Import updateGoal
 
 import {
   Card,
   CardContent,
   Typography,
   Tooltip,
-  Checkbox,
+  // Checkbox,
 } from "@mui/material";
 
 const GoalCard = ({ goal }) => {
-  const [status, setStatus] = React.useState(goal.status);
-  const dispatch = useDispatch();
+  // const [status, setStatus] = React.useState(goal.status);
+  // const dispatch = useDispatch();
 
-  const handleStatusChange = (event) => {
-    setStatus(event.target.checked);
-    console.log("Goal Card:", goal); // Add this line
-    dispatch(
-      updateGoal({ id: goal._id, updates: { status: event.target.checked } })
-    ); // Dispatch updateGoal
-  };
+  // const handleStatusChange = (event) => {
+  //   setStatus(event.target.checked);
+  //   console.log("Goal Card:", goal); // Add this line
+  //   dispatch(
+  //     updateGoal({ id: goal._id, updates: { status: event.target.checked } })
+  //   ); // Dispatch updateGoal
+  // };
 
   return (
-    <Card disabled={status}>
+    <Card>
       <CardContent>
         <Tooltip title={goal.name} placement="top">
           <Typography variant="h5" component="h2">

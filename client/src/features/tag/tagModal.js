@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createTag, fetchTags } from "./tagSlice";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,13 +11,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function TagModal({ open, handleClose, title, description }) {
   const [tagName, setTagName] = React.useState("");
-  const tags = useSelector((state) => state.tag.tags);
+  // const tags = useSelector((state) => state.tag.tags);
   // console.log("🚀 ~ TagModal ~ tags:", tags);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(fetchTags());
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

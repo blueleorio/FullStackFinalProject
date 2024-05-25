@@ -8,7 +8,6 @@ import {
   Chip,
   IconButton,
   InputLabel,
-  MenuItem,
 } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
@@ -17,7 +16,6 @@ import {
   FormProvider,
   FTextField,
   FUploadImage,
-  FRadioGroup,
   FDatePicker,
   FSelect,
 } from "../../components/form";
@@ -31,7 +29,7 @@ import TagModal from "../tag/tagModal";
 import dayjs from "dayjs";
 import useAuth from "../../hooks/useAuth";
 
-import { fetchHabits, setCurrentPage } from "../../features/habit/habitSlice";
+import { fetchHabits } from "../../features/habit/habitSlice";
 
 const yupSchema = Yup.object().shape({
   content: Yup.string().required("Content is required"),
@@ -54,7 +52,7 @@ const handleDelete = () => {
   console.info("You clicked the delete icon.");
 };
 
-const HABITS_PER_PAGE = 10;
+// const HABITS_PER_PAGE = 10;
 
 function GoalForm() {
   const { user } = useAuth();
@@ -64,10 +62,10 @@ function GoalForm() {
   const { isLoading } = useSelector((state) => state.post);
   const [isTagModalOpen, setIsTagModalOpen] = useState(false);
   // const [habitList, setHabitList] = useState([]);
-  const { habits, totalHabits, currentPage } = useSelector(
+  const { habits, currentPage } = useSelector(
     (state) => ({
       habits: state.habit.habits,
-      totalHabits: state.habit.totalHabits,
+      // totalHabits: state.habit.totalHabits,
       currentPage: state.habit.currentPage,
     }),
     shallowEqual
@@ -89,18 +87,17 @@ function GoalForm() {
   });
   const {
     handleSubmit,
-    reset,
     setValue,
     formState: { isSubmitting },
   } = methods;
 
-  const totalPages = Math.ceil(totalHabits / HABITS_PER_PAGE);
+  // const totalPages = Math.ceil(totalHabits / HABITS_PER_PAGE);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (userId) dispatch(fetchHabits(currentPage));
-    console.log("🚀 ~ HabitList ~ habits:", habits);
+    // console.log("🚀 ~ HabitList ~ habits:", habits);
     // console.log("🚀 ~ HabitList ~ currentPage", currentPage);
   }, [userId, dispatch, currentPage]);
 
