@@ -6,6 +6,7 @@ import BasicDateCalendar from "../features/calendar/CalendarForm";
 import HabitList from "../features/habit/HabitList";
 import ProgressList from "../features/progress/ProgressList";
 import GoalList from "../features/goal/GoalList";
+
 function HomePage() {
   const { user } = useAuth();
   const [date, setDate] = React.useState(dayjs());
