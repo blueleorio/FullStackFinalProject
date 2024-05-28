@@ -1,4 +1,12 @@
+// External libraries
 import React, { useCallback, useState, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import dayjs from "dayjs";
+
+// Material UI components and icons
 import {
   Box,
   Card,
@@ -9,9 +17,10 @@ import {
   IconButton,
   InputLabel,
 } from "@mui/material";
-
 import AddIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { LoadingButton } from "@mui/lab";
 
+// Internal modules
 import {
   FormProvider,
   FTextField,
@@ -19,21 +28,19 @@ import {
   FDatePicker,
   FSelect,
 } from "../../components/form";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-// import { createPost } from "./postSlice";
-import { LoadingButton } from "@mui/lab";
 import TagModal from "../tag/tagModal";
-import dayjs from "dayjs";
 import useAuth from "../../hooks/useAuth";
-
 import { fetchHabits } from "../../features/habit/habitSlice";
 import { createGoal } from "./goalSlice";
 
 const yupSchema = Yup.object().shape({
-  name: Yup.string().required("Content is required"),
+  name: Yup.string()
+    .required("Content is required")
+    .matches(/^[a-zA-Z\s]*$/, "Name should only contain letters and spaces"),
+  description: Yup.string().matches(
+    /^[a-zA-Z\s]*$/,
+    "Description should only contain letters and spaces"
+  ),
 });
 
 const defaultValues = {
@@ -139,8 +146,8 @@ function GoalForm() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        //border: "1px solid black",
-        maxWidth: "450px",
+        // border: "1px solid black",
+        // maxWidth: "450px",
       }}
     >
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

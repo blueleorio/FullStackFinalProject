@@ -40,8 +40,13 @@ import TagModal from "../tag/tagModal";
 import { createHabit } from "./habitSlice";
 
 const yupSchema = Yup.object().shape({
-  name: Yup.string().required("Title is required"),
-  description: Yup.string().default(""),
+  name: Yup.string()
+    .required("Title is required")
+    .matches(/^[a-zA-Z\s]*$/, "Name should only contain letters and spaces"),
+  description: Yup.string().matches(
+    /^[a-zA-Z\s]*$/,
+    "Description should only contain letters and spaces"
+  ),
   startDate: Yup.date().required("Start date is required"),
 });
 
@@ -149,8 +154,8 @@ function PostForm() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        //border: "1px solid black",
-        maxWidth: "450px",
+        // border: "1px solid black",
+        // maxWidth: "450px",
       }}
     >
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
