@@ -198,7 +198,7 @@ function GoalForm() {
           <InputLabel htmlFor="endDate">End Date</InputLabel>
           <FDatePicker name="endDate" helperText="MM/DD/YYYY" />
 
-          <Stack direction="row" spacing={1} justifyContent="space-between">
+          <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
             <Typography variant="h6" gutterBottom>
               Tag:
             </Typography>

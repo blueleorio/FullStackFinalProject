@@ -245,7 +245,7 @@ function PostForm() {
             </>
           )}
 
-          <Stack direction="row" spacing={1} justifyContent="space-between">
+          <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
             <Typography variant="h6" gutterBottom>
               Tag:
             </Typography>
