@@ -1,7 +1,8 @@
 import React from "react";
 
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { updateGoal } from "../../features/goal/goalSlice"; // Import updateGoal
+import dayjs from "dayjs";
 
 import {
   Card,
@@ -13,7 +14,7 @@ import {
 
 const GoalCard = ({ goal }) => {
   // const [status, setStatus] = React.useState(goal.status);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const handleStatusChange = (event) => {
   //   setStatus(event.target.checked);

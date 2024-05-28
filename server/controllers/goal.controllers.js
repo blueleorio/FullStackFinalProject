@@ -39,8 +39,8 @@ goalController.fetchGoals = async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = (page - 1) * limit;
   const filter = { isDeleted: false };
-  const total = 20;
   try {
+    const total = await goal.countDocuments(filter);
     const listOfFound = await goal
       .find(filter)
       .skip(skip)
@@ -51,7 +51,7 @@ goalController.fetchGoals = async (req, res, next) => {
       res,
       200,
       true,
-      { goal: listOfFound, page: page, total: total },
+      { goals: listOfFound, page: page, totalGoals: total },
       null,
       "Get Goal List Successfully!"
     );

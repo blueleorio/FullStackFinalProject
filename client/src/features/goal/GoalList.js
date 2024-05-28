@@ -17,7 +17,7 @@ const GoalList = () => {
       goals: state.goal.goals,
       totalGoals: state.goal.totalGoals,
       currentPage: state.goal.currentPage,
-      isLoading: state.goal.status === "loading",
+      isLoading: state.goal.isLoading,
     }),
     shallowEqual
   );
@@ -27,13 +27,13 @@ const GoalList = () => {
 
   useEffect(() => {
     if (userId) dispatch(fetchGoals(currentPage));
-    console.log("🚀 ~ GoalList ~ goals:", goals);
+    // console.log("🚀 ~ GoalList ~ goals:", goals);
     console.log("🚀 ~ GoalList ~ currentPage", currentPage);
-  }, [userId, dispatch, currentPage, goals]);
+  }, [userId, dispatch, currentPage]);
 
   let renderGoals;
 
-  if (goals && goals.length > 0) {
+  if (goals.length > 0) {
     renderGoals = (
       <Stack spacing={1.5}>
         {goals.map((goal) => (

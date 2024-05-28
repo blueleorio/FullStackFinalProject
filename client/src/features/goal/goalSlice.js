@@ -17,6 +17,7 @@ export const fetchGoals = createAsyncThunk(
     try {
       const response = await apiService.get(`/goals?page=${page}`);
       const { goals, totalGoals } = response;
+      console.log("🚀 ~ file: goalSlice.js:20 ~ response:", response);
       return { goals, totalGoals };
     } catch (error) {
       return Promise.reject(error.message);
