@@ -1,0 +1,22 @@
+1. Cân nhắc sửa con chuột
+2. Cân nhắc hình nền
+3. Sửa lại format của ngày tháng.
+4. Remove border
+5. Avatar dropdown lúc bấm được lúc không
+6. Lỗi 404
+7. BE update profile có lúc bị chậm
+8. Remove _v và habits trong API get profile
+9. API goals gọi 2 lần khi vào home page
+10. Không dùng localStorage để lưu token -> cookie
+11. Validator form update profile tránh script
+12. Start date không disabled input, cho họ nhập. Chỉ disabled trên calendar những ngày trước đó
+13. Select date trong tạo habit monthly không cần show list ngày chọn
+14. Tag không remove được
+15. Qua monthly -> tạo tag -> bị quay lại weekly và habit tự tạo luôn
+16. Qua yearly -> input title -> tạo tag mới the lỗi tự tạo habit luôn và UI bị lỗi
+17. List tag dài qua nó để cái form xuống -> dùng flex-wrap: wrap để fix
+18. Chưa có API tạo goal => tạo goal không dc
+19. Chưa có API update check done habit
+20. Calendar cho habit thì không thể cho chọn trước cái ngày mà user đó tạo account. Calendar trên homepage chưa work
+21. Chưa login và tạo account bằng Google dc
+22. Cân nhắc done 1 task nếu nó trong tương lai

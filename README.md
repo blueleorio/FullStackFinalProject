@@ -52,6 +52,8 @@
 
 # :tv: Demo
 
+### Web-app: https://habit-tracker-belukotu.netlify.app/login
+
 ![Log In Page](./demo/LogInPage.png)
 
 # :file_folder: Installation
@@ -414,6 +416,8 @@ module.exports = Progress;
 </details>
 
 # :key: API
+
+### API: https://fullstackfinalproject.onrender.com/
 
 ```
 /**
