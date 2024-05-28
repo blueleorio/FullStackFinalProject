@@ -25,7 +25,9 @@ export const fetchGoals = createAsyncThunk(
 );
 
 export const createGoal = createAsyncThunk("goals/createGoal", async (goal) => {
+  console.log("🚀 ~ createGoal ~ goalSlice:", goal);
   const response = await apiService.post("/goals", goal);
+  console.log("🚀 ~ createGoal ~ response - goalSlice:", response);
   return response.data;
 });
 
@@ -65,6 +67,10 @@ const goalSlice = createSlice({
         state.error = null;
       })
       .addCase(createGoal.fulfilled, (state, action) => {
+        console.log(
+          "🚀 ~ .addCase ~ action.payload - goalSlice:",
+          action.payload
+        );
         state.goals.push(action.payload);
         state.isLoading = false;
       })

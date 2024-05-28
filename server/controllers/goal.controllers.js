@@ -1,19 +1,24 @@
 const { sendResponse, AppError } = require("../helpers/utils.js");
 const goal = require("../models/Goal.js");
-const user = require("../models/User.js");
+const User = require("../models/User.js");
 const goalController = {};
 //Create a goal
 
 goalController.createGoal = async (req, res, next) => {
   try {
     const info = req.body;
+    console.log("🚀 ~ goalController.createGoal= ~ req.body:", req.body);
+
     if (!info) throw new AppError(402, "Bad Request", "Create goal Error");
+
+    // create the new goal
     const created = await goal.create(info);
 
-    // Assign goal to user
-    const userId = req.userId;
-    // const userFound = await user.findById(userId);
-    // userFound.goals.push(created._id);
+    // Find the user and update their habits field
+    const user = await User.findById(info.createdBy);
+    if (!user) throw new AppError(404, "Not Found", "User not found");
+    user.habits.push(created._id);
+    await user.save();
 
     sendResponse(
       res,

@@ -43,10 +43,7 @@ router.get("/:goalId", loginRequired, getCurrentGoalInfo);
 router.post(
   "/",
   loginRequired,
-  validator.validate([
-    body("name", "Missing name").exists().notEmpty(),
-    body("targetDate", "Missing date").exists().notEmpty(),
-  ]),
+  validator.validate([body("name", "Missing name").exists().notEmpty()]),
   createGoal
 );
 

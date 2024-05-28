@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { updateProgress } from "../../features/progress/progressSlice"; // Import updateHabit
+import dayjs from "dayjs";
 
 const ProgressCard = ({ progress }) => {
   const [status, setStatus] = React.useState(progress.isDone);
@@ -29,15 +30,21 @@ const ProgressCard = ({ progress }) => {
       <CardContent>
         <Tooltip title={progress.name} placement="top">
           <Typography variant="h5" component="h2">
-            {progress.date}
+            {dayjs(progress.date).format("dddd - DD/MM/YYYY")}
           </Typography>
         </Tooltip>
         <Tooltip title={progress.description} placement="top">
           <Typography variant="body2" component="p">
-            {progress.userId}
+            UserId: {progress.userId}
           </Typography>
         </Tooltip>
-        <Checkbox checked={status} onChange={handleStatusChange} />
+        <Typography variant="h4" component="p">
+          Title: {progress.habitId.name}
+        </Typography>
+        <Typography variant="body2" component="p">
+          Description: {progress.habitId.description}
+        </Typography>
+        Done: <Checkbox checked={status} onChange={handleStatusChange} />
       </CardContent>
     </Card>
   );

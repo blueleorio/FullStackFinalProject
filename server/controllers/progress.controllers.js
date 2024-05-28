@@ -47,7 +47,7 @@ progressController.fetchProgressesById = async (req, res, next) => {
 // Fetch progresses (limit 30)
 progressController.fetchProgresses = async (req, res, next) => {
   try {
-    const progresses = await progress.find().limit(30);
+    const progresses = await progress.find().populate("habitId").limit(30);
 
     sendResponse(
       res,

@@ -9,7 +9,7 @@ const goalSchema = mongoose.Schema(
     description: {
       type: String,
     },
-    targetDate: { type: Date, required: true },
+    targetDate: { type: Date },
     status: {
       type: String,
       enum: ["onTrack", "incomplete", "completed"],

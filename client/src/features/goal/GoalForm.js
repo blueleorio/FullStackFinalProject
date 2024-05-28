@@ -30,13 +30,14 @@ import dayjs from "dayjs";
 import useAuth from "../../hooks/useAuth";
 
 import { fetchHabits } from "../../features/habit/habitSlice";
+import { createGoal } from "./goalSlice";
 
 const yupSchema = Yup.object().shape({
-  content: Yup.string().required("Content is required"),
+  name: Yup.string().required("Content is required"),
 });
 
 const defaultValues = {
-  title: "",
+  name: "",
   description: "",
   image: null,
   habits: "",
@@ -87,6 +88,7 @@ function GoalForm() {
   });
   const {
     handleSubmit,
+    reset,
     setValue,
     formState: { isSubmitting },
   } = methods;
@@ -117,8 +119,15 @@ function GoalForm() {
     [setValue]
   );
 
-  const onSubmit = (data) => {
-    // dispatch(createPost(data)).then(() => reset());
+  const onSubmit = async (data) => {
+    console.log("🚀 ~ onSubmit ~ data: GoalForm.js", data);
+    try {
+      data.createdBy = userId;
+      dispatch(createGoal(data));
+      reset();
+    } catch (error) {
+      console.log("Failed to create Goal", error);
+    }
   };
 
   return (
@@ -140,7 +149,7 @@ function GoalForm() {
         </Typography>
         <Stack spacing={2}>
           <FTextField
-            name="title"
+            name="name"
             multiline
             fullWidth
             rows={1}
@@ -222,7 +231,7 @@ function GoalForm() {
             <LoadingButton
               type="submit"
               variant="contained"
-              size="small"
+              size="large"
               loading={isSubmitting || isLoading}
             >
               Create
