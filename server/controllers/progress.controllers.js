@@ -62,6 +62,66 @@ progressController.fetchProgresses = async (req, res, next) => {
   }
 };
 
+// Fetch progress for a specific date
+progressController.fetchProgressesForDate = async (req, res, next) => {
+  try {
+    const { date } = req.params;
+    console.log(
+      "🚀 ~ file: progress.controllers.js:69 ~ progressController.fetchProgressesForDate= ~ date:",
+      date
+    );
+    // date: 2024-05-23 -> from FRONTEND
+
+    // Convert the date string to a Date object
+    const dateObj = new Date(date);
+
+    // Convert the date to the start and end of the day in UTC
+    const startOfDay = new Date(
+      Date.UTC(
+        dateObj.getFullYear(),
+        dateObj.getMonth(),
+        dateObj.getDate(),
+        0,
+        0,
+        0,
+        0
+      )
+    );
+    const endOfDay = new Date(
+      Date.UTC(
+        dateObj.getFullYear(),
+        dateObj.getMonth(),
+        dateObj.getDate(),
+        23,
+        59,
+        59,
+        999
+      )
+    );
+
+    // Fetch the progress documents for the given date
+    const progresses = await progress
+      .find({
+        date: {
+          $gte: startOfDay.toISOString(),
+          $lt: endOfDay.toISOString(),
+        },
+      })
+      .populate("habitId");
+
+    sendResponse(
+      res,
+      200,
+      true,
+      { data: progresses },
+      null,
+      "Fetch Progresses Successfully"
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Update a progress
 progressController.updateProgress = async (req, res, next) => {
   try {

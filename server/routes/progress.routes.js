@@ -9,6 +9,7 @@ const {
 const {
   fetchProgressesById,
   fetchProgresses,
+  fetchProgressesForDate,
 } = require("../controllers/progress.controllers.js");
 
 //Read
@@ -28,6 +29,15 @@ router.get("/", loginRequired, fetchProgresses);
  */
 
 router.get("/:habitId", loginRequired, fetchProgressesById);
+
+//Read
+/**
+ * @route GET api/Progs/:ProgId
+ * @description get current Prog for current selected date
+ * @access log in required
+ */
+
+router.get("/date/:date", loginRequired, fetchProgressesForDate);
 
 //Create
 /**

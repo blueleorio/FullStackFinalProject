@@ -25,7 +25,7 @@ function HomePage() {
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card sx={{ width: "110%", overflow: "auto" }}>
+          <Card sx={{ width: "100%", overflow: "auto" }}>
             <BasicDateCalendar value={date} onChange={setDate} />
           </Card>
         </Grid>

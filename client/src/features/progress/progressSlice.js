@@ -38,8 +38,11 @@ export const fetchProgresses = createAsyncThunk(
 export const fetchProgressesForDate = createAsyncThunk(
   "progresses/fetchProgressesForDate",
   async (date) => {
+    const url = `/progresses/date/${date}`;
+    // console.log(`Making GET request to: ${url}`);
     try {
-      const response = await apiService.get(`/progresses/date/${date}`);
+      const response = await apiService.get(url);
+      console.log("🚀 ~ file: progressSlice.js:45 ~ response:", response);
       return response.data;
     } catch (error) {
       return Promise.reject(error.message);
