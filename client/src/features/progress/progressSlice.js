@@ -16,7 +16,9 @@ export const fetchProgressesById = createAsyncThunk(
   async (habitId) => {
     try {
       const response = await apiService.get(`/progresses?habitId=${habitId}`);
-      return response.data;
+      const { progresses, totalProgresses } = response;
+      return { progresses, totalProgresses };
+      // return response.data;
     } catch (error) {
       return Promise.reject(error.message);
     }
@@ -43,7 +45,7 @@ export const fetchProgressesForDate = createAsyncThunk(
     try {
       const response = await apiService.get(url);
       console.log("🚀 ~ file: progressSlice.js:45 ~ response:", response);
-      return response.data;
+      return response;
     } catch (error) {
       return Promise.reject(error.message);
     }
@@ -99,7 +101,8 @@ const progressSlice = createSlice({
       })
       .addCase(fetchProgressesForDate.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.progresses = action.payload;
+        state.progresses = action.payload.data;
+        state.totalProgresses = action.payload.totalProgresses;
       })
       .addCase(fetchProgressesForDate.rejected, (state, action) => {
         state.status = "failed";

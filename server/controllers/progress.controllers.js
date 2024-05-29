@@ -67,10 +67,10 @@ progressController.fetchProgresses = async (req, res, next) => {
 progressController.fetchProgressesForDate = async (req, res, next) => {
   try {
     const { date } = req.params;
-    console.log(
-      "🚀 ~ file: progress.controllers.js:69 ~ progressController.fetchProgressesForDate= ~ date:",
-      date
-    );
+    // console.log(
+    //   "🚀 ~ file: progress.controllers.js:69 ~ progressController.fetchProgressesForDate= ~ date:",
+    //   date
+    // );
     // date: 2024-05-23 -> from FRONTEND
 
     // Convert the date string to a Date object
@@ -101,20 +101,22 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
     );
 
     // Fetch the progress documents for the given date
-    const progresses = await progress
-      .find({
-        date: {
-          $gte: startOfDay.toISOString(),
-          $lt: endOfDay.toISOString(),
-        },
-      })
-      .populate("habitId");
+    const query = {
+      date: {
+        $gte: startOfDay.toISOString(),
+        $lt: endOfDay.toISOString(),
+      },
+    };
+
+    const progresses = await progress.find(query).populate("habitId");
+
+    const total = await progress.countDocuments(query);
 
     sendResponse(
       res,
       200,
       true,
-      { data: progresses },
+      { data: progresses, totalProgresses: total },
       null,
       "Fetch Progresses Successfully"
     );
