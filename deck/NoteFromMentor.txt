@@ -1,6 +1,12 @@
 1. Cân nhắc sửa con chuột
 2. Cân nhắc hình nền
-3. Sửa lại format của ngày tháng.
+3. Sửa lại format của ngày tháng. 
+
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
 4. Remove border
 5. Avatar dropdown lúc bấm được lúc không
 6. Lỗi 404

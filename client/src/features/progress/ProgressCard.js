@@ -28,6 +28,9 @@ const ProgressCard = ({ progress }) => {
   return (
     <Card disabled={status}>
       <CardContent>
+        <Typography variant="body1" component="h2">
+          ProgressID: {progress._id}
+        </Typography>
         <Tooltip title={progress.name} placement="top">
           <Typography variant="h5" component="h2">
             {dayjs(progress.date).format("dddd - DD/MM/YYYY")}

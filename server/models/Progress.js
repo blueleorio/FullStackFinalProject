@@ -9,7 +9,7 @@ const progressSchema = mongoose.Schema(
     },
     isDone: {
       type: Boolean,
-      default: false, // imcomplete
+      default: false, //! incomplete
     },
     habitId: {
       type: mongoose.Schema.Types.ObjectId,

@@ -53,11 +53,18 @@ export const fetchProgressesForDate = createAsyncThunk(
 export const updateProgress = createAsyncThunk(
   "progresses/updateProgress",
   async ({ id, updates }) => {
-    const response = await apiService.put(`/progresses/${id}`, updates);
-
-    return response.data;
+    console.log("🚀 ~ file: progressSlice.js:56 ~ id:", id);
+    try {
+      const response = await apiService.put(`/progresses/${id}`, updates);
+      // console.log("🚀 ~ file: progressSlice.js:59 ~ response:", response);
+      return response.data;
+    } catch (error) {
+      return Promise.reject(error.message);
+    }
   }
 );
+
+//! Reducer
 
 const progressSlice = createSlice({
   name: "progress",

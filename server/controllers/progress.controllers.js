@@ -3,7 +3,7 @@ const progress = require("../models/Progress.js");
 
 const progressController = {};
 
-//Create a progress
+//! Create a progress
 progressController.createProgress = async (req, res, next) => {
   try {
     const info = req.body;
@@ -23,7 +23,7 @@ progressController.createProgress = async (req, res, next) => {
   }
 };
 
-// Fetch progresses by Id
+//! Fetch progresses by Id
 progressController.fetchProgressesById = async (req, res, next) => {
   try {
     const { habitId } = req.query;
@@ -44,7 +44,7 @@ progressController.fetchProgressesById = async (req, res, next) => {
   }
 };
 
-// Fetch progresses (limit 30)
+//! Fetch progresses (limit 30)
 progressController.fetchProgresses = async (req, res, next) => {
   try {
     const progresses = await progress.find().populate("habitId").limit(30);
@@ -62,7 +62,8 @@ progressController.fetchProgresses = async (req, res, next) => {
   }
 };
 
-// Fetch progress for a specific date
+//! Fetch progress for a specific date
+
 progressController.fetchProgressesForDate = async (req, res, next) => {
   try {
     const { date } = req.params;
@@ -122,16 +123,25 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
   }
 };
 
-// Update a progress
+//! Update a progress
+
 progressController.updateProgress = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { progId } = req.params;
+    console.log(
+      "🚀 ~ file: progress.controllers.js:131 ~ progressController.updateProgress= ~ req.params:",
+      req.params
+    );
     const updates = req.body;
+    console.log(
+      "🚀 ~ file: progress.controllers.js:133 ~ progressController.updateProgress= ~ updates:",
+      updates
+    );
 
-    if (!id) throw new AppError(400, "Bad Request", "No id provided");
+    if (!progId) throw new AppError(400, "Bad Request", "No id provided");
     if (!updates) throw new AppError(400, "Bad Request", "No updates provided");
 
-    const updatedProgress = await progress.findByIdAndUpdate(id, updates, {
+    const updatedProgress = await progress.findByIdAndUpdate(progId, updates, {
       new: true,
     });
 

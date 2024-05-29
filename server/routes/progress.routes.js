@@ -10,9 +10,10 @@ const {
   fetchProgressesById,
   fetchProgresses,
   fetchProgressesForDate,
+  updateProgress,
 } = require("../controllers/progress.controllers.js");
 
-//Read
+//! Read
 /**
  * @route GET api/goals/user/:userId
  * @description get list of Progress of user
@@ -21,7 +22,7 @@ const {
 
 router.get("/", loginRequired, fetchProgresses);
 
-//Read
+//! Read
 /**
  * @route GET api/Progs/:ProgId
  * @description get current Prog info
@@ -30,7 +31,7 @@ router.get("/", loginRequired, fetchProgresses);
 
 router.get("/:habitId", loginRequired, fetchProgressesById);
 
-//Read
+//! Read
 /**
  * @route GET api/Progs/:ProgId
  * @description get current Prog for current selected date
@@ -39,7 +40,7 @@ router.get("/:habitId", loginRequired, fetchProgressesById);
 
 router.get("/date/:date", loginRequired, fetchProgressesForDate);
 
-//Create
+//! Create
 /**
  * @route POST api/Progs
  * @description create a new Prog
@@ -49,23 +50,23 @@ router.get("/date/:date", loginRequired, fetchProgressesForDate);
 
 // router.post("/", loginRequired, createProg);
 
-//Update
+//! Update
 /**
  * @route PUT api/Progs/:ProgId
  * @description update a Prog
  * @access public
  */
 
-// router.put(
-//   "/:progId",
-//   loginRequired,
-//   validator.validate([
-//     param("progId").exists().isString().custom(validator.checkObjectID),
-//   ]),
-//   editProg
-// );
+router.put(
+  "/:progId",
+  loginRequired,
+  validator.validate([
+    param("progId").exists().isString().custom(validator.checkObjectID),
+  ]),
+  updateProgress
+);
 
-//Delete
+//! Delete
 /**
  * @route DELETE api/Progs/:ProgId
  * @description delete a Prog
