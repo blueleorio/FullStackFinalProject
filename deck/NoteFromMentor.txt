@@ -20,3 +20,4 @@
 20. Calendar cho habit thì không thể cho chọn trước cái ngày mà user đó tạo account. Calendar trên homepage chưa work
 21. Chưa login và tạo account bằng Google dc
 22. Cân nhắc done 1 task nếu nó trong tương lai 
+23. THE DATE CALCULATION IS KINDA WEIRD AS OF RIGHT NOW. 30/5 IS Thursday, BUT IT DISPLAY FRIDAY IN LIST
