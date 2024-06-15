@@ -15,10 +15,10 @@ import {
   AccordionSummary,
   AccordionDetails,
   Accordion,
-  // Fab,
+  Fab,
 } from "@mui/material";
 
-// import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
@@ -142,9 +142,9 @@ function HomePage() {
           </Card>
         </Box>
       </Box >
-      {/* <Fab color="primary" aria-label="add" sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+      <Fab color="primary" aria-label="add" sx={{ position: 'fixed', bottom: 16, right: 16 }}>
         <AddIcon />
-      </Fab> */}
+      </Fab>
     </Container >
   );
 }
