@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FCheckbox, FormProvider, FTextField } from "../components/form";
+import { toast } from "react-toastify";
 
 // Custom hooks and components
 import useAuth from "../hooks/useAuth";
@@ -74,20 +75,32 @@ function LoginPage() {
       setError("responseError", error);
     }
   };
+
   const googleLogin = useGoogleLogin({
+
     onSuccess: async (tokenResponse) => {
       try {
         const from = location.state?.from?.pathname || "/";
-
-        console.log("Trigger Google Login");
+        // console.log("Trigger Google Login");
         await auth.loginWithGoogle(tokenResponse, () => {
           navigate(from, { replace: true });
         });
       } catch (error) {
         reset();
         setError("responseError", error);
+        toast.error("Login failed. Please try again.");
       }
     },
+    onError: ({ error, error_description, error_uri }) => {
+      console.error("Error:", error);
+      if (error_description) {
+        console.error("Error description:", error_description);
+      }
+      if (error_uri) {
+        console.error("Error URI:", error_uri);
+      }
+      toast.error("Login failed. Please try again.");
+    }
   });
 
   return (
