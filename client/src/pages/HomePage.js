@@ -15,7 +15,11 @@ import {
   AccordionSummary,
   AccordionDetails,
   Accordion,
+  // Fab,
 } from "@mui/material";
+
+// import AddIcon from '@mui/icons-material/Add';
+
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 import { Quote } from "../components/QuoteBlock";
@@ -79,18 +83,11 @@ function HomePage() {
               <Typography variant="h6">About Me</Typography>
               <Card
                 sx={{
-                  width: 90, height: 90, display: 'flex', justifyContent: 'center', alignItems: 'center', animation: "zoomInOut 2s infinite",
-                  "@keyframes zoomInOut": {
-                    "0%": {
-                      transform: "scale(1)",
-                    },
-                    "50%": {
-                      transform: "scale(1.3)",
-                    },
-                    "100%": {
-                      transform: "scale(1)",
-                    },
-                  },
+                  width: 90,
+                  height: 90,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
                 onClick={goToAccount}
                 raised={true}
@@ -145,6 +142,9 @@ function HomePage() {
           </Card>
         </Box>
       </Box >
+      {/* <Fab color="primary" aria-label="add" sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+        <AddIcon />
+      </Fab> */}
     </Container >
   );
 }
