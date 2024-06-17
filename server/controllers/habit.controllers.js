@@ -146,7 +146,6 @@ habitController.getHabits = async (req, res, next) => {
   // const userId = req.userId;
 
   const page = parseInt(req.query.page) || 1;
-  console.log("🚀 ~ file: habit.controllers.js:149 ~ habitController.getHabits= ~ req.query.page:", req.query.page)
   const limit = parseInt(req.query.limit) || 3;
   const skip = (page - 1) * limit;
   const userId = req.userId;

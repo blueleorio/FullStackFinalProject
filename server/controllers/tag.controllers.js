@@ -98,11 +98,12 @@ tagController.deleteTag = async (req, res, next) => {
 // Get all habits/ goals with a specific tag
 tagController.getHabitGoalByTag = async (req, res, next) => {
   const targetId = req.params.tagId;
+  const currentUserId = req.userId;
   try {
     const tagInfo = await tag.findOne({ _id: targetId });
     if (!tagInfo) throw new AppError("Tag not found", 404);
-    const habits = await Habit.find({ tags: targetId, isDeleted: false });
-    const goals = await Goal.find({ tags: targetId, isDeleted: false });
+    const habits = await Habit.find({ tags: targetId, createdBy: currentUserId, isDeleted: false });
+    const goals = await Goal.find({ tags: targetId, createdBy: currentUserId, isDeleted: false });
     sendResponse(
       res,
       200,

@@ -60,7 +60,7 @@ userController.getUsers = async (req, res, next) => {
       res,
       200,
       true,
-      { user: listOfFound, page: 1, total: 1192 },
+      { user: listOfFound, page: 1, total: 100 },
       null,
       "Get User List Successfully!"
     );
