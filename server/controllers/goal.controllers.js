@@ -155,7 +155,7 @@ goalController.calculateProgress = async (req, res, next) => {
     const endOfDay = new Date(endDate);
     endOfDay.setHours(23, 59, 59, 999);
 
-    let progressDocuments, totalProgress;
+    let progressDocuments = [], totalProgress;
 
     switch (counter) {
       case "weekly":
@@ -178,6 +178,7 @@ goalController.calculateProgress = async (req, res, next) => {
         totalProgress = repeat;
         break;
       default:
+        progressDocuments = [];
     }
     // Count the number of progress documents where isDone is true
     const doneProgress = progressDocuments.filter(

@@ -81,7 +81,7 @@ function LoginPage() {
     onSuccess: async (tokenResponse) => {
       try {
         const from = location.state?.from?.pathname || "/";
-        // console.log("Trigger Google Login");
+        console.log("Trigger Google Login");
         await auth.loginWithGoogle(tokenResponse, () => {
           navigate(from, { replace: true });
         });
