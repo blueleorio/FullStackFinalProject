@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { updateHabit, fetchHabits } from "../features/habit/habitSlice";
 import { updateGoal, fetchGoals } from "../features/goal/goalSlice";
 import { fetchProgressesById } from "../features/progress/progressSlice";
+import { fetchTagInfo } from "../features/tag/tagSlice";
+
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { Dialog, DialogContent, Typography, Box } from "@mui/material";
+import { Dialog, DialogContent, Typography, Box, Chip } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { FormProvider, FTextField } from "../components/form";
 
@@ -27,6 +29,7 @@ dayjs.extend(utc);
 
 const CardDialog = ({ open, handleClose, data, dataType, progress }) => {
   const dispatch = useDispatch();
+  const [tags, setTags] = useState([]);
   const { isLoading } = useSelector((state) =>
     dataType ? state[dataType] : { isLoading: false }
   );
@@ -43,6 +46,27 @@ const CardDialog = ({ open, handleClose, data, dataType, progress }) => {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      if (data.tags && data.tags.length > 0) {
+        try {
+          const fetchedTags = await Promise.all(data.tags.map(tagId =>
+            dispatch(fetchTagInfo(tagId)).unwrap()
+          ));
+          const tagInfos = fetchedTags.map(tag => tag.tagInfo);
+          setTags(tagInfos);
+        } catch (error) {
+          console.error("Error fetching tags:", error);
+          toast.error(error.message || 'Failed to fetch tags');
+        }
+      }
+    };
+
+    if (open) {
+      fetchTags();
+    }
+  }, [dispatch, data.tags, open]);
 
   const onSubmit = async (values) => {
     if (dataType === "habit") {
@@ -113,6 +137,16 @@ const CardDialog = ({ open, handleClose, data, dataType, progress }) => {
               <Typography variant="overline" display="block" gutterBottom>
                 End: {end}
               </Typography>
+              <Typography variant="overline" display="block" gutterBottom>
+                Tag: {tags.map((tag) => (
+                  <Chip
+                    key={tag._id}
+                    label={tag.name}
+                    color="primary"
+                  />
+                ))}
+              </Typography>
+
             </Box>
             {renderGoalPercentage}
             <Box width="100%">

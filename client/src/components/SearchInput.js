@@ -143,11 +143,12 @@ function SearchInput({ handleSubmit }) {
         (
           <>
             Habibi:
-            {results.habits.map((habit, index) => (
-              <Box key={index} mb={2}>
-                <HabitCard habit={habit} />
-              </Box>
-            ))}
+            {
+              results.habits.map((habit, index) => (
+                <Box key={index} mb={2}>
+                  <HabitCard habit={habit} />
+                </Box>
+              ))}
             Goalie:
             {results.goals.map((goal, index) => (
               <Box key={index} mb={2}>

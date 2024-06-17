@@ -7,10 +7,13 @@ const tagController = {};
 
 // Create a tag
 tagController.createTag = async (req, res, next) => {
+  const currentUserId = req.userId;
+
   try {
     const info = req.body;
     if (!info) throw new AppError(402, "Bad Request", "Create tag Error");
-    const created = await tag.create(info);
+    const tagData = { ...info, createdBy: currentUserId };
+    const created = await tag.create(tagData);
     sendResponse(
       res,
       200,
@@ -26,8 +29,9 @@ tagController.createTag = async (req, res, next) => {
 
 // Get all tags
 tagController.getTags = async (req, res, next) => {
+  const currentUserId = req.userId;
   try {
-    const listOfFound = await tag.find();
+    const listOfFound = await tag.find({ createdBy: currentUserId });
     if (!listOfFound) throw new AppError("No tag found", 404);
     sendResponse(
       res,
@@ -45,9 +49,10 @@ tagController.getTags = async (req, res, next) => {
 // Get current tag info
 tagController.getCurrentTagInfo = async (req, res, next) => {
   const targetId = req.params.tagId;
+  console.log("🚀 ~ file: tag.controllers.js:52 ~ tagController.getCurrentTagInfo= ~ targetId:", targetId)
 
   try {
-    const tagInfo = await tag.findOne({ _id: targetId, isDeleted: false });
+    const tagInfo = await tag.findOne({ _id: targetId });
     if (!tagInfo) throw new AppError("Tag not found", 404);
     sendResponse(
       res,

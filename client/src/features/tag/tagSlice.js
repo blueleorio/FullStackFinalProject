@@ -22,6 +22,11 @@ export const fetchTagWithHabitGoal = createAsyncThunk("tag/fetchTagWithHabitGoal
   return response.data;
 });
 
+export const fetchTagInfo = createAsyncThunk("tag/fetchTagInfo", async(tagId) =>{
+  const response = await apiService.get(`tags/${tagId}`);
+  return response;
+})
+
 const tagSlice = createSlice({
   name: "tag",
   initialState: {
@@ -77,6 +82,10 @@ const tagSlice = createSlice({
       })
       .addCase(fetchTagWithHabitGoal.fulfilled, (state, action) => {
         state.isLoading = false;
+      })
+      .addCase(fetchTagInfo.fulfilled,(state,action) => {
+        state.isLoading = false;
+
       });
   },
 });
