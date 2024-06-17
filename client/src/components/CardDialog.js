@@ -57,7 +57,7 @@ const CardDialog = ({ open, handleClose, data, dataType, progress }) => {
     } else if (dataType === "goal") {
       try {
         await dispatch(updateGoal({ id: data._id, updates: values }));
-        await dispatch(fetchGoals({limit: 10, page: 1}));
+        await dispatch(fetchGoals({ limit: 10, page: 1 }));
         toast.success("Goal updated successfully!");
       } catch (error) {
         console.error("Failed to update goal:", error);
@@ -97,35 +97,36 @@ const CardDialog = ({ open, handleClose, data, dataType, progress }) => {
     <Dialog onClose={handleClose} open={open}>
       <DialogContent>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-          <Box>
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <Typography variant="overline" gutterBottom>
-                Name
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <Typography variant="overline" gutterBottom>
+              Name
+            </Typography>
+            <FTextField name="name" />
+            <Typography variant="overline" gutterBottom>
+              Description
+            </Typography>
+            <FTextField name="description" />
+            <Box>
+              <Typography variant="overline" display="block" gutterBottom>
+                Start: {start}
               </Typography>
-              <FTextField name="name" />
-              <Typography variant="overline" gutterBottom>
-                Description
+              <Typography variant="overline" display="block" gutterBottom>
+                End: {end}
               </Typography>
-              <FTextField name="description" />
-              <Box>
-                <Typography variant="overline" display="block" gutterBottom>
-                  Start: {start}
-                </Typography>
-                <Typography variant="overline" display="block" gutterBottom>
-                  End: {end}
-                </Typography>
-              </Box>
-              {renderGoalPercentage}
-            </FormProvider>
-          </Box>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            size="large"
-            loading={isSubmitting || isLoading}
-          >
-            Save Changes
-          </LoadingButton>
+            </Box>
+            {renderGoalPercentage}
+            <Box width="100%">
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                size="large"
+                loading={isSubmitting || isLoading}
+                fullWidth
+              >
+                Save Changes
+              </LoadingButton>
+            </Box>
+          </FormProvider>
         </Box>
       </DialogContent>
     </Dialog>
