@@ -78,10 +78,12 @@ const progressSlice = createSlice({
     builder
       .addCase(fetchProgresses.pending, (state) => {
         state.status = "loading";
+        state.isLoading = true;
       })
       .addCase(fetchProgresses.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.progresses = action.payload;
+        state.isLoading = false;
       })
       .addCase(fetchProgresses.rejected, (state, action) => {
         state.status = "failed";
