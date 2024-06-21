@@ -25,7 +25,7 @@ function MainLayout() {
   // toast("This is a toast notification!");
   return (
     <Stack
-      sx={{ minHeight: "100vh" }}
+      sx={{ minHeight: "100vh", minWidth: "100vw" }}
       className={Mode === "dark" ? "pattern-bg-dark" : "pattern-bg-light"}
     >
       <AlertMsg />
@@ -35,11 +35,12 @@ function MainLayout() {
       />
       <Box
         component="main"
+        border={1}
         sx={{
           flexGrow: 1,
           mt: 6,
           ml: isDrawerOpen ? 31 : 9,
-          p: 2,
+          // p: 2,
         }}
       >
         <Outlet />

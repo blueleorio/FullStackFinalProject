@@ -95,8 +95,6 @@ function SearchInput({ handleSubmit }) {
             <MenuItem value="habit">Habit</MenuItem>
             <MenuItem value="goal">Goal</MenuItem>
             <MenuItem value="tag">Tag</MenuItem>
-
-
           </Select>
         </FormControl>
 
@@ -115,12 +113,12 @@ function SearchInput({ handleSubmit }) {
               value={searchQuery}
               placeholder="Search..."
               onChange={(event) => setSearchQuery(event.target.value)}
-              sx={{ width: 300 }}
+              sx={{ width: 250 }}
               size="small"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton type="submit" color="primary" aria-label="search">
+                    <IconButton type="submit" color="primary" aria-label="search" >
                       <SearchIcon />
                     </IconButton>
                   </InputAdornment>
