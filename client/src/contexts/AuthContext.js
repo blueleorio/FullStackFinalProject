@@ -2,6 +2,7 @@ import { createContext, useReducer, useEffect } from "react";
 import { useSelector } from "react-redux";
 import apiService from "../app/apiService";
 import { isValidToken } from "../utils/jwt";
+// import { toast } from "react-toastify";
 
 const initialState = {
   isInitialized: false,
@@ -141,6 +142,7 @@ function AuthProvider({ children }) {
 
       callback();
     } catch (err) {
+      // toast.error("Invalid email or password. Please try again.");
       console.error("Error in login function:", err);
     }
   };

@@ -23,7 +23,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FCheckbox, FormProvider, FTextField } from "../components/form";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 // Custom hooks and components
 import useAuth from "../hooks/useAuth";
@@ -88,7 +88,6 @@ function LoginPage() {
       } catch (error) {
         reset();
         setError("responseError", error);
-        toast.error("Login failed. Please try again.");
       }
     },
     onError: ({ error, error_description, error_uri }) => {
@@ -99,7 +98,6 @@ function LoginPage() {
       if (error_uri) {
         console.error("Error URI:", error_uri);
       }
-      toast.error("Login failed. Please try again.");
     }
   });
 

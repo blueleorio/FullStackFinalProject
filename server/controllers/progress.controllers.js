@@ -16,7 +16,7 @@ progressController.createProgress = async (req, res, next) => {
       true,
       { data: created },
       null,
-      "Create Progress Successfully"
+      "Create Progress Successfully",
     );
   } catch (err) {
     next(err);
@@ -37,7 +37,7 @@ progressController.fetchProgressesById = async (req, res, next) => {
       true,
       { data: progresses },
       null,
-      "Fetch Progresses Successfully"
+      "Fetch Progresses Successfully",
     );
   } catch (err) {
     next(err);
@@ -52,8 +52,7 @@ progressController.fetchProgresses = async (req, res, next) => {
     const progresses = await progress
       // .find({ createdBy: userId })
       .find({ createdBy: userId })
-      .populate("habitId")
-
+      .populate("habitId");
 
     sendResponse(
       res,
@@ -61,7 +60,7 @@ progressController.fetchProgresses = async (req, res, next) => {
       true,
       { data: progresses },
       null,
-      "Fetch Progresses Successfully"
+      "Fetch Progresses Successfully",
     );
   } catch (err) {
     next(err);
@@ -72,6 +71,7 @@ progressController.fetchProgresses = async (req, res, next) => {
 
 progressController.fetchProgressesForDate = async (req, res, next) => {
   try {
+    const userId = req.userId;
     const { date } = req.params;
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 3;
@@ -89,8 +89,8 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
         0,
         0,
         0,
-        0
-      )
+        0,
+      ),
     );
     const endOfDay = new Date(
       Date.UTC(
@@ -100,8 +100,8 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
         23,
         59,
         59,
-        999
-      )
+        999,
+      ),
     );
 
     // Fetch the progress documents for the given date
@@ -111,6 +111,7 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
         $lt: endOfDay,
       },
       isDone: false,
+      createdBy: userId,
     };
 
     const progresses = await progress
@@ -127,7 +128,7 @@ progressController.fetchProgressesForDate = async (req, res, next) => {
       true,
       { data: progresses, page: page, totalProgresses: total },
       null,
-      "Fetch Progresses Successfully"
+      "Fetch Progresses Successfully",
     );
   } catch (err) {
     next(err);
@@ -157,7 +158,7 @@ progressController.updateProgress = async (req, res, next) => {
       true,
       { data: updatedProgress },
       null,
-      "Update Progress Successfully"
+      "Update Progress Successfully",
     );
   } catch (err) {
     next(err);
