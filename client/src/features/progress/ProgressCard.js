@@ -12,20 +12,21 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 import ConfirmationDialog from "../../components/ConfirmationDialog";
-import doneImg from "../../logo-light.png";
+// import doneImg from "../../logo-light.png";
+
 
 import { toast } from "react-toastify";
 
 dayjs.extend(utc);
 
 const ProgressCard = ({ progress }) => {
-  const [status, setStatus] = React.useState(progress.isDone);
+  const [status, setStatus] = useState(progress.isDone);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
+  // const handleMouseEnter = () => setIsHovered(true);
+  // const handleMouseLeave = () => setIsHovered(false);
 
   const handleStatusChange = () => {
     setDialogOpen(true);
@@ -52,10 +53,10 @@ const ProgressCard = ({ progress }) => {
   return (
     <>
       <Card
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
         sx={{
-          background: "#ACE1AF",
+          background: status ? "#6B8E23" : "#ACE1AF",
           transition: "transform 0.15s ease-in-out",
           "&:hover": {
             transform: "scale(1.05)",
@@ -64,38 +65,20 @@ const ProgressCard = ({ progress }) => {
         }}
         raised={true}
       >
-        {status && (
-          <div style={{ display: isHovered ? "none" : "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-            <img src={doneImg} alt="Done" style={{ width: "15%" }} />
-            <p>Ding Dong DONE</p>
-          </div>
-        )}
-        <CardContent style={{ display: isHovered || !status ? "block" : "none" }}>
-          {status ? (
+        <CardContent >
+          <Tooltip title={progress.habitId.name} placement="top">
+            <Typography variant="h5" component="p" sx={{ fontStyle: "italic" }}>
+              {progress.habitId.name.length > 20 ? progress.habitId.name.substring(0, 20) + "..." : progress.habitId.name}
+            </Typography>
+          </Tooltip>
+          <Typography variant="h6" component="p" align="left">
+            {localDate}
+          </Typography>
+          <Typography variant="body2" component="p" align="left" >
+            Description: {progress.habitId.description}
+          </Typography>
+          {!status && (
             <>
-              <Typography variant="h5" component="p">
-                {progress.habitId.name.length > 15 ? progress.habitId.name.substring(0, 15) + "..." : progress.habitId.name}
-              </Typography>
-              <Typography variant="h6" component="h2">
-                {localDate}
-              </Typography>
-              <Typography variant="body2" component="p">
-                Description: {progress.habitId.description}
-              </Typography>
-            </>
-          ) : (
-            <>
-                <Tooltip title={progress.habitId.name} placement="top">
-              <Typography variant="h5" component="p" sx={{ fontStyle: "italic" }}>
-                {progress.habitId.name.length > 20 ? progress.habitId.name.substring(0, 20) + "..." : progress.habitId.name}
-              </Typography>
-              </Tooltip>
-              <Typography variant="h6" component="p" align="left">
-                {localDate}
-              </Typography>
-              <Typography variant="body2" component="p" align="left" >
-                Description: {progress.habitId.description}
-              </Typography>
               Done:
               <Checkbox
                 checked={status}

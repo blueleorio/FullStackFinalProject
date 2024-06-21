@@ -30,7 +30,6 @@ export const fetchProgresses = createAsyncThunk(
   async (page = 1) => {
     try {
       const response = await apiService.get(`/progresses?page=${page}`);
-
       return response.data;
     } catch (error) {
       return Promise.reject(error.message);
