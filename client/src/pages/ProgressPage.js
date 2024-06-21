@@ -14,7 +14,6 @@ function ProgressPage() {
   );
 
   useEffect(() => {
-    console.log("🚀 ~ file: ProgressPage.js:21 ~ ProgressPage ~ progresses:", progresses)
     dispatch(fetchProgresses());
 
   }, [dispatch]);
