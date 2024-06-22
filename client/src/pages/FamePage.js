@@ -14,9 +14,9 @@ const FamePage = () => {
         dispatch(fetchGoals({ limit: 10, page: 1 }));
     }, [dispatch]);
 
-    console.log("🚀 ~ file: FamePage.js:10 ~ FamePage ~ goals:", goals)
+    // console.log("🚀 ~ file: FamePage.js:10 ~ FamePage ~ goals:", goals)
     const goalHall = goals.filter(goal => goal.percentage === 100);
-    console.log("🚀 ~ file: FamePage.js:18 ~ FamePage ~ goalHall:", goalHall)
+    // console.log("🚀 ~ file: FamePage.js:18 ~ FamePage ~ goalHall:", goalHall)
 
     return (
         <Container sx={{ display: "flex", height: "100%", alignItems: "center" }}>

@@ -1,6 +1,6 @@
 import { shallowEqual, useSelector } from "react-redux";
 
-import { Container, Box } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import LoadingScreen from "../components/LoadingScreen";
 import HabitForm from "../features/habit/HabitForm";
@@ -14,21 +14,14 @@ function HabitPage() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-          }}
-        >
-          <Box sx={{ width: "50%", padding: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
             <HabitForm />
-          </Box>
-          <Box sx={{ width: "50%", padding: 1 }}>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <HabitList />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       )}
     </Container>
   );

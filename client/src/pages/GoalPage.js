@@ -1,6 +1,6 @@
 import { shallowEqual, useSelector } from "react-redux";
 
-import { Box, Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import LoadingScreen from "../components/LoadingScreen";
 import GoalForm from "../features/goal/GoalForm";
@@ -15,21 +15,14 @@ function GoalPage() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row", // Ensure the direction is row to align items in a row
-            justifyContent: "space-around",
-            flexWrap: "wrap", // Allow wrapping if the container is too small
-          }}
-        >
-          <Box sx={{ width: "auto", padding: 1 }}> {/* Add padding for spacing */}
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
             <GoalForm />
-          </Box>
-          <Box sx={{ width: "50%", padding: 1 }}> {/* Add padding for spacing */}
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <GoalList />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       )}
     </Container>
   );

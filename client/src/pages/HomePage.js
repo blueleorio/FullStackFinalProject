@@ -113,16 +113,16 @@ function HomePage() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Card>
               <BasicDateCalendar value={date} onChange={setDate} />
             </Card>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Card>
               <Box sx={{ p: 3 }}>
-                <Typography variant="h6">Task</Typography>
+                <Typography variant="h6">Progress</Typography>
                 <ProgressList />
               </Box>
             </Card>
