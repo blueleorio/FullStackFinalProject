@@ -39,7 +39,7 @@ function MainLayout() {
         sx={{
           flexGrow: 1,
           mt: 6,
-          ml: isDrawerOpen ? 31 : 9,
+          ml: isDrawerOpen ? 29 : 7,
           // p: 2,
         }}
       >

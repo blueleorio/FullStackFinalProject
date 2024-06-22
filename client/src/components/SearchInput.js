@@ -83,14 +83,14 @@ function SearchInput({ handleSubmit }) {
         style={{ display: "flex", alignItems: "center", gap: "10px" }}
       >
         <FormControl size="small">
-          <InputLabel id="search-type-label">Search Type</InputLabel>
+          <InputLabel id="search-type-label">Type</InputLabel>
           <Select
             labelId="search-type-label"
             id="search-type-select"
             value={searchType}
-            label="Search Type"
+            label="Type"
             onChange={(e) => setSearchType(e.target.value)}
-            sx={{ width: 120 }}
+          // sx={{ width: 100 }}
           >
             <MenuItem value="habit">Habit</MenuItem>
             <MenuItem value="goal">Goal</MenuItem>
@@ -113,7 +113,7 @@ function SearchInput({ handleSubmit }) {
               value={searchQuery}
               placeholder="Search..."
               onChange={(event) => setSearchQuery(event.target.value)}
-              sx={{ width: 250 }}
+              sx={{ width: 180 }}
               size="small"
               InputProps={{
                 endAdornment: (
