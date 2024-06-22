@@ -35,7 +35,7 @@ function MainLayout() {
       />
       <Box
         component="main"
-        border={1}
+        // border={1}
         sx={{
           flexGrow: 1,
           mt: 6,

@@ -41,8 +41,8 @@ const yupSchema = Yup.object().shape({
       "Name should only contain letters and spaces"
     ),
   description: Yup.string().matches(
-    /^[^\p{P}\p{S}]*$/u,
-    "Description should only contain letters and spaces"
+    /^[a-zA-Z0-9\s\-.,;:'"!?()]*$/,
+    "Description can contain letters, numbers, spaces, and standard punctuation"
   ),
   habitId: Yup.string().required("Habit is required"),
   repeat: Yup.number()
