@@ -74,8 +74,7 @@ function HomePage() {
               p: 3,
             }}
             >
-              <Grid item xs={12} md={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-              >
+              <Grid item xs={12} md={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center", maxWidth: '100%', p: 2 }}>
                 <Typography variant="h6">About Me</Typography>
                 <Card
                   sx={{
@@ -95,7 +94,7 @@ function HomePage() {
                     sx={{ width: 70, height: 70, mb: 2, mt: 2 }}
                   />
                 </Card>
-                <Typography variant="body2" sx={{ mt: 2 }} align="center">
+                <Typography variant="body2" sx={{ mt: 2, wordWrap: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }} align="center">
                   {user.aboutMe}
                 </Typography>
                 <Clock
