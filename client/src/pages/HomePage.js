@@ -16,10 +16,10 @@ import {
   AccordionDetails,
   Accordion,
   Grid,
-  // Fab,
+  Fab,
 } from "@mui/material";
 
-// import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
@@ -29,6 +29,7 @@ import dayjs from "dayjs";
 import Clock from "react-live-clock";
 
 import SearchInput from "../components/SearchInput";
+import Add from "@mui/icons-material/Add";
 
 function HomePage() {
   const { user } = useAuth();
@@ -146,6 +147,9 @@ function HomePage() {
           </Grid>
         </Grid>
       </Grid>
+      <Fab sx={{ position: "fixed", bottom: 16, left: 16 }}>
+        <AddIcon />
+      </Fab>
     </Container>
   );
 }
