@@ -29,7 +29,6 @@ import dayjs from "dayjs";
 import Clock from "react-live-clock";
 
 import SearchInput from "../components/SearchInput";
-import Add from "@mui/icons-material/Add";
 
 function HomePage() {
   const { user } = useAuth();
